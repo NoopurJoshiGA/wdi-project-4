@@ -32,7 +32,6 @@ class UsersShow extends React.Component {
   render() {
     const user = this.state.user;
     const images = this.state.images;
-    let averageRating;
 
     console.log('user is', user);
 

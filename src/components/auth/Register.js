@@ -10,6 +10,8 @@ class AuthRegister extends React.Component {
     lastName: 'Kunis',
     username: 'milakunis',
     email: 'milakunis@email.com',
+    type: 'photographer',
+    postcode: 'WD171BN',
     password: 'pass',
     passwordConfirmation: 'pass'
   }
@@ -89,7 +91,23 @@ class AuthRegister extends React.Component {
           </input>
 
           {/* Type */}
-        
+          <div className="select is-fullwidth">
+            <select onChange={this.handleChange}>
+              <option>model</option>
+              <option>photographer</option>
+            </select>
+          </div>
+
+          {/* Postcode */}
+          <input
+            onChange={this.handleChange}
+            className="input"
+            name="postcode"
+            placeholder="e.g. EC171BN"
+            type="postcode"
+            value={this.state.postcode || ''}>
+          </input>
+
           {/* Password */}
           <input
             onChange={this.handleChange}
