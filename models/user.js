@@ -8,16 +8,18 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: false },
   type: { enum: ['model', 'photographer'], type: String }, // type is either model or photographer
   postcode: { type: String, required: false },
+  interests: [{ type: String }],
+  description: { type: String },
   reviews: [
     {
-      addedByUser: { type: mongoose.Schema.ObjectId, ref: 'User'},
+      reviewAddedBy: { type: mongoose.Schema.ObjectId, ref: 'User'},
       content: { type: String }
     }
   ],
   ratings: [
     {
-      addedByUser: { type: mongoose.Schema.ObjectId, ref: 'User'},
-      ratingNumber: { type: Number }
+      ratedBy: { type: mongoose.Schema.ObjectId, ref: 'User'},
+      number: { type: Number }
     }
   ],
   profilePic: { type: String }

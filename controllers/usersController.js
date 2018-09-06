@@ -10,6 +10,7 @@ function usersIndex(req, res, next) {
 function usersShow(req, res, next) {
   User
     .findById(req.params.id)
+    .populate('reviews.reviewAddedBy')
     .then(user => res.json(user))
     .catch(next);
 }

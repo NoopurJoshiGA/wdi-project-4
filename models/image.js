@@ -6,12 +6,12 @@ const imageSchema = new mongoose.Schema({
   tags: [{ type: String }],
   comments: [
     {
-      addedByUser: { type: mongoose.Schema.ObjectId, ref: 'User'},
+      commentedBy: { type: mongoose.Schema.ObjectId, ref: 'User'},
       content: { type: String }
     }
   ],
   likes: { type: Number },
-  addedByUser: { type: String }
+  uploadedBy: { type: mongoose.Schema.ObjectId, ref: 'User' }
 });
 
 module.exports = mongoose.model('Image', imageSchema);
