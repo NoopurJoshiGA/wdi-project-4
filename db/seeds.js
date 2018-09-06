@@ -8,9 +8,14 @@ const { dbURI } = require('../config/environment');
 mongoose.Promise = require('bluebird');
 mongoose.connect(dbURI);
 
+const userIds =[
+  '5b9101d67c0224d96e11ed58', '5b9101e27c0224d96e11ed59', '5b9101ed7c0224d96e11ed5a'
+];
+
 const userData = [
   // user 1 - Melody (fashion model)
   {
+    _id: userIds[0],
     firstName: 'Melody',
     lastName: 'Jacob',
     username: 'melodyjacob',
@@ -22,7 +27,7 @@ const userData = [
     interests: ['fashion', 'portraits'],
     description: 'Friendly, lively, fashion enthusiast. I hail from North-West London and have a keen interest in sustainable fashion. Looking to colloborate with talented and fun photographers who share a similar vision.',
     reviews: [
-      { content: 'Melody is really easy going and is super talented! Enjoyed collaborating for a fashion shoot.' },
+      { addedBy: userIds[2], content: 'Melody is really easy going and is super talented! Enjoyed collaborating for a fashion shoot.' },
       { content: 'Melody is very easy to get in touch with and has flexible working hours.' }
     ],
     ratings: [
@@ -34,6 +39,7 @@ const userData = [
   },
   // user 2 - Natasha (fashion model)
   {
+    _id: userIds[1],
     firstName: 'Natasha',
     lastName: 'Brown',
     username: 'natashabrown',
@@ -54,6 +60,7 @@ const userData = [
   },
   // user 3 - Noopur (photographer)
   {
+    _id: userIds[2],
     firstName: 'Noopur',
     lastName: 'Joshi',
     username: 'noopurjoshi',

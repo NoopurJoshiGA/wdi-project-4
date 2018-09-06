@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const userSchema = new mongoose.Schema({
   firstName: { type: String, required: false },
   lastName: { type: String, required: false },
-  username: { type: String, required: false, unique: true},
+  username: { type: String, required: true, unique: true},
   email: { type: String, required: false, unique: true},
   password: { type: String, required: true },
   type: { enum: ['model', 'photographer'], type: String }, // type is either model or photographer
@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   description: { type: String },
   reviews: [
     {
-      reviewAddedBy: { type: mongoose.Schema.ObjectId, ref: 'User'},
+      addedBy: { type: mongoose.Schema.ObjectId, ref: 'User'},
       content: { type: String }
     }
   ],

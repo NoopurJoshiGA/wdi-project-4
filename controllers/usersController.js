@@ -3,6 +3,7 @@ const User = require('../models/user');
 function usersIndex(req, res, next) {
   User
     .find()
+    // .populate('reviews.addedBy')
     .then(users => res.json(users))
     .catch(next);
 }
@@ -10,7 +11,7 @@ function usersIndex(req, res, next) {
 function usersShow(req, res, next) {
   User
     .findById(req.params.id)
-    .populate('reviews.reviewAddedBy')
+    .populate('reviews.addedBy')
     .then(user => res.json(user))
     .catch(next);
 }
