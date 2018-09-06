@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 // Import Components
 import Header from './components/Header';
+import AuthLogin from './components/auth/Login';
 
 import 'bulma/css/bulma.css';
 import './scss/style.scss'; // needs to change when Heroku-ing
@@ -13,6 +14,9 @@ class App extends React.Component {
     return (
       <main>
         <Header />
+        <Switch>
+          <Route exact path="/login" component={AuthLogin} />
+        </Switch>
       </main>
     );
   }
