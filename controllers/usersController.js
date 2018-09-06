@@ -11,7 +11,7 @@ function usersIndex(req, res, next) {
 function usersShow(req, res, next) {
   User
     .findById(req.params.id)
-    .populate('reviews.addedBy')
+    .populate('reviews.addedBy ratings.ratedBy')
     .then(user => res.json(user))
     .catch(next);
 }

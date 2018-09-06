@@ -27,14 +27,12 @@ const userData = [
     interests: ['fashion', 'portraits'],
     description: 'Friendly, lively, fashion enthusiast. I hail from North-West London and have a keen interest in sustainable fashion. Looking to colloborate with talented and fun photographers who share a similar vision.',
     reviews: [
-      { addedBy: userIds[2], content: 'Melody is really easy going and is super talented! Enjoyed collaborating for a fashion shoot.' },
-      { content: 'Melody is very easy to get in touch with and has flexible working hours.' }
+      { addedBy: userIds[1], content: 'Melody is really easy going and is super talented! Enjoyed collaborating for a fashion shoot.' },
+      { addedBy: userIds[2], content: 'Melody is very easy to get in touch with and has flexible working hours.' }
     ],
     ratings: [
-      { number: 5 },
-      { number: 5 },
-      { number: 4.5 },
-      { number: 4 }
+      { ratedBy: userIds[1], number: 5 },
+      { ratedBy: userIds[2], number: 5 }
     ]
   },
   // user 2 - Natasha (fashion model)
@@ -51,11 +49,11 @@ const userData = [
     interests: 'fashion',
     description: 'I love fashion and keeping up with trends. I\'m a shopoholic. Looking for photographers to work with to build my fashion blog.',
     reviews: [
-      { content: 'Natasha is very professional and talented, will definitely be working with her more regularly.' }
+      { addedBy: userIds[0], content: 'Natasha is very professional and talented, will definitely be working with her more regularly.' }
     ],
     ratings: [
-      { number: 4 },
-      { number: 5 }
+      { ratedBy: userIds[0], number: 4 },
+      { ratedBy: userIds[2],  number: 5 }
     ]
   },
   // user 3 - Noopur (photographer)
@@ -72,12 +70,12 @@ const userData = [
     interests: ['travel', 'portraits', 'urban', 'fashion'],
     description: 'Aspiring photographer specialising in Urban street photography. I\'m easy going, fun, have flexible working times and can commute around London.',
     reviews: [
-      { content: 'Noopur has a great work ethic and is very professional, yet fun! I did a shoot with her in Shoreditch which was a perfect location to capture an urban vibe.' },
-      { content: 'Easy to work with. Noopur was fast at post editing and delivering the images.' }
+      { addedBy: userIds[0], content: 'Noopur has a great work ethic and is very professional, yet fun! I did a shoot with her in Shoreditch which was a perfect location to capture an urban vibe.' },
+      { addedBy: userIds[1], content: 'Easy to work with. Noopur was fast at post editing and delivering the images.' }
     ],
     ratings: [
-      { number: 4 },
-      { number: 5 }
+      { ratedBy: userIds[0], number: 4 },
+      { ratedBy: userIds[1], number: 5 }
     ]
   }
 ];
