@@ -6,6 +6,7 @@ const usersController = require('../controllers/usersController');
 const imagesController = require('../controllers/imagesController');
 const reviewsController = require('../controllers/reviewsController');
 const commentsController = require('../controllers/commentsController');
+const authController = require('../controllers/authController');
 
 Router.route('/')
   .get(function(req, res) {
@@ -24,7 +25,6 @@ Router.route('/users/:id')
 
 // Reviews
 Router.route('/users/:userId/reviews')
-  .get(reviewsController.index)
   .post(reviewsController.create);
 
 Router.route('/users/:userId/reviews/:reviewId')
@@ -43,7 +43,6 @@ Router.route('/images/:id')
 
 // Comments
 Router.route('/images/:id/comments/commentId')
-  .get(commentsController.index)
   .post(commentsController.create);
 
 Router.route('/images/:imageId/comments/:commentId')

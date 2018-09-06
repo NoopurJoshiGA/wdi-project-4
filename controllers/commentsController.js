@@ -1,14 +1,5 @@
 const Image = require('../models/image');
 
-function commentsIndex(req, res, next) {
-  Image
-    .findById(req.params.imageId)
-    .populate('commentedBy')
-    .populate('')
-    .then(res => res.body)
-    .catch(next);
-}
-
 function commentsCreate(req, res, next) {
   Image
     .findById(req.params.imageId)
@@ -43,7 +34,6 @@ function commentsDelete(req, res, next) {
 }
 
 module.exports = {
-  index: commentsIndex,
   create: commentsCreate,
   delete: commentsDelete,
   update: commentsUpdate

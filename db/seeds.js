@@ -22,17 +22,14 @@ const userData = [
     interests: ['fashion', 'portraits'],
     description: 'Friendly, lively, fashion enthusiast. I hail from North-West London and have a keen interest in sustainable fashion. Looking to colloborate with talented and fun photographers who share a similar vision.',
     reviews: [
-      {
-        content: 'Melody is really easy going and is super talented! Enjoyed collaborating for a fashion shoot.'
-      }
+      { content: 'Melody is really easy going and is super talented! Enjoyed collaborating for a fashion shoot.' },
+      { content: 'Melody is very easy to get in touch with and has flexible working hours.' }
     ],
     ratings: [
-      {
-        number: 5
-      },
-      {
-        number: 5
-      }
+      { number: 5 },
+      { number: 5 },
+      { number: 4.5 },
+      { number: 4 }
     ]
   },
   // user 2 - Natasha (fashion model)
@@ -47,8 +44,13 @@ const userData = [
     postcode: 'SE10NS',
     interests: 'fashion',
     description: 'I love fashion and keeping up with trends. I\'m a shopoholic. Looking for photographers to work with to build my fashion blog.',
-    reviews: [],
-    ratings: []
+    reviews: [
+      { content: 'Natasha is very professional and talented, will definitely be working with her more regularly.' }
+    ],
+    ratings: [
+      { number: 4 },
+      { number: 5 }
+    ]
   },
   // user 3 - Noopur (photographer)
   {
@@ -63,20 +65,13 @@ const userData = [
     interests: ['travel', 'portraits', 'urban', 'fashion'],
     description: 'Aspiring photographer specialising in Urban street photography. I\'m easy going, fun, have flexible working times and can commute around London.',
     reviews: [
-      {
-        content: 'Noopur has a great work ethic and is very professional, yet fun! I did a shoot with her in Shoreditch which was a perfect location to capture an urban vibe.'
-      },
-      {
-        content: 'Easy to work with. Noopur was fast at post editing and delivering the images.'
-      }
+      { content: 'Noopur has a great work ethic and is very professional, yet fun! I did a shoot with her in Shoreditch which was a perfect location to capture an urban vibe.' },
+      { content: 'Easy to work with. Noopur was fast at post editing and delivering the images.' }
     ],
     ratings: [
-      {
-        number: 4
-      },
-      {
-        number: 5
-      }]
+      { number: 4 },
+      { number: 5 }
+    ]
   }
 ];
 
@@ -86,37 +81,60 @@ const imageData = [
     imageUrl: 'https://images.pexels.com/photos/1377450/pexels-photo-1377450.jpeg?cs=srgb&dl=bag-beautiful-city-1377450.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 1002
+    likes: 1002,
+    comments: [
+      { content: 'This picture is amazing! Love the red dress.' },
+      { content: 'Your style is great'}
+    ]
   },
   {
     imageUrl: 'https://images.pexels.com/photos/1377452/pexels-photo-1377452.jpeg?cs=srgb&dl=daytime-dress-fashion-1377452.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 2194
+    likes: 2194,
+    comments: [
+      { content: 'I would love to colloborate with you, check out my profile :)' }
+    ]
   },
   {
     imageUrl: 'https://images.pexels.com/photos/1374915/pexels-photo-1374915.jpeg?cs=srgb&dl=bag-blurred-background-daylight-1374915.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 850
+    likes: 850,
+    comments: [
+      { content: 'This picture is amazing! Love the red dress.' },
+      { content: 'Your style is great'}
+    ]
   },
   {
     imageUrl: 'https://images.pexels.com/photos/1346185/pexels-photo-1346185.jpeg?cs=srgb&dl=dress-fashion-girl-1346185.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 749
+    likes: 749,
+    comments: [
+      { content: 'This picture is amazing! Love the red dress.' },
+      { content: 'Your style is great'}
+    ]
   },
   {
     imageUrl: 'https://images.pexels.com/photos/1276576/pexels-photo-1276576.jpeg?cs=srgb&dl=bag-daytime-dress-1276576.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 749
+    likes: 749,
+    comments: [
+      { content: 'This picture is amazing! Love the red dress.' },
+      { content: 'Your style is great'}
+    ]
   },
   {
     imageUrl: 'https://images.pexels.com/photos/1270014/pexels-photo-1270014.jpeg?cs=srgb&dl=back-back-view-bag-1270014.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 2134
+    likes: 2134,
+    comments: [
+      { content: 'This picture is amazing! Love the red dress.' },
+      { content: 'Your style is great'}
+    ]
   },
   {
     imageUrl: 'https://images.pexels.com/photos/1253410/pexels-photo-1253410.jpeg?cs=srgb&dl=3d-model-adobe-photoshop-advert-1253410.jpg&fm=jpg',

@@ -1,13 +1,5 @@
 const User = require('../models/user');
 
-function reviewsIndex(req, res, next) {
-  User
-    .findById(req.params.userId)
-    .populate('reviewAddedBy')
-    .then(res => res.json())
-    .catch(next);
-}
-
 function reviewsCreate(req, res, next) {
   User
     .findById(req.params.userId)
@@ -42,7 +34,6 @@ function reviewsDelete(req, res, next) {
 }
 
 module.exports = {
-  index: reviewsIndex,
   create: reviewsCreate,
   delete: reviewsDelete,
   update: reviewsUpdate
