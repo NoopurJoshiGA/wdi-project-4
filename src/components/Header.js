@@ -15,6 +15,7 @@ class Header extends React.Component {
           <div className="navbar-end">
             <Link className="navbar-item has-background-primary button" to="/users">Discover</Link>
             <Link className="navbar-item" to="/login">Login</Link>
+            <Link className="navbar-item" to="/register">Register</Link>
           </div>
         </nav>
       </header>

@@ -3,7 +3,6 @@ const Image = require('../models/image');
 function imagesIndex(req, res, next) {
   Image
     .find()
-    .populate('uploadedBy comments.commentedBy')
     .then(images => res.json(images))
     .catch(next);
 }
@@ -11,7 +10,7 @@ function imagesIndex(req, res, next) {
 function imagesShow(req, res, next) {
   Image
     .findById(req.params.id)
-    .populate('uploadedBy comments.commentedBy')
+    .populate('uploadedBy comments.commentedBy', 'username profilePic')
     .then(image => res.json(image))
     .catch(next);
 }
