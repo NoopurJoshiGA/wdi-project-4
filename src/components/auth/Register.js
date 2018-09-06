@@ -48,6 +48,7 @@ class AuthRegister extends React.Component {
       <section>
         <form className="section form" onSubmit={this.handleSubmit}>
 
+          {/* First Name */}
           <input
             onChange={this.handleChange}
             className="input"
@@ -57,6 +58,7 @@ class AuthRegister extends React.Component {
             value={this.state.firstName || ''}>
           </input>
 
+          {/* Last Name */}
           <input
             onChange={this.handleChange}
             className="input"
@@ -66,6 +68,7 @@ class AuthRegister extends React.Component {
             value={this.state.lastName || ''}>
           </input>
 
+          {/* Email */}
           <input
             onChange={this.handleChange}
             className="input"
@@ -75,6 +78,7 @@ class AuthRegister extends React.Component {
             value={this.state.email || ''}>
           </input>
 
+          {/* Username */}
           <input
             onChange={this.handleChange}
             className="input"
@@ -84,6 +88,9 @@ class AuthRegister extends React.Component {
             value={this.state.username || ''}>
           </input>
 
+          {/* Type */}
+        
+          {/* Password */}
           <input
             onChange={this.handleChange}
             className="input"
@@ -93,6 +100,7 @@ class AuthRegister extends React.Component {
             value={this.state.password || ''}>
           </input>
 
+          {/* Password confirmation */}
           <input
             onChange={this.handleChange}
             className="input"

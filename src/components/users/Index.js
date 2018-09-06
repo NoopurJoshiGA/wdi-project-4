@@ -19,6 +19,7 @@ class UsersIndex extends React.Component {
     console.log('users are', users);
     console.log('images are', images);
     return(
+
       <section>
 
         <h2 className="title is-2">Discover models and photographers</h2>
@@ -27,7 +28,7 @@ class UsersIndex extends React.Component {
           <Link key={user._id} to={`/users/${user._id}`}
             className="columns card is-multiline">
             <div className="column is-3">
-              <img src={user.imageUrl} alt={user.firstName}/>
+              <img className="image" src={user.profilePic} alt={user.firstName}/>
               <h3 className="title is-3">{user.firstName} {user.lastName}</h3>
               <h4 className="title is-4">{user.type}</h4>
               <h4 className="title is-4">{user.postcode}</h4>
