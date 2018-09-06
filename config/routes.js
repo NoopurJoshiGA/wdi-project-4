@@ -5,7 +5,7 @@ const Router = express.Router();
 const usersController = require('../controllers/usersController');
 const imagesController = require('../controllers/imagesController');
 const reviewsController = require('../controllers/reviewsController');
-// const commentsController = require('../controllers/commentsController');
+const commentsController = require('../controllers/commentsController');
 
 Router.route('/')
   .get(function(req, res) {
@@ -24,7 +24,7 @@ Router.route('/users/:id')
 
 // Reviews
 Router.route('/users/:userId/reviews')
-  // .get(reviewsController.index)
+  .get(reviewsController.index)
   .post(reviewsController.create);
 
 Router.route('/users/:userId/reviews/:reviewId')
@@ -40,5 +40,14 @@ Router.route('/images/:id')
   .get(imagesController.show)
   .put(imagesController.update)
   .delete(imagesController.delete);
+
+// Comments
+Router.route('/images/:id/comments/commentId')
+  .get(commentsController.index)
+  .post(commentsController.create);
+
+Router.route('/images/:imageId/comments/:commentId')
+  .put(commentsController.update)
+  .delete(commentsController.delete);
 
 module.exports = Router;
