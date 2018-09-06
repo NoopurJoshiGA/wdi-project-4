@@ -83,107 +83,153 @@ const userData = [
 const imageData = [
   // fashion model 1
   {
+    uploadedBy: userIds[0],
     imageUrl: 'https://images.pexels.com/photos/1377450/pexels-photo-1377450.jpeg?cs=srgb&dl=bag-beautiful-city-1377450.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
     likes: 1002,
     comments: [
-      { content: 'This picture is amazing! Love the red dress.' },
-      { content: 'Your style is great'}
+      { commentedBy: userIds[1], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
     ]
   },
   {
+    uploadedBy: userIds[0],
     imageUrl: 'https://images.pexels.com/photos/1377452/pexels-photo-1377452.jpeg?cs=srgb&dl=daytime-dress-fashion-1377452.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
     likes: 2194,
     comments: [
-      { content: 'I would love to colloborate with you, check out my profile :)' }
+      { commentedBy: userIds[2], content: 'I would love to colloborate with you, check out my profile :)' }
     ]
   },
   {
+    uploadedBy: userIds[0],
     imageUrl: 'https://images.pexels.com/photos/1374915/pexels-photo-1374915.jpeg?cs=srgb&dl=bag-blurred-background-daylight-1374915.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
     likes: 850,
     comments: [
-      { content: 'This picture is amazing! Love the red dress.' },
-      { content: 'Your style is great'}
+      { commentedBy: userIds[1], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
     ]
   },
   {
+    uploadedBy: userIds[0],
     imageUrl: 'https://images.pexels.com/photos/1346185/pexels-photo-1346185.jpeg?cs=srgb&dl=dress-fashion-girl-1346185.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
     likes: 749,
     comments: [
-      { content: 'This picture is amazing! Love the red dress.' },
-      { content: 'Your style is great'}
+      { commentedBy: userIds[2], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[1], content: 'Your style is great'}
     ]
   },
   {
+    uploadedBy: userIds[0],
     imageUrl: 'https://images.pexels.com/photos/1276576/pexels-photo-1276576.jpeg?cs=srgb&dl=bag-daytime-dress-1276576.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
     likes: 749,
     comments: [
-      { content: 'This picture is amazing! Love the red dress.' },
-      { content: 'Your style is great'}
+      { commentedBy: userIds[1], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
     ]
   },
   {
+    uploadedBy: userIds[0],
     imageUrl: 'https://images.pexels.com/photos/1270014/pexels-photo-1270014.jpeg?cs=srgb&dl=back-back-view-bag-1270014.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
     likes: 2134,
     comments: [
-      { content: 'This picture is amazing! Love the red dress.' },
-      { content: 'Your style is great'}
+      { commentedBy: userIds[1], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
     ]
   },
   {
+    uploadedBy: userIds[0],
     imageUrl: 'https://images.pexels.com/photos/1253410/pexels-photo-1253410.jpeg?cs=srgb&dl=3d-model-adobe-photoshop-advert-1253410.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 2645
+    likes: 2645,
+    comments: [
+      { commentedBy: userIds[1], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
+    ]
   },
   {
+    uploadedBy: userIds[0],
     imageUrl: 'https://images.pexels.com/photos/1248134/pexels-photo-1248134.jpeg?cs=srgb&dl=adult-beautiful-beauty-1248134.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 3640
+    likes: 3640,
+    comments: [
+      { commentedBy: userIds[1], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
+    ]
   },
   {
+    uploadedBy: userIds[0],
     imageUrl: 'https://images.pexels.com/photos/1229181/pexels-photo-1229181.jpeg?cs=srgb&dl=bag-colorful-colors-1229181.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 1203
+    likes: 1203,
+    comments: [
+      { commentedBy: userIds[1], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
+    ]
   },
   {
+    uploadedBy: userIds[0],
     imageUrl: 'https://images.pexels.com/photos/1200372/pexels-photo-1200372.jpeg?cs=srgb&dl=automobile-automotive-beautiful-1200372.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 2000
+    likes: 2000,
+    comments: [
+      { commentedBy: userIds[1], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
+    ]
   },
   {
+    uploadedBy: userIds[0],
     imageUrl: 'https://images.pexels.com/photos/1200374/pexels-photo-1200374.jpeg?cs=srgb&dl=bag-car-girl-1200374.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 1020
+    likes: 1020,
+    comments: [
+      { commentedBy: userIds[1], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
+    ]
   },
   {
+    uploadedBy: userIds[0],
     imageUrl: 'https://images.pexels.com/photos/1161748/pexels-photo-1161748.jpeg?cs=srgb&dl=action-action-energy-adult-1161748.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 2777
+    likes: 2777,
+    comments: [
+      { commentedBy: userIds[1], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
+    ]
   },
   {
+    uploadedBy: userIds[0],
     imageUrl: 'https://images.pexels.com/photos/1154764/pexels-photo-1154764.jpeg?cs=srgb&dl=adult-attractive-beautiful-1154764.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 2224
+    likes: 2224,
+    comments: [
+      { commentedBy: userIds[1], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
+    ]
   },
   {
+    uploadedBy: userIds[0],
+    comments: [
+      { commentedBy: userIds[1], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
+    ],
     imageUrl: 'https://images.pexels.com/photos/1075773/pexels-photo-1075773.jpeg?cs=srgb&dl=african-bag-building-1075773.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
@@ -191,65 +237,115 @@ const imageData = [
   },
   // fashion model 2
   {
+    uploadedBy: userIds[1],
     imageUrl: 'https://images.pexels.com/photos/1040173/pexels-photo-1040173.jpeg?cs=srgb&dl=bag-beautiful-clothes-1040173.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 1110
+    likes: 1110,
+    comments: [
+      { commentedBy: userIds[0], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
+    ]
   },
   {
+    uploadedBy: userIds[1],
     imageUrl: 'https://images.pexels.com/photos/1055691/pexels-photo-1055691.jpeg?cs=srgb&dl=adult-autumn-colors-beautiful-1055691.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 1110
+    likes: 1110,
+    comments: [
+      { commentedBy: userIds[0], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
+    ]
   },
   {
+    uploadedBy: userIds[1],
     imageUrl: 'https://images.pexels.com/photos/1158741/pexels-photo-1158741.jpeg?cs=srgb&dl=adult-beautiful-blue-background-1158741.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 1110
+    likes: 1110,
+    comments: [
+      { commentedBy: userIds[0], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
+    ]
   },
   {
+    uploadedBy: userIds[1],
     imageUrl: 'https://images.pexels.com/photos/1187950/pexels-photo-1187950.jpeg?cs=srgb&dl=adult-beautiful-coat-1187950.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 1110
+    likes: 1110,
+    comments: [
+      { commentedBy: userIds[0], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
+    ]
   },
   {
+    uploadedBy: userIds[1],
     imageUrl: 'https://images.pexels.com/photos/1187954/pexels-photo-1187954.jpeg?cs=srgb&dl=child-colorful-sunglasses-dress-1187954.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 1110
+    likes: 1110,
+    comments: [
+      { commentedBy: userIds[0], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[2], content: 'Your style is great'}
+    ]
   },
   // photographer 1
   {
+    uploadedBy: userIds[2],
     imageUrl: 'https://images.pexels.com/photos/307847/pexels-photo-307847.jpeg?cs=srgb&dl=architecture-boy-buildings-307847.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 1110
+    likes: 1110,
+    comments: [
+      { commentedBy: userIds[0], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[1], content: 'Your style is great'}
+    ]
   },
   {
+    uploadedBy: userIds[2],
     imageUrl: 'https://images.pexels.com/photos/307911/pexels-photo-307911.jpeg?cs=srgb&dl=adult-blur-casual-307911.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 1110
+    likes: 1110,
+    comments: [
+      { commentedBy: userIds[0], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[1], content: 'Your style is great'}
+    ]
   },
   {
+    uploadedBy: userIds[2],
     imageUrl: 'https://images.pexels.com/photos/307912/pexels-photo-307912.jpeg?cs=srgb&dl=pexels-307912.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 1110
+    likes: 1110,
+    comments: [
+      { commentedBy: userIds[0], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[1], content: 'Your style is great'}
+    ]
   },
   {
+    uploadedBy: userIds[2],
     imageUrl: 'https://images.pexels.com/photos/307902/pexels-photo-307902.jpeg?cs=srgb&dl=blur-chalk-chalkboard-307902.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 1110
+    likes: 1110,
+    comments: [
+      { commentedBy: userIds[0], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[1], content: 'Your style is great'}
+    ]
   },
   {
+    uploadedBy: userIds[2],
     imageUrl: 'https://images.pexels.com/photos/37839/pexels-photo-37839.jpeg?cs=srgb&dl=bridge-city-downtown-37839.jpg&fm=jpg',
     caption: '',
     tags: ['fashion'],
-    likes: 1110
+    likes: 1110,
+    comments: [
+      { commentedBy: userIds[0], content: 'This picture is amazing! Love the red dress.' },
+      { commentedBy: userIds[1], content: 'Your style is great'}
+    ]
   }
 ];
 
