@@ -21,25 +21,36 @@ class ImagesShow extends React.Component {
 
     return(
 
-      <section className="section">
+      <section className="section showImage">
 
         {image &&
           <div className="container columns is-multiline has-text-centered">
 
-            <h3 className="title is-3 has-text-white">Image</h3>
-
             <div className="section">
-              <img src={image.imageUrl} className="image" />
               <h3 className="title is-3 has-text-white">{image.uploadedBy.username}</h3>
+              <img src={image.imageUrl} className="image" />
             </div>
 
-            <div className="section">
+            <div className="section has-text-white has-background-black">
+              <p>Caption: {image.caption}</p>
+            </div>
+
+            <div className="section has-background-primary">
+              <p>Likes: {image.likes}</p>
+            </div>
+
+            <div>
               { image.comments.map(comment =>
-                <div key={image._id} className="card has-background-white">
+                <div key={image._id} className="card comments has-background-white">
+                  <figure className="image is-64x64">
+                    <img className="is-rounded" src={image.uploadedBy.profilePic} />
+                  </figure>
                   {comment.commentedBy.username} {comment.content}
                 </div>
               )}
             </div>
+
+            {/* <Link className="button is-primary is-rounded is-outlined" to={`/users/${user._id}`}>Back to User</Link> */}
           </div>
         }
       </section>
