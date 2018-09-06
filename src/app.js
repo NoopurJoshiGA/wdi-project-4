@@ -14,6 +14,9 @@ import AuthRegister from './components/auth/Register';
 import UsersIndex from './components/users/Index';
 import UsersShow from './components/users/Show';
 
+// Image Components
+import ImagesShow from './components/images/Show';
+
 // Styles
 import 'bulma/css/bulma.css';
 import './scss/style.scss'; // TODO: needs to change when Heroku-ing
@@ -28,6 +31,7 @@ class App extends React.Component {
           <Route exact path="/register" component={AuthRegister} />
           <Route exact path="/users" component={UsersIndex} />
           <Route exact path="/users/:id" component={UsersShow} />
+          <Route exact path="/images/:id" component={ImagesShow} />
         </Switch>
       </main>
     );

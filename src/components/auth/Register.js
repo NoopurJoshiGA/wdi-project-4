@@ -47,7 +47,7 @@ class AuthRegister extends React.Component {
 
   render() {
     return (
-      <section>
+      <section className="registerSection">
         <form className="section form" onSubmit={this.handleSubmit}>
 
           {/* First Name */}
