@@ -13,6 +13,14 @@ Router.route('/')
     res.send('Welcome to Express');
   });
 
+// Login
+Router.route('/login')
+  .post(authController.login);
+
+// Register
+Router.route('/register')
+  .post(authController.register);
+
 // Users
 Router.route('/users')
   .get(usersController.index)
