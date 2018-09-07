@@ -26,7 +26,7 @@ function commentsDelete(req, res, next) {
   Image
     .findById(req.params.imageId)
     .then(image => {
-      image.comments.id(req.params.reviewId).remove();
+      image.comments.id(req.params.commentId).remove();
       return image.save();
     })
     .then( image => res.json(image))

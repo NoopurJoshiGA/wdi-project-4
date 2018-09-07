@@ -5,7 +5,9 @@ import Auth from '../../lib/Auth';
 
 class ImagesShow extends React.Component {
 
-  state = {}
+  state = {
+    showDeleteCommentButton: false
+  }
 
   componentDidMount() {
     axios.get(`/api/images/${this.props.match.params.id}`)
@@ -15,10 +17,10 @@ class ImagesShow extends React.Component {
       });
   }
 
-
   createComment = (event) => {
     event.preventDefault();
     const imageId = this.props.match.params.id;
+    // Building the data to send to the db
     const commentData = {
       commentedBy: Auth.currentUserId(),
       content: this.state.comment
@@ -34,6 +36,32 @@ class ImagesShow extends React.Component {
     this.setState({ [name]: value });
   }
 
+  deleteComment = (commentId) => {
+    event.preventDefault();
+    return() => {
+      console.log(`Delete comment ${commentId}`);
+      const imageId = this.props.match.params.id;
+      // we want to delete it from the db
+      axios
+        .delete(`/api/images/${imageId}/comments/${commentId}`)
+        .then(res => this.setState({image: res.data}))
+        .catch(err => console.log('Error deleting', err));
+    };
+  }
+
+  // handleMouseOver = (event) => {
+  //   console.log('mouse is on the comment...');
+  //   const showDeleteCommentButton = !this.state.showDeleteCommentButton;
+  //   this.setState({ showDeleteCommentButton });
+  //   console.log('showDeleteCommentButton', showDeleteCommentButton);
+  // }
+  //
+  // handleMouseOut = (event) => {
+  //   console.log('mouse is not on the comment');
+  //   const showDeleteCommentButton = this.state.showDeleteCommentButton;
+  //   this.setState({ showDeleteCommentButton });
+  //   console.log('showDeleteCommentButton', showDeleteCommentButton);
+  // }
 
   render() {
 
@@ -62,11 +90,22 @@ class ImagesShow extends React.Component {
 
             <div>
               { image.comments.map(comment =>
-                <div key={image._id} className="card comments has-background-white">
+
+                <div key={comment._id} className="card comments has-background-white">
+                  {/* onMouseOver={this.handleMouseOver}
+                   onMouseOut={this.handleMouseOut} */}
+                  {/* <div>
+                    {this.state.showDeleteCommentButton &&
+                    }
+                  </div> */}
+
                   <figure className="image is-64x64">
                     <img className="is-rounded" src={image.uploadedBy.profilePic} />
                   </figure>
-                  {comment.commentedBy.username} {comment.content}
+
+                  {comment.commentedBy.username}
+                  {comment.content}
+                  <button onClick={this.deleteComment(comment._id)} className="button is-small is-outlined is-primary">Delete</button>
                 </div>
               )}
             </div>
