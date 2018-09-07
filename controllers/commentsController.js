@@ -7,6 +7,9 @@ function commentsCreate(req, res, next) {
       image.comments.push(req.body);
       return image.save();
     })
+    .then(image => {
+      return image.populate('uploadedBy comments.commentedBy', 'username profilePic').execPopulate();
+    })
     .then(image => res.json(image))
     .catch(next);
 }
@@ -28,6 +31,9 @@ function commentsDelete(req, res, next) {
     .then(image => {
       image.comments.id(req.params.commentId).remove();
       return image.save();
+    })
+    .then(image => {
+      return image.populate('uploadedBy comments.commentedBy', 'username profilePic').execPopulate();
     })
     .then( image => res.json(image))
     .catch(next);

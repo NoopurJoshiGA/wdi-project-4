@@ -83,9 +83,31 @@ class ImagesShow extends React.Component {
   //   console.log('showDeleteCommentButton', showDeleteCommentButton);
   // }
 
+  // addLike = (event, likes) => {
+  //   event.preventDefault();
+  //   console.log('adding like');
+  //   const toggleLike =
+  //   this.setState({ toggleLike = true'
+  //   likes++;
+    //
+    // const imageId = this.props.match.params.id;
+    // this.setState({ likes: likes++ });
+    // console.log('this.state.likes', this.state.likes);
+    // // Building the data to send to the db
+    // const likesData = {
+    //    this.setState({ likes: res.data }))
+    // };
+    // axios
+    //   .post(`/api/images/${imageId}/comments`, commentData)
+    //   .then(res => this.setState({ image: res.data }))
+    //   .catch(err => console.log('Error =>', err));
+  // }
+
   render() {
 
     const image = this.state.image;
+    // const likes = this.state.image.likes;
+
     console.log('image is', image);
 
     return(
@@ -106,6 +128,12 @@ class ImagesShow extends React.Component {
 
             <div className="section has-background-primary">
               <p>Likes: {image.likes}</p>
+              {/* if the like button has been clicked already, then make it have a background color or the 'is-selected' bulma class, fire the removeLike function */}
+              {/* otherwise, fire the addLike button and make it transparent. Remove the 'is-selected' bulma class */}
+              {/* { toggleLike &&
+
+              }} */}
+              {/* <button className="button is-outlined is-rounded is-info" onClick={this.addLike(likes)}>Like</button> */}
             </div>
 
             <div>
@@ -123,7 +151,7 @@ class ImagesShow extends React.Component {
                     <img className="is-rounded" src={image.uploadedBy.profilePic} />
                   </figure>
 
-                  {comment.commentedBy.username}
+                  {comment.commentedBy && comment.commentedBy.username}
                   {comment.content}
                   <button onClick={this.deleteComment(comment._id)} className="button is-small is-outlined is-primary">Delete</button>
                   {/* <button onClick={this.showEditComment(comment._id)} className="button is-small is-outlined is-primary">Edit</button> */}
