@@ -18,6 +18,7 @@ class ImagesShow extends React.Component {
   }
 
   createComment = (event) => {
+    console.log('event is', event);
     event.preventDefault();
     const imageId = this.props.match.params.id;
     // Building the data to send to the db
@@ -37,7 +38,7 @@ class ImagesShow extends React.Component {
   }
 
   deleteComment = (commentId) => {
-    event.preventDefault();
+    console.log();
     return() => {
       console.log(`Delete comment ${commentId}`);
       const imageId = this.props.match.params.id;
@@ -48,6 +49,25 @@ class ImagesShow extends React.Component {
         .catch(err => console.log('Error deleting', err));
     };
   }
+
+  // showEditComment = (commentId) => {
+  //   event.preventDefault();
+  //   console.log('show edit comment...');
+  // }
+  //
+  // editComment = (commentId) => {
+  //   event.preventDefault();
+  //   console.log('edit comment...');
+  //   return() => {
+  //     console.log(`Edit comment ${commentId}`);
+  //     const imageId = this.props.match.params.id;
+  //     // we want to update the record in the db
+  //     axios
+  //       .put(`api/images/${imageId}/comments/${commentId}`)
+  //       .then(res => this.setState({image: res.data}))
+  //       .catch(err => console.log('Error editing', err));
+  //   };
+  // }
 
   // handleMouseOver = (event) => {
   //   console.log('mouse is on the comment...');
@@ -106,6 +126,7 @@ class ImagesShow extends React.Component {
                   {comment.commentedBy.username}
                   {comment.content}
                   <button onClick={this.deleteComment(comment._id)} className="button is-small is-outlined is-primary">Delete</button>
+                  {/* <button onClick={this.showEditComment(comment._id)} className="button is-small is-outlined is-primary">Edit</button> */}
                 </div>
               )}
             </div>
