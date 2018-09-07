@@ -17,7 +17,22 @@ body {
 .registerSection {
   background-color: #1D2731;
   color: #ffffff;
-  height: 80vh;
+  height: 100vh;
+  top: 0;
+}
+
+// Edit User profile page
+.editProfile {
+  background-color: #1D2731;
+  color: #ffffff;
+  height: 100vh;
+  top: 0;
+}
+
+.form {
+  background-color: #1D2731;
+  color: #ffffff;
+  height: 100vh;
   top: 0;
 }
 
@@ -37,6 +52,8 @@ body {
 .button {
   border-radius: 20px;
   margin: 5px 0 5px 0;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 // Show image page

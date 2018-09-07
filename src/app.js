@@ -13,6 +13,7 @@ import AuthRegister from './components/auth/Register';
 // User Components
 import UsersIndex from './components/users/Index';
 import UsersShow from './components/users/Show';
+import UsersEdit from './components/users/Edit';
 
 // Image Components
 import ImagesShow from './components/images/Show';
@@ -30,6 +31,7 @@ class App extends React.Component {
           <Route exact path="/login" component={AuthLogin} />
           <Route exact path="/register" component={AuthRegister} />
           <Route exact path="/users" component={UsersIndex} />
+          <Route exact path="/users/:id/edit" component={UsersEdit} />
           <Route exact path="/users/:id" component={UsersShow} />
           <Route exact path="/images/:id" component={ImagesShow} />
         </Switch>

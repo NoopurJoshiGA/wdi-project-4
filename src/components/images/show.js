@@ -148,7 +148,7 @@ class ImagesShow extends React.Component {
                   </div> */}
 
                   <figure className="image is-64x64">
-                    <img className="is-rounded" src={image.uploadedBy.profilePic} />
+                    <img className="is-rounded" src={comment.commentedBy.profilePic} />
                   </figure>
 
                   {comment.commentedBy && comment.commentedBy.username}
