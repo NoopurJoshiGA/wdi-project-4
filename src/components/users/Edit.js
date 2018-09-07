@@ -5,7 +5,14 @@ import { Link } from 'react-router-dom';
 
 class UsersEdit extends React.Component {
 
-  state = {}
+  state = {
+    // modalIsOpen: false
+  }
+
+  componentDidMount() {
+    axios.get(`/api/users/${this.props.match.params.id}`)
+      .then(res => this.setState(res.data)); // putting it on setState will prepopulate the field data
+  }
 
   handleSubmit = (event) => {
     event.preventDefault(); // don't refresh the page
@@ -25,11 +32,6 @@ class UsersEdit extends React.Component {
     console.log('deleting user account...');
     axios.delete(`/api/users/${this.props.match.params.id}`, Auth.bearerHeader())
       .then(() => this.props.history.push('/login'));
-  }
-
-  componentDidMount() {
-    axios.get(`/api/users/${this.props.match.params.id}`)
-      .then(res => this.setState(res.data)); // putting it on setState will prepopulate the field data
   }
 
   render() {
@@ -117,7 +119,7 @@ class UsersEdit extends React.Component {
         </form>
 
         {/* Delete user account */}
-        <button className="button deleteUserAccountBtn is-fullwidth rounded is-primary is-outlined" onClick={this.deleteUserAccount}>Delete Account</button>
+        <button onClick={this.deleteUserAccount} className="button deleteUserAccountBtn is-fullwidth rounded is-primary is-outlined">Delete Account</button>
 
       </section>
     );

@@ -164,7 +164,6 @@ class ImagesShow extends React.Component {
                 <input onChange={this.handleChange} name="comment" className="input" value={this.state.comment || ''} />
                 <button className="button is-primary is-fullwidth" type="submit">Add comment</button>
               </form>
-
             </div>
 
             {/* <Link className="button is-primary is-rounded is-outlined" to={`/users/${user._id}`}>Back to User</Link> */}

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Auth from '../../lib/Auth';
 
 class UsersShow extends React.Component {
 
@@ -27,6 +28,26 @@ class UsersShow extends React.Component {
             this.setState({ images: imageData, user: userData });
           });
       });
+  }
+
+  handleChange = (event) => {
+    const { target: { name, value }} = event;
+    this.setState({ [name]: value });
+  }
+
+  createReview = (event) => {
+    console.log('event is', event);
+    event.preventDefault();
+    const userId = this.props.match.params.id;
+    // Building the data to send to the db
+    const reviewData = {
+      addedBy: Auth.currentUserId(),
+      content: this.state.review
+    };
+    axios
+      .post(`/api/users/${userId}/reviews`, reviewData)
+      .then(res => this.setState({ user: res.data }))
+      .catch(err => console.log('Error =>', err));
   }
 
   render() {
@@ -65,7 +86,7 @@ class UsersShow extends React.Component {
             <div className="section columns">
               {user.reviews.map(review =>
 
-                <div key={user._id}
+                <div key={review._id}
                   className="has-background-white">
 
                   <div className="column is-2">
@@ -78,6 +99,15 @@ class UsersShow extends React.Component {
                   <div className="column is-3">{review.content}</div>
                 </div>
               )}
+
+              <div>
+                <form onSubmit={this.createReview}>
+                  <input onChange={this.handleChange} name="review" className="input has-text-dark" value={this.state.review || ''} />
+                  <button className="button is-primary is-fullwidth" type="submit">Add Review</button>
+                </form>
+              </div>
+
+
             </div>
 
             {/* Ratings */}

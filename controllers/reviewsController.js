@@ -7,6 +7,9 @@ function reviewsCreate(req, res, next) {
       user.reviews.push(req.body);
       return user.save();
     })
+    .then(user => {
+      return user.populate('reviews.addedBy', 'username profilePic').execPopulate();
+    })
     .then(user => res.json(user))
     .catch(next);
 }
@@ -28,6 +31,9 @@ function reviewsDelete(req, res, next) {
     .then(user => {
       user.reviews.id(req.params.reviewId).remove();
       return user.save();
+    })
+    .then(user => {
+      return user.populate('reviews.addedBy', 'username profilePic').execPopulate();
     })
     .then( user => res.json(user))
     .catch(next);
