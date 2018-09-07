@@ -24,7 +24,7 @@ class UsersEdit extends React.Component {
   }
 
   handleChange = ({ target: {name, value} }) => {
-    console.log('Handle change is called...', event.target.value);
+    console.log('Handle change is called...', name, value);
     this.setState({ [name]: value });
   }
 
@@ -43,7 +43,7 @@ class UsersEdit extends React.Component {
       <section className="section editProfile">
         <h2 className="title is-2 has-text-white">Edit your profile</h2>
 
-        <form className="form">
+        <form onSubmit={this.handleSubmit} className="form">
           {/* First Name */}
           <input
             onChange={this.handleChange}
