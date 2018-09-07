@@ -50,7 +50,7 @@ Router.route('/images/:id')
   .delete(imagesController.delete);
 
 // Comments
-Router.route('/images/:id/comments/commentId')
+Router.route('/images/:imageId/comments')
   .post(commentsController.create);
 
 Router.route('/images/:imageId/comments/:commentId')

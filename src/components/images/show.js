@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Auth from '../../lib/Auth';
 
 class ImagesShow extends React.Component {
 
@@ -13,6 +14,26 @@ class ImagesShow extends React.Component {
         console.log('this.state.image', this.state.image);
       });
   }
+
+
+  createComment = (event) => {
+    event.preventDefault();
+    const imageId = this.props.match.params.id;
+    const commentData = {
+      commentedBy: Auth.currentUserId(),
+      content: this.state.comment
+    };
+    axios
+      .post(`/api/images/${imageId}/comments`, commentData)
+      .then(res => this.setState({ image: res.data }))
+      .catch(err => console.log('Error =>', err));
+  }
+
+  handleChange = (event) => {
+    const { target: { name, value }} = event;
+    this.setState({ [name]: value });
+  }
+
 
   render() {
 
@@ -48,6 +69,14 @@ class ImagesShow extends React.Component {
                   {comment.commentedBy.username} {comment.content}
                 </div>
               )}
+            </div>
+
+            <div>
+              <form onSubmit={this.createComment}>
+                <input onChange={this.handleChange} name="comment" className="input" value={this.state.comment || ''} />
+                <button className="button is-primary is-fullwidth" type="submit">Add comment</button>
+              </form>
+
             </div>
 
             {/* <Link className="button is-primary is-rounded is-outlined" to={`/users/${user._id}`}>Back to User</Link> */}
