@@ -3,9 +3,16 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Auth from '../../lib/Auth';
 
+// Map
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
+
 class UsersShow extends React.Component {
 
-  state = {}
+  state = {
+    lat: 51.505,
+    lng: -0.09,
+    zoom: 13
+  }
 
   componentDidMount() {
 
@@ -50,9 +57,23 @@ class UsersShow extends React.Component {
       .catch(err => console.log('Error =>', err));
   }
 
+  deleteReview = (reviewId) => {
+    console.log();
+    return() => {
+      console.log(`Delete comment ${reviewId}`);
+      const userId = this.props.match.params.id;
+      // we want to delete it from the db
+      axios
+        .delete(`/api/users/${userId}/reviews/${reviewId}`)
+        .then(res => this.setState({user: res.data}))
+        .catch(err => console.log('Error deleting', err));
+    };
+  }
+
   render() {
     const user = this.state.user;
     const images = this.state.images;
+    const position = [this.state.lat, this.state.lng];
 
     console.log('user is', user);
 
@@ -97,6 +118,8 @@ class UsersShow extends React.Component {
 
                   <div className="column is-3">{review.addedBy.username}</div>
                   <div className="column is-3">{review.content}</div>
+                  <button onClick={this.deleteReview(review._id)} className="button is-small is-outlined is-primary">Delete</button>
+
                 </div>
               )}
 
@@ -130,6 +153,20 @@ class UsersShow extends React.Component {
                 </Link>
               )}
             </div>
+
+
+            <LeafletMap center={position} zoom={this.state.zoom}>
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+              />
+              <Marker position={position}>
+                <Popup>
+           A pretty CSS3 popup. <br/> Easily customizable.
+                </Popup>
+              </Marker>
+            </LeafletMap>
+   );
 
             <Link className="button is-primary is-rounded is-outlined" to={`/users/${user._id}/edit`}>Edit Profile</Link>
 

@@ -17,6 +17,7 @@ import UsersEdit from './components/users/Edit';
 
 // Image Components
 import ImagesShow from './components/images/Show';
+import ImagesNew from './components/images/New';
 
 // Styles
 import 'bulma/css/bulma.css';
@@ -32,8 +33,9 @@ class App extends React.Component {
           <Route exact path="/register" component={AuthRegister} />
           <Route exact path="/users" component={UsersIndex} />
           <Route exact path="/users/:id/edit" component={UsersEdit} />
-          <Route exact path="/users/:id" component={UsersShow} />
-          <Route exact path="/images/:id" component={ImagesShow} />
+          <Route path="/users/:id" component={UsersShow} />
+          <Route exact path="/images/new" component={ImagesNew} />
+          <Route path="/images/:id" component={ImagesShow} />
         </Switch>
       </main>
     );

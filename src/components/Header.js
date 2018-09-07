@@ -13,6 +13,7 @@ class Header extends React.Component {
   render() {
     return(
       <header>
+
         <nav className="navbar has-background-light">
           <div className="navbar-brand">BOKE</div>
           <a role="button" className="navbar-burger is-active" aria-label="menu" aria-expanded="false" data-target="navMenu">
@@ -22,6 +23,7 @@ class Header extends React.Component {
           </a>
           <div className="navbar-end">
             <Link className="navbar-item has-background-primary button" to="/users">Discover</Link>
+            <Link className="navbar-item has-background-primary button" to="/images/new">Upload Image</Link>
             {Auth.isAuthenticated() && <Link className="navbar-item has-background-primary button" to="/users/:id/edit">Edit Profile</Link>}
             {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
             {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}

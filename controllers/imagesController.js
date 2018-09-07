@@ -27,6 +27,9 @@ function imagesUpdate(req, res, next) {
 function imagesCreate(req, res, next) {
   Image
     .create(req.body)
+    .then(image => {
+      return image.populate('uploadedBy comments.commentedBy', 'username profilePic').execPopulate();
+    })
     .then(image => res.json(image))
     .catch(next);
 }
