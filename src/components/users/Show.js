@@ -102,6 +102,7 @@ class UsersShow extends React.Component {
             </div>
 
             <Link className="button is-primary is-rounded is-outlined" to={`/users/${user._id}/edit`}>Edit Profile</Link>
+
           </div>
         }
       </section>

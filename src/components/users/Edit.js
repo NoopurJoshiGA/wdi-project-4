@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
+import { Link } from 'react-router-dom';
 
 class UsersEdit extends React.Component {
 
@@ -18,6 +19,12 @@ class UsersEdit extends React.Component {
   handleChange = ({ target: {name, value} }) => {
     console.log('Handle change is called...', event.target.value);
     this.setState({ [name]: value });
+  }
+
+  deleteUserAccount = () => {
+    console.log('deleting user account...');
+    axios.delete(`/api/users/${this.props.match.params.id}`, Auth.bearerHeader())
+      .then(() => this.props.history.push('/login'));
   }
 
   componentDidMount() {
@@ -108,6 +115,10 @@ class UsersEdit extends React.Component {
 
           <button className="button is-fullwidth is-primary">Save changes</button>
         </form>
+
+        {/* Delete user account */}
+        <button className="button deleteUserAccountBtn is-fullwidth rounded is-primary is-outlined" onClick={this.deleteUserAccount}>Delete Account</button>
+
       </section>
     );
   }

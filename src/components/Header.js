@@ -22,6 +22,7 @@ class Header extends React.Component {
           </a>
           <div className="navbar-end">
             <Link className="navbar-item has-background-primary button" to="/users">Discover</Link>
+            {Auth.isAuthenticated() && <Link className="navbar-item has-background-primary button" to="/users/:id/edit">Edit Profile</Link>}
             {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
             {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
             {Auth.isAuthenticated() &&

@@ -29,12 +29,12 @@ body {
   top: 0;
 }
 
-.form {
-  background-color: #1D2731;
-  color: #ffffff;
-  height: 100vh;
-  top: 0;
-}
+// .form {
+//   background-color: #1D2731;
+//   color: #ffffff;
+//   height: 100vh;
+//   top: 0;
+// }
 
 .input {
   background-color: transparent;
@@ -66,4 +66,8 @@ body {
   border-radius: 40px;
   padding: 2px;
   margin: 10px 0 10px 0;
+}
+
+.deleteUserAccountBtn {
+  margin-top: 60px;
 }
