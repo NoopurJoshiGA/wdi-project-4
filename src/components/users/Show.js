@@ -3,15 +3,12 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Auth from '../../lib/Auth';
 
-// Map
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
+// import Map from '../common/Map';
 
 class UsersShow extends React.Component {
 
   state = {
-    lat: 51.505,
-    lng: -0.09,
-    zoom: 13
+
   }
 
   componentDidMount() {
@@ -73,7 +70,6 @@ class UsersShow extends React.Component {
   render() {
     const user = this.state.user;
     const images = this.state.images;
-    const position = [this.state.lat, this.state.lng];
 
     console.log('user is', user);
 
@@ -87,7 +83,7 @@ class UsersShow extends React.Component {
 
             <h4 className="subtitle is-4">{user.type}</h4>
 
-            <img src={user.profilePic} alt={user.firstName}></img>
+            <img className="profilePic" src={user.profilePic} alt={user.firstName}></img>
 
             {/* Postcode */}
             <h4 className="subtitle is-4">{user.postcode}</h4>
@@ -101,9 +97,11 @@ class UsersShow extends React.Component {
             </div>
 
             {/* Description */}
+            <p>Description</p>
             <p className="section has-background-black has-text-white">{user.description}</p>
 
             {/* Reviews */}
+            <p>Reviews</p>
             <div className="section columns">
               {user.reviews.map(review =>
 
@@ -135,6 +133,7 @@ class UsersShow extends React.Component {
 
             {/* Ratings */}
             {/* // TODO: Get the average rating... use reduce? */}
+            <p>Ratings</p>
             <div className="section columns has-background-black has-text-white">
               {user.ratings.map(rating =>
                 <p key={rating._id}>{rating.number}</p>
@@ -142,6 +141,7 @@ class UsersShow extends React.Component {
             </div>
 
             {/* Photos / Portfolio */}
+            <p>Portfolio</p>
             <h3 className="title is-3">Portfolio</h3>
 
             <div className="columns has-background-black">
@@ -154,22 +154,9 @@ class UsersShow extends React.Component {
               )}
             </div>
 
-
-            <LeafletMap center={position} zoom={this.state.zoom}>
-              <TileLayer
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-              />
-              <Marker position={position}>
-                <Popup>
-           A pretty CSS3 popup. <br/> Easily customizable.
-                </Popup>
-              </Marker>
-            </LeafletMap>
-   );
-
             <Link className="button is-primary is-rounded is-outlined" to={`/users/${user._id}/edit`}>Edit Profile</Link>
 
+            {/* <Map /> */}
           </div>
         }
       </section>

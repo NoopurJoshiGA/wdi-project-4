@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // Import Components
 // Common
 import Header from './components/Header';
+import Home from './components/Home';
 
 // Auth
 import AuthLogin from './components/auth/Login';
@@ -19,6 +20,10 @@ import UsersEdit from './components/users/Edit';
 import ImagesShow from './components/images/Show';
 import ImagesNew from './components/images/New';
 
+// Map
+// import 'leaflet/dist/leaflet.css';
+// import Map from './components/common/Map';
+
 // Styles
 import 'bulma/css/bulma.css';
 import './scss/style.scss'; // TODO: needs to change when Heroku-ing
@@ -29,6 +34,7 @@ class App extends React.Component {
       <main>
         <Header />
         <Switch>
+          <Route exact path="/" component={Home} />
           <Route exact path="/login" component={AuthLogin} />
           <Route exact path="/register" component={AuthRegister} />
           <Route exact path="/users" component={UsersIndex} />

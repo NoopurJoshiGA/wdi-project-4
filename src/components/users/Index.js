@@ -21,8 +21,15 @@ class UsersIndex extends React.Component {
     return(
 
       <section>
-
-        <h2 className="title is-2">Discover models and photographers</h2>
+        <section className="hero discover is-primary">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title">
+                DISCOVER
+              </h1>
+            </div>
+          </div>
+        </section>
 
         { users && users.map(user =>
           <Link key={user._id} to={`/users/${user._id}`}
