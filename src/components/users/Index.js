@@ -34,11 +34,12 @@ class UsersIndex extends React.Component {
         { users && users.map(user =>
           <Link key={user._id} to={`/users/${user._id}`}
             className="columns card is-multiline">
-            <div className="column is-3">
-              <img className="image" src={user.profilePic} alt={user.firstName}/>
-              <h3 className="title is-3">{user.firstName} {user.lastName}</h3>
-              <h4 className="title is-4">{user.type}</h4>
-              <h4 className="title is-4">{user.postcode}</h4>
+            <div className="userIndex column is-3">
+              <img className="userIndexImage image" src={user.profilePic} alt={user.firstName}/>
+              <h6 className="title is-6 has-text-white has-text-centered">{user.firstName} {user.lastName}</h6>
+              <p className="has-text-white">{user.type}</p>
+              <p className="has-text-white">{user.postcode}</p>
+              <p className="has-text-white">{user.description}</p>
             </div>
           </Link>
         )}

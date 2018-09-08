@@ -79,43 +79,40 @@ class UsersShow extends React.Component {
         {user &&
           <div className="container columns is-multiline has-text-centered">
 
-            <h3 className="title is-3">{user.firstName} {user.lastName}</h3>
-
-            <h4 className="subtitle is-4">{user.type}</h4>
-
             <img className="profilePic" src={user.profilePic} alt={user.firstName}></img>
+            <h2>{user.firstName} {user.lastName}</h2>
+            <h3>{user.type}</h3>
 
             {/* Postcode */}
-            <h4 className="subtitle is-4">{user.postcode}</h4>
+            <h3>{user.postcode}</h3>
 
             {/* Interests */}
-            <div className="section has-background-light">
-              <p>Interested in: </p>
+            <div className="section">
+              <h3>Interests</h3>
               { user.interests.map(interest =>
-                <div key={user._id} className="tag has-background-info has-text-white">{interest}</div>
+                <div key={user._id} className="tag has-background-primary has-text-white">{interest}</div>
               )}
             </div>
 
             {/* Description */}
-            <p>Description</p>
-            <p className="section has-background-black has-text-white">{user.description}</p>
+            <h3>Description</h3>
+            <p className="">{user.description}</p>
 
             {/* Reviews */}
-            <p>Reviews</p>
-            <div className="section columns">
+            <div className="section">
+              <h3>Reviews</h3>
               {user.reviews.map(review =>
 
                 <div key={review._id}
-                  className="has-background-white">
-
-                  <div className="column is-2">
+                  className="userReviews columns is-multiline is-mobile">
+                  <div className="column is-4">
                     <figure className="image is-64x64">
                       <img className="is-rounded" src={review.addedBy.profilePic} />
                     </figure>
                   </div>
 
-                  <div className="column is-3">{review.addedBy.username}</div>
-                  <div className="column is-3">{review.content}</div>
+                  <div><p>{review.addedBy.username}</p></div>
+                  <p>{review.content}</p>
                   {Auth.currentUserId() === review.addedBy._id &&
                   <button onClick={this.deleteReview(review._id)} className="button is-small is-outlined is-primary">Delete</button>
                   }
@@ -124,39 +121,38 @@ class UsersShow extends React.Component {
 
               <div>
                 <form onSubmit={this.createReview}>
-                  <input onChange={this.handleChange} name="review" className="input has-text-dark" value={this.state.review || ''} />
+                  <input onChange={this.handleChange} name="review" className="input has-text-white" value={this.state.review || ''} />
                   <button className="button is-primary is-fullwidth" type="submit">Add Review</button>
                 </form>
               </div>
-
-
             </div>
 
             {/* Ratings */}
             {/* // TODO: Get the average rating... use reduce? */}
-            <p>Ratings</p>
-            <div className="section columns has-background-black has-text-white">
-              {user.ratings.map(rating =>
-                <p key={rating._id}>{rating.number}</p>
-              )}
-            </div>
+            {/* <div className="section">
+              <h3>Ratings</h3>
+              <div className="section columns has-text-white">
+                {user.ratings.map(rating =>
+                  <p key={rating._id}>{rating.number}</p>
+                )}
+              </div>
+            </div> */}
 
-            {/* Photos / Portfolio */}
-            <p>Portfolio</p>
-            <h3 className="title is-3">Portfolio</h3>
-
-            <div className="columns has-background-black">
+            {/* Portfolio */}
+            <h3 className="has-text-dark">Portfolio</h3>
+            <div className="columns has-background-white">
               { images.map(image =>
                 <Link key={image._id} to={`/images/${image._id}`}>
-                  <div className="column is-6-mobile">
-                    <img key={image._id} src={image.imageUrl} />
+                  <div className="column">
+                    <img className="userPortfolio" key={image._id} src={image.imageUrl} />
                   </div>
                 </Link>
               )}
             </div>
 
+            {Auth.currentUserId() === this.props.match.params.id  &&
             <Link className="button is-primary is-rounded is-outlined" to={`/users/${user._id}/edit`}>Edit Profile</Link>
-
+            }
             {/* <Map /> */}
           </div>
         }

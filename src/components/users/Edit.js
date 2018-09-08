@@ -119,8 +119,9 @@ class UsersEdit extends React.Component {
         </form>
 
         {/* Delete user account */}
+        {Auth.currentUserId() === this.props.match.params.id  &&
         <button onClick={this.deleteUserAccount} className="button deleteUserAccountBtn is-fullwidth rounded is-primary is-outlined">Delete Account</button>
-
+        }
       </section>
     );
   }

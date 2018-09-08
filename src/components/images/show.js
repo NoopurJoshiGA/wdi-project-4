@@ -146,20 +146,22 @@ class ImagesShow extends React.Component {
             <div>
               { image.comments.map(comment =>
 
-                <div key={comment._id} className="card comments has-background-white">
+                <div key={comment._id}
+                  className="userComments columns is-multiline is-mobile">
                   {/* onMouseOver={this.handleMouseOver}
                    onMouseOut={this.handleMouseOut} */}
                   {/* <div>
                     {this.state.showDeleteCommentButton &&
                     }
                   </div> */}
+                  <div className="column is-4">
+                    <figure className="image is-64x64">
+                      <img className="is-rounded" src={comment.commentedBy.profilePic} />
+                    </figure>
+                  </div>
 
-                  <figure className="image is-64x64">
-                    <img className="is-rounded" src={comment.commentedBy.profilePic} />
-                  </figure>
-
-                  {comment.commentedBy && comment.commentedBy.username}
-                  {comment.content}
+                  <p>{comment.commentedBy && comment.commentedBy.username}</p>
+                  <p>{comment.content}</p>
 
                   {Auth.currentUserId() === comment.commentedBy._id &&
                     <button onClick={this.deleteComment(comment._id)} className="button is-small is-outlined is-primary">Delete</button>
