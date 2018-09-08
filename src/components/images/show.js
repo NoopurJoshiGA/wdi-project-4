@@ -50,6 +50,12 @@ class ImagesShow extends React.Component {
     };
   }
 
+  deleteImage = () => {
+    console.log('deleting image...');
+    axios.delete(`/api/images/${this.props.match.params.id}`, Auth.bearerHeader())
+      .then(() => this.props.history.push(`/users/${Auth.currentUserId()}`));
+  }
+
   // showEditComment = (commentId) => {
   //   event.preventDefault();
   //   console.log('show edit comment...');
@@ -171,6 +177,9 @@ class ImagesShow extends React.Component {
             </div>
 
             {/* <Link className="button is-primary is-rounded is-outlined" to={`/users/${user._id}`}>Back to User</Link> */}
+            {Auth.currentUserId() === image.uploadedBy._id &&
+            <button className="button is-fullwidth is-primary is-rounded is-outlined" onClick={this.deleteImage}>Delete Image</button>
+            }
           </div>
         }
       </section>
