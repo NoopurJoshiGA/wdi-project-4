@@ -44,6 +44,16 @@ class AuthRegister extends React.Component {
     const { target: { name, value }} = event;
     this.setState({ [name]: value });
   }
+  //
+  // handleClick = (event) => {
+  //   console.log('the button was clicked');
+  //   this.setState({ interests: event.target.value });
+  //   console.log('interests are', this.state.interests);
+  // }
+
+  // addInterest = (event) => {
+  //
+  // }
 
   render() {
     return (
@@ -97,6 +107,15 @@ class AuthRegister extends React.Component {
               <option>photographer</option>
             </select>
           </div>
+
+          {/* Interests */}
+          {/* <p>Choose your interests</p>
+          <div className="field is-grouped">
+            <p className="control"><button onClick={this.handleClick} value={this.state.fashion || ''} className="button is-small is-primary is-outlined">Fashion</button></p>
+            <p className="control"><button className="button is-small is-primary is-outlined">Urban</button></p>
+            <p className="control"><button className="button is-small is-primary is-outlined">Portraits</button></p>
+            <p className="control"><button className="button is-small is-primary is-outlined">Night</button></p>
+          </div> */}
 
           {/* Postcode */}
           <input
