@@ -109,6 +109,7 @@ class ImagesShow extends React.Component {
     // const likes = this.state.image.likes;
 
     console.log('image is', image);
+    console.log('authentication', Auth.currentUserId());
 
     return(
 
@@ -153,7 +154,10 @@ class ImagesShow extends React.Component {
 
                   {comment.commentedBy && comment.commentedBy.username}
                   {comment.content}
-                  <button onClick={this.deleteComment(comment._id)} className="button is-small is-outlined is-primary">Delete</button>
+
+                  {Auth.currentUserId() === comment.commentedBy._id &&
+                    <button onClick={this.deleteComment(comment._id)} className="button is-small is-outlined is-primary">Delete</button>
+                  }
                   {/* <button onClick={this.showEditComment(comment._id)} className="button is-small is-outlined is-primary">Edit</button> */}
                 </div>
               )}

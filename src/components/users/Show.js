@@ -116,8 +116,9 @@ class UsersShow extends React.Component {
 
                   <div className="column is-3">{review.addedBy.username}</div>
                   <div className="column is-3">{review.content}</div>
+                  {Auth.currentUserId() === review.addedBy._id &&
                   <button onClick={this.deleteReview(review._id)} className="button is-small is-outlined is-primary">Delete</button>
-
+                  }
                 </div>
               )}
 
