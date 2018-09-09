@@ -99,9 +99,15 @@ class ImagesShow extends React.Component {
               <Link className="button is-outlined has-background-light is-rounded" to={`/users/${image.uploadedBy._id}`}>Back to user</Link>
             </div>
 
-            <div className="section">
-              <h3 className="title is-3 has-text-white">{image.uploadedBy.username}</h3>
-              <img src={image.imageUrl} className="image" />
+            <img src={image.imageUrl} className="image" />
+
+            <div className="columns is-mobile">
+              <div className="column is-3">
+                <img src={image.uploadedBy.profilePic} className="userProfilePic" />
+              </div>
+              <div className="column">
+                <p className="has-text-left">{image.uploadedBy.username}</p>
+              </div>
             </div>
 
             <div className="section">
@@ -112,6 +118,13 @@ class ImagesShow extends React.Component {
 
             <div className="section has-text-white has-background-black">
               <p>Caption: {image.caption}</p>
+            </div>
+
+            <div className="section">
+              <h3>Tags</h3>
+              { image.tags.map(tag =>
+                <div key={image._id} className="tag has-background-primary has-text-white">{tag}</div>
+              )}
             </div>
 
             <div>
