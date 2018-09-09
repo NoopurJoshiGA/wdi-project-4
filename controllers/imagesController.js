@@ -19,6 +19,9 @@ function imagesUpdate(req, res, next) {
   Image
     .findById(req.params.id)
     .then(image => image.set(req.body))
+    .then(image => {
+      return image.populate('uploadedBy comments.commentedBy', 'username profilePic').execPopulate();
+    })
     .then(image => image.save())
     .then(image => res.json(image))
     .catch(next);

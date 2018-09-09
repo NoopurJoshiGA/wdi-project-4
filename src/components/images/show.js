@@ -90,10 +90,14 @@ class ImagesShow extends React.Component {
 
     return(
 
-      <section className="section showImage">
+      <section className="section">
 
         {image &&
           <div className="container columns is-multiline has-text-centered">
+
+            <div className="section">
+              <Link className="button is-outlined has-background-light is-rounded" to={`/users/${image.uploadedBy._id}`}>Back to user</Link>
+            </div>
 
             <div className="section">
               <h3 className="title is-3 has-text-white">{image.uploadedBy.username}</h3>
@@ -101,8 +105,8 @@ class ImagesShow extends React.Component {
             </div>
 
             <div className="section">
-              <button onClick={ this.state.isLiked ? this.IncrementItem : this.DecrementItem }
-                className={ this.state.isLiked ? 'is-primary button' : 'is-info is-selected button' }>LIKE</button>
+              <div onClick={ this.state.isLiked ? this.IncrementItem : this.DecrementItem }
+                className={ this.state.isLiked ? 'isDisliked' : 'isLiked' }>LIKE</div>
               <p>Likes: {image.likes}</p>
             </div>
 

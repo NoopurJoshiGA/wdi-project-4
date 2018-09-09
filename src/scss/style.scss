@@ -151,3 +151,12 @@ h3 {
 .userPortfolio {
   border-radius: 10px;
 }
+
+.isDisliked {
+  // background-image: url("./assets/heart-solid.svg");
+  background-color: red;
+}
+
+.isLiked {
+  background-color: blue;
+}
