@@ -44,6 +44,7 @@ class AuthLogin extends React.Component {
       <section className="loginSection">
         <form className="section form" onSubmit={this.handleSubmit}>
 
+          <h2>Login</h2>
           <input
             className="input"
             name="email"

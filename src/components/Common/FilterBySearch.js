@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const FilterSelect = ({ users }) => {
+const FilterBySearch = ({ users, filteredUsers }) => {
 
   const parentStyle = {
     zIndex: '100',
@@ -17,7 +17,7 @@ const FilterSelect = ({ users }) => {
   return(
     <div style={{ position: 'relative' }}>
       <div style={ parentStyle }>
-        {users && users.map(user =>
+        {users && users.filteredUsers.map(user =>
           <Link key={user._id} className="media" to={`/users/${user._id}`}>
             <div className="media-left">
               <img style={{ height: 80 }} src={user.profilePic} />
@@ -32,4 +32,4 @@ const FilterSelect = ({ users }) => {
   );
 };
 
-export default FilterSelect;
+export default FilterBySearch;

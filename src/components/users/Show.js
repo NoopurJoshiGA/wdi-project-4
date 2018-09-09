@@ -96,6 +96,33 @@ class UsersShow extends React.Component {
             <h3>Description</h3>
             <p className="">{user.description}</p>
 
+
+            {/* Ratings */}
+            {/* // TODO: Get the average rating... use reduce? */}
+            {/* <div className="section">
+              <h3>Ratings</h3>
+              <div className="section columns has-text-white">
+                {user.ratings.map(rating =>
+                  <p key={rating._id}>{rating.number}</p>
+                )}
+              </div>
+            </div> */}
+
+            {/* Portfolio */}
+            <section className="portfolioSection">
+              <h3 className="is-fullwidth has-text-dark">Portfolio</h3>
+
+              <div className="columns is-multiline is-mobile has-background-white">
+                { images.map(image =>
+                  <div key={image._id} className="column is-6">
+                    <Link to={`/images/${image._id}`}>
+                      <img className="portfolioImage" src={image.imageUrl} />
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </section>
+
             {/* Reviews */}
             <div className="section">
               <h3>Reviews</h3>
@@ -112,7 +139,7 @@ class UsersShow extends React.Component {
                   <div><p>{review.addedBy.username}</p></div>
                   <p>{review.content}</p>
                   {Auth.currentUserId() === review.addedBy._id &&
-                  <button onClick={this.deleteReview(review._id)} className="button is-small is-outlined is-primary">Delete</button>
+                    <button onClick={this.deleteReview(review._id)} className="button is-small is-outlined is-primary">Delete</button>
                   }
                 </div>
               )}
@@ -124,29 +151,9 @@ class UsersShow extends React.Component {
                 </form>
               </div>
             </div>
+            {/* See all the pictures by the user */}
+            {/* <Link className="button is-primary is-rounded is-outlined" to={'/images/'}>See More</Link> */}
 
-            {/* Ratings */}
-            {/* // TODO: Get the average rating... use reduce? */}
-            {/* <div className="section">
-              <h3>Ratings</h3>
-              <div className="section columns has-text-white">
-                {user.ratings.map(rating =>
-                  <p key={rating._id}>{rating.number}</p>
-                )}
-              </div>
-            </div> */}
-
-            {/* Portfolio */}
-            <h3 className="has-text-dark">Portfolio</h3>
-            <div className="columns has-background-white">
-              { images.map(image =>
-                <Link key={image._id} to={`/images/${image._id}`}>
-                  <div className="column">
-                    <img className="userPortfolio" key={image._id} src={image.imageUrl} />
-                  </div>
-                </Link>
-              )}
-            </div>
 
             {Auth.currentUserId() === this.props.match.params.id  &&
             <Link className="button is-primary is-rounded is-outlined" to={`/users/${user._id}/edit`}>Edit Profile</Link>

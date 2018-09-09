@@ -8,15 +8,14 @@ class ImagesEdit extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault(); // don't refresh the page
-    console.log('Image uploaded!', this.state);
+    const imageId = this.props.match.params.id;
     const imageData = {
-      uploadedBy: Auth.currentUserId(),
-      content: this.state.caption,
+      caption: this.state.caption,
       imageUrl: this.state.imageUrl,
       tags: this.state.tags
     };
-    axios.put('/api/images/${imageId}', imageData, this.state, Auth.bearerHeader())
-      .then(() => this.props.history.push(`/users/${Auth.currentUserId()}`)); // redirect to the users page
+    axios.put(`/api/images/${imageId}`, imageData, this.state, Auth.bearerHeader())
+      .then(() => this.props.history.push(`/images/${imageId}`)); // redirect to the users page
   }
 
   handleChange = ({ target: {name, value} }) => {
@@ -53,7 +52,7 @@ class ImagesEdit extends React.Component {
             value={this.state.tags || ''}>
           </input>
 
-          <button className="button is-fullwidth is-primary">Upload Image</button>
+          <button className="button is-fullwidth is-primary">Edit Image</button>
         </form>
 
       </section>

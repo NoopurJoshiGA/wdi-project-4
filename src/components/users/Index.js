@@ -5,7 +5,7 @@ import _ from 'lodash';
 
 import SearchBar from '../common/SearchBar';
 import Sort from '../common/Sort';
-import FilterSelect from '../common/FilterSelect';
+import FilterBySearch from '../common/FilterBySearch';
 
 
 class UsersIndex extends React.Component {
@@ -32,12 +32,14 @@ class UsersIndex extends React.Component {
 
   filterUsers = (users) => {
     const { searchTerm } = this.state;
-    return users.filter(user =>
+    const filteredUsers = users.filter(user =>
       [user.firstName, user.lastName, user.type, user.postcode].some(field => {
         const re = new RegExp(searchTerm, 'i');
         return re.test(field);
       })
     );
+    console.log('filteredUsers are', filteredUsers);
+    this.setState({ filteredUsers: filteredUsers});
   }
 
   // sort some users
@@ -76,14 +78,14 @@ sortUsers = (users) => {
     console.log('images are', images);
     return(
 
-      <section>
-        <section className="hero discover is-primary">
+      <section className="usersIndexSection">
+        {/* <section className="hero discover is-primary">
           <div className="hero-body">
             <div className="container">
               <h1 className="title">DISCOVER</h1>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section>
           <SearchBar handleChange={ this.handleSearchChange } searchTerm={ this.state.searchTerm } />
@@ -93,23 +95,23 @@ sortUsers = (users) => {
             handleChange={this.handleSortChange}
           />
           {this.state.searchTerm &&
-              <FilterSelect films={this.filterUsers(sortedUsers)}/>
+              <FilterBySearch films={this.filterUsers(sortedUsers)}/>
           }
         </section>
 
 
-        { users && this.state.filteredUsers.map(user =>
+        {/* { users && this.state.filteredUsers.map(user =>
           <Link key={user._id} to={`/users/${user._id}`} className="columns is-multiline is-mobile">
-            <div className="userIndex column">
+            <div className="card userIndex has-text-dark column">
               <img className="userIndexImage" src={user.profilePic} alt={user.firstName}/>
               <h6 className="title is-6 has-text-white has-text-centered">{user.firstName} {user.lastName}</h6>
               <p className="has-text-white">{user.type}</p>
               <p className="has-text-white">{user.postcode}</p>
               <p className="has-text-white">{user.description}</p>
-              <button className="userIndexBtn">See More</button>
-            </div>
-          </Link>
-        )}
+              {/* <button className="userIndexBtn">See More</button> */}
+            {/* </div> */}
+          {/* // </Link> */}
+        {/* )} */}
       </section>
     );
   }

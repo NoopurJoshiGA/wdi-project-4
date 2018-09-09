@@ -11,7 +11,7 @@ class ImagesNew extends React.Component {
     console.log('Image uploaded!', this.state);
     const imageData = {
       uploadedBy: Auth.currentUserId(),
-      content: this.state.caption,
+      caption: this.state.caption,
       imageUrl: this.state.imageUrl
     };
     axios.post('/api/images', imageData, this.state, Auth.bearerHeader())

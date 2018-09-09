@@ -10,10 +10,10 @@ class Home extends React.Component {
         <h1 className="title is-1 has-text-white has-text-centered">Boke</h1>
         <div className="columns is-multiline">
           <div className="split-top column is-6">
-            <button className="button">Photographer</button>
+            <button className="homeBtn">Photographer</button>
           </div>
           <div className="split-bottom column is-6">
-            <button className="button">Model</button>
+            <button className="homeBtn">Model</button>
           </div>
         </div>
       </section>

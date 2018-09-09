@@ -60,6 +60,8 @@ class AuthRegister extends React.Component {
       <section className="registerSection">
         <form className="section form" onSubmit={this.handleSubmit}>
 
+          <h2>Create an account</h2>
+
           {/* First Name */}
           <input
             onChange={this.handleChange}
@@ -119,13 +121,13 @@ class AuthRegister extends React.Component {
           </input>
 
           {/* Interests */}
-          {/* <p>Choose your interests</p>
+          <p>Choose your interests</p>
           <div className="field is-grouped">
             <p className="control"><button onClick={this.handleClick} value={this.state.fashion || ''} className="button is-small is-primary is-outlined">Fashion</button></p>
             <p className="control"><button className="button is-small is-primary is-outlined">Urban</button></p>
             <p className="control"><button className="button is-small is-primary is-outlined">Portraits</button></p>
             <p className="control"><button className="button is-small is-primary is-outlined">Night</button></p>
-          </div> */}
+          </div>
 
           {/* Postcode */}
           <input
