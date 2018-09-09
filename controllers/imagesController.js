@@ -28,7 +28,7 @@ function imagesUpdate(req, res, next) {
 }
 
 function imagesCreate(req, res, next) {
-  // req.body.tags = req.body.tags.split(' ');
+  req.body.tags = req.body.tags.split(' ');
   Image
     .create(req.body)
     .then(image => {

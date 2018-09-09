@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
 
+// import ReactFilestack from 'filestack-react'
+
 class AuthRegister extends React.Component {
 
   state = {
@@ -44,6 +46,7 @@ class AuthRegister extends React.Component {
     const { target: { name, value }} = event;
     this.setState({ [name]: value });
   }
+
   //
   // handleClick = (event) => {
   //   console.log('the button was clicked');
@@ -119,6 +122,15 @@ class AuthRegister extends React.Component {
             type="text"
             value={this.state.profilePic || ''}>
           </input>
+
+          {/* <ReactFilestack
+            apikey={keys.filestackKey}
+            buttonText="Upload Photo"
+            buttonClass="ui medium button gray"
+            options={basicOptions}
+            onSuccess={this.onSuccess}
+            onError={this.onError}
+          /> */}
 
           {/* Interests */}
           <p>Choose your interests</p>

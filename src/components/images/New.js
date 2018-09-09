@@ -12,7 +12,8 @@ class ImagesNew extends React.Component {
     const imageData = {
       uploadedBy: Auth.currentUserId(),
       caption: this.state.caption,
-      imageUrl: this.state.imageUrl
+      imageUrl: this.state.imageUrl,
+      tags: this.state.tags
     };
     axios.post('/api/images', imageData, this.state, Auth.bearerHeader())
       .then(() => this.props.history.push(`/users/${Auth.currentUserId()}`)); // redirect to the users page
@@ -49,6 +50,16 @@ class ImagesNew extends React.Component {
             type="text"
             placeholder="Caption"
             value={this.state.caption || ''}>
+          </input>
+
+          {/* Caption */}
+          <input
+            onChange={this.handleChange}
+            className="input"
+            name="tags"
+            type="text"
+            placeholder="Tags, separated with a space"
+            value={this.state.tags || ''}>
           </input>
 
           <button className="button is-fullwidth is-primary">Upload Image</button>
