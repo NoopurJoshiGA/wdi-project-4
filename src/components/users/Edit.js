@@ -6,7 +6,7 @@ import Auth from '../../lib/Auth';
 class UsersEdit extends React.Component {
 
   state = {
-    // modalIsOpen: false
+    active: false
   }
 
   componentDidMount() {
@@ -28,8 +28,16 @@ class UsersEdit extends React.Component {
     this.setState({ [name]: value });
   }
 
+  toggleClass = () => {
+    const currentState = this.state.active;
+    this.setState({ active: !currentState });
+    console.log('the modal is open', this.currentState);
+  }
+
   deleteUserAccount = () => {
-    console.log('deleting user account...');
+    const showModalForm = !showModalForm;
+    this.setState({ showModalForm: showModalForm });
+    console.log('opening modal form');
     axios.delete(`/api/users/${this.props.match.params.id}`, Auth.bearerHeader())
       .then(() => this.props.history.push('/login'));
   }
@@ -134,8 +142,23 @@ class UsersEdit extends React.Component {
 
         {/* Delete user account */}
         {Auth.currentUserId() === this.props.match.params.id  &&
-        <button onClick={this.deleteUserAccount} className="button deleteUserAccountBtn is-fullwidth rounded is-primary is-outlined">Delete Account</button>
+        <button onClick={this.toggleClass} className="button  is-fullwidth rounded is-primary is-outlined">Delete Account</button>
         }
+
+
+        <div className={`${this.state.active ? 'is-active': null} modal `}>
+          <div className="modal-background"></div>
+          <div className="modal-card">
+            <section className="modal-card-body">
+              <h5 className="title is-5">Are you sure you want to leave the Boke tribe?</h5>
+            </section>
+            <footer className="modal-card-foot">
+              <button onClick={this.deleteUserAccount} className="button is-warning">Yes</button>
+              <button onClick={this.toggleClass} className="button">Cancel</button>
+            </footer>
+          </div>
+        </div>
+
       </section>
     );
   }
