@@ -1,21 +1,27 @@
+// Main
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
 body {
   background-color: #1D2731;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
-  // color: white;
+  color: white;
 }
 
-p {
-  font-size: 0.7rem;
-  padding: 4px;
-  color: white;
+h1 {
+
 }
 
 h2 {
+  text-align: center;
   color: white;
   font-size: 1.5rem;
   font-weight: 600;
-  margin: 10px 0 10px 0;
+  margin: 10px 0 20px 0;
 }
 
 h3 {
@@ -25,12 +31,22 @@ h3 {
   margin: 10px 0 10px 0;
 }
 
+h4 {
+
+}
+
+p {
+  font-size: 0.7rem;
+  padding: 4px;
+  color: white;
+}
 
 .tag {
   margin: 2px;
 }
 
 // Login page
+
 .loginSection {
   background-color: #1D2731;
   color: #ffffff;
@@ -46,11 +62,13 @@ h3 {
   top: 0;
 }
 
+
 // Edit User profile page
+
 .editProfile {
   background-color: #1D2731;
   color: #ffffff;
-  height: 100vh;
+  height: auto;
   top: 0;
 }
 
@@ -71,15 +89,35 @@ h3 {
 .input {
   background-color: transparent;
   color: white;
-  margin: 5px 0 5px 0;
+  margin: 5px 0 10px 0;
   border-radius: 20px;
+  height: 40px;
 }
 
-.select {
-  background-color: transparent;
-  margin: 5px 0 5px 0;
-  border-radius: 20px;
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: red;
+    opacity: 1; /* Firefox */
 }
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: red;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: red;
+}
+
+// .selectDropDown {
+//   width: 100%;
+//   color: white;
+//   background-color: transparent;
+//   margin: 5px 0 5px 0;
+//   border-radius: 40px;
+//   border: 1px solid white;
+//   width: 100%;
+//   height: 40px;
+//   font-size: 1rem;
+// }
 
 .button {
   border-radius: 20px;
@@ -112,6 +150,7 @@ h3 {
   height: 250px;
   width: 250px;
   border-radius: 100%;
+  margin: 0 auto;
 }
 
 
@@ -121,23 +160,45 @@ h3 {
   background-size: cover;
 }
 
+// User Index Page
+
+.userIndexImage {
+    position: relative;
+    width: 50%;
+}
+
 .userIndex {
-  background-color: #273440;
-  border-radius: 30px;
-  margin: 30px;
+  background-color: black;
+  opacity: 1;
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  position: relative;
 }
 
 .userIndex:hover {
   opacity: 0.2;
-  border: 2px solid white;
 }
 
+.userIndexBtn {
+  transition: .5s ease;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 10px;
+  border: none;
+  text-transform: uppercase;
+}
 
-.userIndexImage {
-  border-radius: 30px;
-  height: 200px;
-  width: 200px;
-  margin: 0 auto;
+.userIndex:hover .userIndexBtn {
+  opacity: 1;
 }
 
 
@@ -167,3 +228,34 @@ h3 {
   border-radius: 100%;
   border: 2px white solid;
 }
+
+
+// Home page
+
+.homeSection {
+  height: 100vh;
+}
+
+.split-top {
+  background-image: url("https://stylewhack.com/wp-content/uploads/2017/11/IMG_0720.jpg");
+  background-size: cover;
+  height: 50vh;
+}
+
+.split-bottom {
+  background-image: url("https://static1.squarespace.com/static/576ef902d1758ef2e6dada3d/576f03126a4963e880312dde/583dcce7b3db2b24516db747/1480445534740/IMG_0439.JPG?format=2500w");
+  background-size: cover;
+  height: 50vh;
+}
+
+.split-top button {
+  background-color: orange;
+  top: 50%;
+  left: 50%;
+}
+
+.split-top:hover {
+
+}
+
+// Navbar

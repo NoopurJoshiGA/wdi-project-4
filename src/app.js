@@ -19,6 +19,7 @@ import UsersEdit from './components/users/Edit';
 // Image Components
 import ImagesShow from './components/images/Show';
 import ImagesNew from './components/images/New';
+import ImagesEdit from './components/images/Edit';
 
 // Map
 // import 'leaflet/dist/leaflet.css';
@@ -41,6 +42,7 @@ class App extends React.Component {
           <Route exact path="/users/:id/edit" component={UsersEdit} />
           <Route path="/users/:id" component={UsersShow} />
           <Route exact path="/images/new" component={ImagesNew} />
+          <Route path="/images/:id/edit" component={ImagesEdit} />
           <Route path="/images/:id" component={ImagesShow} />
         </Switch>
       </main>

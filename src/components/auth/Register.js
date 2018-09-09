@@ -101,12 +101,22 @@ class AuthRegister extends React.Component {
           </input>
 
           {/* Type */}
-          <div className="select is-fullwidth">
-            <select onChange={this.handleChange}>
+          <div>
+            <select className="input" onChange={this.handleChange}>
               <option>model</option>
               <option>photographer</option>
             </select>
           </div>
+
+          {/* Profile Pic */}
+          <input
+            onChange={this.handleChange}
+            className="input"
+            name="profilePic"
+            placeholder="e.g. https://"
+            type="text"
+            value={this.state.profilePic || ''}>
+          </input>
 
           {/* Interests */}
           {/* <p>Choose your interests</p>

@@ -6,11 +6,15 @@ class Home extends React.Component {
 
   render() {
     return(
-      <section>
+      <section className="homeSection">
         <h1 className="title is-1 has-text-white has-text-centered">Boke</h1>
         <div className="columns is-multiline">
-          <button className="button">I'm a Photographer</button><img src="https://stylewhack.com/wp-content/uploads/2017/11/IMG_0720.jpg" />
-          <button className="button">I'm a Model</button><img src="https://static1.squarespace.com/static/576ef902d1758ef2e6dada3d/576f03126a4963e880312dde/583dcce7b3db2b24516db747/1480445534740/IMG_0439.JPG?format=2500w" />
+          <div className="split-top column is-6">
+            <button className="button">Photographer</button>
+          </div>
+          <div className="split-bottom column is-6">
+            <button className="button">Model</button>
+          </div>
         </div>
       </section>
     );

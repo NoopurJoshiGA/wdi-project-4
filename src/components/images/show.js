@@ -162,9 +162,11 @@ class ImagesShow extends React.Component {
               </form>
             </div>
 
-            {/* <Link className="button is-primary is-rounded is-outlined" to={`/users/${user._id}`}>Back to User</Link> */}
             {Auth.currentUserId() === image.uploadedBy._id &&
-            <button className="button is-fullwidth is-primary is-rounded is-outlined" onClick={this.deleteImage}>Delete Image</button>
+              <div>
+                <Link className="button is-fullwidth is-primary is-rounded is-outlined" to={`/images/${image._id}/edit`}>Edit Image</Link>
+                <button className="button is-fullwidth is-primary is-rounded is-outlined" onClick={this.deleteImage}>Delete Image</button>
+              </div>
             }
           </div>
         }

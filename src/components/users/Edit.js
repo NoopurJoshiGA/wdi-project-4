@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class UsersEdit extends React.Component {
 
@@ -41,7 +41,11 @@ class UsersEdit extends React.Component {
     return (
 
       <section className="section editProfile">
-        <h2 className="title is-2 has-text-white">Edit your profile</h2>
+        <h2>Edit your profile</h2>
+
+        <div className="has-text-centered">
+          <img className="profilePic" src={this.state.profilePic} />
+        </div>
 
         <form onSubmit={this.handleSubmit} className="form">
           {/* First Name */}
@@ -81,12 +85,22 @@ class UsersEdit extends React.Component {
           </input>
 
           {/* Type */}
-          <div className="select is-fullwidth">
-            <select onChange={this.handleChange}>
+          <div className="is-fullwidth">
+            <select className="input selectDropDown" onChange={this.handleChange}>
               <option>model</option>
               <option>photographer</option>
             </select>
           </div>
+
+          {/* Profile Pic */}
+          <input
+            onChange={this.handleChange}
+            className="input"
+            name="profilePic"
+            placeholder="e.g. https://"
+            type="text"
+            value={this.state.profilePic || ''}>
+          </input>
 
           {/* Postcode */}
           <input
@@ -98,22 +112,22 @@ class UsersEdit extends React.Component {
           </input>
 
           {/* Password */}
-          <input
+          {/* <input
             onChange={this.handleChange}
             className="input"
             name="password"
             type="password"
             value={this.state.password || ''}>
-          </input>
+          </input> */}
 
           {/* Password confirmation */}
-          <input
+          {/* <input
             onChange={this.handleChange}
             className="input"
             name="passwordConfirmation"
             type="password"
             value={this.state.passwordConfirmation || ''}>
-          </input>
+          </input> */}
 
           <button className="button is-fullwidth is-primary">Save changes</button>
         </form>
