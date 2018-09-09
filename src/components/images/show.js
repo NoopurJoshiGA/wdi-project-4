@@ -8,7 +8,8 @@ class ImagesShow extends React.Component {
   state = {
     showDeleteCommentButton: false,
     // clicks: 0
-    isLiked: true
+    isLiked: true,
+    active: false
   }
 
   componentDidMount() {
@@ -80,6 +81,12 @@ class ImagesShow extends React.Component {
     axios.put(`/api/images/${imageId}`, this.state, Auth.bearerHeader())
       .then(res => this.setState({image: res.data}))
       .catch(err => console.log('Error adding like', err));
+  }
+
+  toggleClass = () => {
+    const currentState = this.state.active;
+    this.setState({ active: !currentState });
+    console.log('the modal is open', this.currentState);
   }
 
   render() {
@@ -165,9 +172,23 @@ class ImagesShow extends React.Component {
             {Auth.currentUserId() === image.uploadedBy._id &&
               <div>
                 <Link className="button is-fullwidth is-primary is-rounded is-outlined" to={`/images/${image._id}/edit`}>Edit Image</Link>
-                <button className="button is-fullwidth is-primary is-rounded is-outlined" onClick={this.deleteImage}>Delete Image</button>
+                <button className="button is-fullwidth is-primary is-rounded is-outlined" onClick={this.toggleClass}>Delete Image</button>
               </div>
             }
+
+            <div className={`${this.state.active ? 'is-active': null} modal `}>
+              <div className="modal-background"></div>
+              <div className="modal-card">
+                <section className="modal-card-body">
+                  <h5 className="title is-5">Are you sure you want to delete this image?</h5>
+                </section>
+                <footer className="modal-card-foot">
+                  <button onClick={this.deleteImage} className="button is-warning">Yes</button>
+                  <button onClick={this.toggleClass} className="button">Cancel</button>
+                </footer>
+              </div>
+            </div>
+
           </div>
         }
       </section>
