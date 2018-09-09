@@ -7,9 +7,7 @@ import Auth from '../../lib/Auth';
 
 class UsersShow extends React.Component {
 
-  state = {
-
-  }
+  state = {}
 
   componentDidMount() {
 

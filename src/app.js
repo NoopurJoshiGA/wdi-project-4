@@ -24,6 +24,9 @@ import ImagesNew from './components/images/New';
 // import 'leaflet/dist/leaflet.css';
 // import Map from './components/common/Map';
 
+// Font Awesome
+import 'font-awesome/css/font-awesome.min.css';
+
 // Styles
 import 'bulma/css/bulma.css';
 import './scss/style.scss'; // TODO: needs to change when Heroku-ing

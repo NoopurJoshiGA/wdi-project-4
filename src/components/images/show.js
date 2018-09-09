@@ -6,7 +6,9 @@ import Auth from '../../lib/Auth';
 class ImagesShow extends React.Component {
 
   state = {
-    showDeleteCommentButton: false
+    showDeleteCommentButton: false,
+    // clicks: 0
+    isLiked: true
   }
 
   componentDidMount() {
@@ -56,66 +58,35 @@ class ImagesShow extends React.Component {
       .then(() => this.props.history.push(`/users/${Auth.currentUserId()}`));
   }
 
-  // showEditComment = (commentId) => {
-  //   event.preventDefault();
-  //   console.log('show edit comment...');
-  // }
-  //
-  // editComment = (commentId) => {
-  //   event.preventDefault();
-  //   console.log('edit comment...');
-  //   return() => {
-  //     console.log(`Edit comment ${commentId}`);
-  //     const imageId = this.props.match.params.id;
-  //     // we want to update the record in the db
-  //     axios
-  //       .put(`api/images/${imageId}/comments/${commentId}`)
-  //       .then(res => this.setState({image: res.data}))
-  //       .catch(err => console.log('Error editing', err));
-  //   };
-  // }
+  IncrementItem = (event) => {
+    event.preventDefault();
+    const imageId = this.props.match.params.id;
+    this.setState({ likes: this.state.image.likes + 1 });
+    const isLiked = !this.state.isLiked;
+    this.setState({ isLiked: isLiked });
+    console.log('likes are', this.state.likes, this.state.isLiked);
+    axios.put(`/api/images/${imageId}`, this.state, Auth.bearerHeader())
+      .then(res => this.setState({image: res.data}))
+      .catch(err => console.log('Error adding like', err));
+  }
 
-  // handleMouseOver = (event) => {
-  //   console.log('mouse is on the comment...');
-  //   const showDeleteCommentButton = !this.state.showDeleteCommentButton;
-  //   this.setState({ showDeleteCommentButton });
-  //   console.log('showDeleteCommentButton', showDeleteCommentButton);
-  // }
-  //
-  // handleMouseOut = (event) => {
-  //   console.log('mouse is not on the comment');
-  //   const showDeleteCommentButton = this.state.showDeleteCommentButton;
-  //   this.setState({ showDeleteCommentButton });
-  //   console.log('showDeleteCommentButton', showDeleteCommentButton);
-  // }
-
-  // addLike = (event, likes) => {
-  //   event.preventDefault();
-  //   console.log('adding like');
-  //   const toggleLike =
-  //   this.setState({ toggleLike = true'
-  //   likes++;
-    //
-    // const imageId = this.props.match.params.id;
-    // this.setState({ likes: likes++ });
-    // console.log('this.state.likes', this.state.likes);
-    // // Building the data to send to the db
-    // const likesData = {
-    //    this.setState({ likes: res.data }))
-    // };
-    // axios
-    //   .post(`/api/images/${imageId}/comments`, commentData)
-    //   .then(res => this.setState({ image: res.data }))
-    //   .catch(err => console.log('Error =>', err));
-  // }
+  DecrementItem = (event) => {
+    event.preventDefault();
+    const imageId = this.props.match.params.id;
+    this.setState({ likes: this.state.image.likes - 1 });
+    const isLiked = !this.state.isLiked;
+    this.setState({ isLiked: isLiked });
+    console.log('likes are', this.state.image.likes, this.state.isLiked);
+    axios.put(`/api/images/${imageId}`, this.state, Auth.bearerHeader())
+      .then(res => this.setState({image: res.data}))
+      .catch(err => console.log('Error adding like', err));
+  }
 
   render() {
 
     const image = this.state.image;
-    // const likes = this.state.image.likes;
 
     console.log('image is', image);
-    console.log('authentication', Auth.currentUserId());
 
     return(
 
@@ -129,18 +100,14 @@ class ImagesShow extends React.Component {
               <img src={image.imageUrl} className="image" />
             </div>
 
-            <div className="section has-text-white has-background-black">
-              <p>Caption: {image.caption}</p>
+            <div className="section">
+              <button onClick={ this.state.isLiked ? this.IncrementItem : this.DecrementItem }
+                className={ this.state.isLiked ? 'is-primary button' : 'is-info is-selected button' }>LIKE</button>
+              <p>Likes: {image.likes}</p>
             </div>
 
-            <div className="section has-background-primary">
-              <p>Likes: {image.likes}</p>
-              {/* if the like button has been clicked already, then make it have a background color or the 'is-selected' bulma class, fire the removeLike function */}
-              {/* otherwise, fire the addLike button and make it transparent. Remove the 'is-selected' bulma class */}
-              {/* { toggleLike &&
-
-              }} */}
-              {/* <button className="button is-outlined is-rounded is-info" onClick={this.addLike(likes)}>Like</button> */}
+            <div className="section has-text-white has-background-black">
+              <p>Caption: {image.caption}</p>
             </div>
 
             <div>
@@ -149,11 +116,11 @@ class ImagesShow extends React.Component {
                 <div key={comment._id}
                   className="userComments columns is-multiline is-mobile">
                   {/* onMouseOver={this.handleMouseOver}
-                   onMouseOut={this.handleMouseOut} */}
+                  onMouseOut={this.handleMouseOut} */}
                   {/* <div>
                     {this.state.showDeleteCommentButton &&
-                    }
-                  </div> */}
+                  }
+                </div> */}
                   <div className="column is-4">
                     <figure className="image is-64x64">
                       <img className="is-rounded" src={comment.commentedBy.profilePic} />
@@ -164,7 +131,7 @@ class ImagesShow extends React.Component {
                   <p>{comment.content}</p>
 
                   {Auth.currentUserId() === comment.commentedBy._id &&
-                    <button onClick={this.deleteComment(comment._id)} className="button is-small is-outlined is-primary">Delete</button>
+                  <button onClick={this.deleteComment(comment._id)} className="button is-small is-outlined is-primary">Delete</button>
                   }
                   {/* <button onClick={this.showEditComment(comment._id)} className="button is-small is-outlined is-primary">Edit</button> */}
                 </div>

@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 
 class UsersIndex extends React.Component {
 
-  state = {}
+  state = {
+
+  }
 
   componentDidMount() { // Sets all users onto the state
     console.log('Index component mounted...');
@@ -24,12 +26,11 @@ class UsersIndex extends React.Component {
         <section className="hero discover is-primary">
           <div className="hero-body">
             <div className="container">
-              <h1 className="title">
-                DISCOVER
-              </h1>
+              <h1 className="title">DISCOVER</h1>
             </div>
           </div>
         </section>
+
 
         { users && users.map(user =>
           <Link key={user._id} to={`/users/${user._id}`}
