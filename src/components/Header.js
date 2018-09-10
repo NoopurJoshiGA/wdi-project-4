@@ -4,6 +4,16 @@ import Auth from '../lib/Auth';
 
 class Header extends React.Component {
 
+  state = {
+    toggleNavbar: false
+  }
+
+  handleToggle = () => {
+    const toggle = !this.state.toggleNavbar;
+    this.setState({ toggleNavbar: toggle});
+    console.log('toggleNavbar', toggle);
+  }
+
   handleLogout = () => {
     Auth.removeToken();
     console.log('user has logged out...');
@@ -11,17 +21,24 @@ class Header extends React.Component {
   }
 
   render() {
-    return(
-      <header>
 
-        <nav className="navbar has-background-light">
-          <div className="navbar-brand">BOKE</div>
-          <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
+    console.log('sjdhfbsdjhfbsdf', this.state.toggleNavbar);
+
+    return(
+      <header className="navbar">
+        <nav className="navbar has-background-light is-fixed" role="navigation" aria-label="main navigation">
+          {/* add container? */}
+          <div className="container">
+            <div className="mobile">
+              <nav className="navbar mobile" role="navigation"  aria-label="main navigation">
+          <div className="navbar-brand">
+          <a role="button" className={`navbar-burger ${this.state.toggleNavbar ? 'is-active': ''}`} onClick={this.handleToggle} aria-label="menu" aria-expanded="false"  data-target="navMenu" d>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
-          <div className="navbar-end">
+        </div>
+          <div className={`navbar-menu ${this.state.toggleNavbar ? 'is-active': ''}`}>
             {Auth.isAuthenticated() && <Link className="navbar-item has-background-primary button" to="/users">Discover</Link>}
             {Auth.isAuthenticated() && <Link className="navbar-item has-background-primary button" to="/images/new">Upload Image</Link>}
             {Auth.isAuthenticated() && <Link className="navbar-item has-background-primary button" to={`/users/${Auth.currentUserId()}`}>Profile</Link>}
@@ -32,6 +49,9 @@ class Header extends React.Component {
               <a className="navbar-item" onClick={this.handleLogout}>Log out {Auth.currentUsername()}</a>}
           </div>
         </nav>
+      </div>
+    </div>
+    </nav>
       </header>
 
     );

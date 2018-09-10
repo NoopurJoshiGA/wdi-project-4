@@ -122,7 +122,8 @@ input::placeholder {
 }
 
 .map {
-  height: 500px;
+  height: 400px;
+  width: 100%;
 }
 
 .profilePic {
@@ -219,6 +220,7 @@ input::placeholder {
 
 
 // Navbar
+$navbar-height: auto 0;
 
 
 // Portfolio
