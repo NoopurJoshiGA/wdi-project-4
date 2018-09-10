@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 
+
 // Map
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import L from 'leaflet';
 
 class UserLocationMap extends React.Component {
 
@@ -15,21 +17,25 @@ class UserLocationMap extends React.Component {
   componentDidMount() {
 
     axios
-      .get('http://api.postcodes.io/postcodes/wd171bn')
+      .get('http://api.postcodes.io/postcodes/${}')
       .then(res => {
         const userLocationData = res.data;
-        this.setState({ userLocationData: userLocationData });
-        console.log('userLocationData is', userLocationData);
+        this.setState({ userLocationData: userLocationData, lat: userLocationData.result.latitude, lng: userLocationData.result.longitude });
         console.log('lat and long are', userLocationData.result.latitude, userLocationData.result.longitude);
       });
   }
 
+
   render() {
 
-    const latitude = this.state.userLocationData.result.latitude;
-    const longitude = this.state.userLocationData.result.longitude;
 
-    console.log('latitude and longitude is', latitude, longitude);
+    delete L.Icon.Default.prototype._getIconUrl;
+
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+      iconUrl: require('leaflet/dist/images/marker-icon.png'),
+      shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+    });
 
     const position = [this.state.lat, this.state.lng];
     return(
