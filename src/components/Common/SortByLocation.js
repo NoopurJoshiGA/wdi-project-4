@@ -1,9 +1,10 @@
+
 import React from 'react';
 
-const Sort = ({ handleChange, options, defaultValue }) => {
-  return (
+const SortByLocation = ({ handleChange, defaultValue, options }) => {
+  return(
     <div className="field">
-      <label className="label">Sort your users out, mate</label>
+      <label className="label">Sort by location</label>
       <div className="select">
         <select onChange={ handleChange } defaultValue={defaultValue}>
           {options.map(option =>
@@ -15,4 +16,4 @@ const Sort = ({ handleChange, options, defaultValue }) => {
   );
 };
 
-export default Sort;
+export default SortByLocation;

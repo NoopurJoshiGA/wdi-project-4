@@ -17,7 +17,7 @@ class ImagesShow extends React.Component {
     axios.get(`/api/images/${this.props.match.params.id}`)
       .then(res => {
         this.setState({ image: res.data});
-        console.log('this.state.image', this.state.image);
+        console.log('this.state.image', this.state.image.tags.toString().split(','));
       });
   }
 
@@ -128,7 +128,7 @@ class ImagesShow extends React.Component {
 
             <div className="section">
               <h3>Tags</h3>
-              { image.tags.map(tag =>
+              { image.tags.toString().split(',').map(tag =>
                 <div key={image._id} className="tag has-background-primary has-text-white">{tag}</div>
               )}
             </div>

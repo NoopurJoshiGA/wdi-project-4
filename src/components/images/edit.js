@@ -8,7 +8,11 @@ class ImagesEdit extends React.Component {
 
   componentDidMount() {
     axios.get(`/api/images/${this.props.match.params.id}`)
-      .then(res => this.setState(res.data)); // putting it on setState will prepopulate the field data
+      .then(res => this.setState(res.data, () => {
+        console.log('this.state', this.state.tags.toString().split(','));
+      }));
+
+    // }); // putting it on setState will prepopulate the field data
   }
 
   handleSubmit = (event) => {

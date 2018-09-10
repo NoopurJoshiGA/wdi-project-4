@@ -4,17 +4,21 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 
 import SearchBar from '../common/SearchBar';
-import Sort from '../common/Sort';
-import FilterBySearch from '../common/FilterBySearch';
-
+import FilterByType from '../common/FilterByType';
+import FilterUsers from '../common/FilterUsers';
+import SortByLocation from '../common/SortByLocation';
 
 class UsersIndex extends React.Component {
 
   state = {
-    sortString: 'please select',
-    sortOptions: [
+    sortString: 'Please Select',
+    filterTypeOptions: [
       { value: 'type|model', label: 'model'},
       { value: 'type|photographer', label: 'photographer'}
+    ],
+    sortLocationOptions: [
+      { value: 'location|closest', label: 'Shortest distance'},
+      { value: 'location|furthest', label: 'Longest distance'}
     ]
   }
 
@@ -24,14 +28,11 @@ class UsersIndex extends React.Component {
       .then(res => this.setState({ users: res.data, filteredUsers: res.data }));
   }
 
-
   handleSearchChange = (event) => {
     this.setState({ searchTerm: event.target.value });
     console.log('search term is:', event.target.value);
   }
 
-  // filterUsers takes the filteredUsers (which in this case is set to all the users as the initial value)
-  // It filters it
   filterUsers = (users) => {
     const { searchTerm } = this.state;
     return users.filter(user =>
@@ -42,19 +43,24 @@ class UsersIndex extends React.Component {
     );
   }
 
-  // sort some users
-sortUsers = (users) => {
-  const [ fieldName, direction ] = this.state.sortString.split('|');
-  console.log('fieldName and direction are', fieldName, direction);
-  return _.orderBy(users, fieldName, direction);
+  // filter the users by model or photographer
+filterUsersByType = (users) => {
+  // console.log('users are', users);
+  // users.filter(user => {
+  //   console.log(user.type);
+  // });
+  // const type = this.state.sortString.split('|');
+  // console.log('type is', type);
+  // return users.filter(user => user.type === type);
+  return users;
 }
 
   sortedFilteredUsers = () => {
     //sort first
-    const sortedUsers = this.sortUsers(this.state.users);
-    console.log('sortedUsers are', sortedUsers);
+    const sortedUsersByType = this.sortUsersByType(this.state.users);
+    console.log('sortedUsersByType are', sortedUsersByType);
     //then filter
-    return this.filterUsers(sortedUsers);
+    return this.filterUsers(sortedUsersByType);
   }
 
   handleSortChange = (event) => {
@@ -68,50 +74,35 @@ sortUsers = (users) => {
     const images = this.state.images;
 
     const allUsers = this.state.users;
-    const sortedUsers = this.sortUsers(allUsers);
+    const sortedUsersByType = this.filterUsersByType(allUsers);
+    console.log('sortedUsersByType are', sortedUsersByType);
 
-    console.log('Filter options are:', this.state.filterOptions);
-    console.log('searchterm is', this.state.searchTerm);
-
-
-    console.log('users are', users);
-    console.log('images are', images);
+    // console.log('users are', users);
+    // console.log('images are', images);
     return(
 
       <section className="usersIndexSection">
-        {/* <section className="hero discover is-primary">
-          <div className="hero-body">
-            <div className="container">
-              <h1 className="title">DISCOVER</h1>
-            </div>
-          </div>
-        </section> */}
 
         <section>
           <SearchBar handleChange={ this.handleSearchChange } searchTerm={ this.state.searchTerm } />
-          <Sort
+
+          <SortByLocation
+            handleChange={ this.handleSearchChange }
+            options={ this.state.sortLocationOptions }
+            defaultValue={ this.state.defaultValue }
+          />
+
+          <FilterByType
             defaultValue={this.state.sortString}
-            options={this.state.sortOptions}
+            options={this.state.filterTypeOptions}
             handleChange={this.handleSortChange}
           />
+
           {this.state.searchTerm &&
-              <FilterBySearch users={this.filterUsers(sortedUsers)}/>
+              <FilterUsers users={this.filterUsers(sortedUsersByType)}/>
           }
         </section>
 
-
-        {/* { users && this.state.filteredUsers.map(user =>
-          <Link key={user._id} to={`/users/${user._id}`} className="columns is-multiline is-mobile">
-            <div className="card userIndex has-text-dark column">
-              <img className="userIndexImage" src={user.profilePic} alt={user.firstName}/>
-              <h6 className="title is-6 has-text-white has-text-centered">{user.firstName} {user.lastName}</h6>
-              <p className="has-text-white">{user.type}</p>
-              <p className="has-text-white">{user.postcode}</p>
-              <p className="has-text-white">{user.description}</p>
-              {/* <button className="userIndexBtn">See More</button> */}
-        {/* </div> */}
-        {/* // </Link> */}
-        {/* )} */}
       </section>
     );
   }

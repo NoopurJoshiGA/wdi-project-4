@@ -155,6 +155,7 @@ class UsersShow extends React.Component {
                   </div>
 
                   <div><p>{review.addedBy.username}</p></div>
+
                   <p>{review.content}</p>
                   {Auth.currentUserId() === review.addedBy._id &&
                     <button onClick={this.deleteReview(review._id)} className="button is-small is-outlined is-primary">Delete</button>
@@ -174,8 +175,7 @@ class UsersShow extends React.Component {
             <Link className="button is-primary is-rounded is-outlined" to={`/users/${user._id}/edit`}>Edit Profile</Link>
             }
 
-            <UserLocationMap user={user} userLat={lat} userLng={lng}
-            />
+            <UserLocationMap user={user} userLat={lat} userLng={lng} />
 
           </div>
         }
