@@ -114,7 +114,7 @@ class ImagesShow extends React.Component {
                 <img src={image.uploadedBy.profilePic} className="userProfilePic" />
               </div>
               <div className="column">
-                <p className="has-text-left">{image.uploadedBy.username || defaultProfilePic}</p>
+                <p className="has-text-left">{image.uploadedBy.username || this.state.defaultProfilePic }</p>
               </div>
             </div>
 
@@ -148,7 +148,7 @@ class ImagesShow extends React.Component {
                 </div> */}
                   <div className="column is-4">
                     <figure className="image is-64x64">
-                      <img className="is-rounded" src={comment.commentedBy.profilePic || defaultProfilePic} />
+                      <img className="is-rounded" src={comment.commentedBy.profilePic || this.state.defaultProfilePic} />
                     </figure>
                   </div>
 

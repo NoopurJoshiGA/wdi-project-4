@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Auth from '../../lib/Auth';
 
-// import Map from '../common/Map';
+import UserLocationMap from '../common/UserLocationMap';
 
 class UsersShow extends React.Component {
 
@@ -161,7 +161,7 @@ class UsersShow extends React.Component {
             {Auth.currentUserId() === this.props.match.params.id  &&
             <Link className="button is-primary is-rounded is-outlined" to={`/users/${user._id}/edit`}>Edit Profile</Link>
             }
-            {/* <Map /> */}
+            <UserLocationMap />
           </div>
         }
       </section>

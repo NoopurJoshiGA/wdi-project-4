@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const imageSchema = new mongoose.Schema({
-  imageUrl: { type: String, required: false }, // set it to true after test
+  imageUrl: { type: String, required: true }, // set it to true after test
   caption: { type: String, required: false },
   tags: [{ type: String }],
   comments: [

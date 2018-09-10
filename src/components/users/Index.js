@@ -30,16 +30,16 @@ class UsersIndex extends React.Component {
     console.log('search term is:', event.target.value);
   }
 
+  // filterUsers takes the filteredUsers (which in this case is set to all the users as the initial value)
+  // It filters it
   filterUsers = (users) => {
     const { searchTerm } = this.state;
-    const filteredUsers = users.filter(user =>
-      [user.firstName, user.lastName, user.type, user.postcode].some(field => {
+    return users.filter(user =>
+      [user.firstName, user.lastName, user.type, user.username].some(field => {
         const re = new RegExp(searchTerm, 'i');
         return re.test(field);
       })
     );
-    console.log('filteredUsers are', filteredUsers);
-    this.setState({ filteredUsers: filteredUsers});
   }
 
   // sort some users
@@ -95,7 +95,7 @@ sortUsers = (users) => {
             handleChange={this.handleSortChange}
           />
           {this.state.searchTerm &&
-              <FilterBySearch films={this.filterUsers(sortedUsers)}/>
+              <FilterBySearch users={this.filterUsers(sortedUsers)}/>
           }
         </section>
 
@@ -109,8 +109,8 @@ sortUsers = (users) => {
               <p className="has-text-white">{user.postcode}</p>
               <p className="has-text-white">{user.description}</p>
               {/* <button className="userIndexBtn">See More</button> */}
-            {/* </div> */}
-          {/* // </Link> */}
+        {/* </div> */}
+        {/* // </Link> */}
         {/* )} */}
       </section>
     );

@@ -28,7 +28,8 @@ class ImagesNew extends React.Component {
     console.log('into the images new component...');
     return (
       <section className="section uploadImageSection">
-        <h3 className="title is-3 has-text-white">Upload an Image</h3>
+
+        <h2>Upload an Image</h2>
 
         <form onSubmit={this.handleSubmit} className="form">
 

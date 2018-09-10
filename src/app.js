@@ -22,8 +22,7 @@ import ImagesNew from './components/images/New';
 import ImagesEdit from './components/images/Edit';
 
 // Map
-// import 'leaflet/dist/leaflet.css';
-// import Map from './components/common/Map';
+import 'leaflet/dist/leaflet.css';
 
 // Styles
 import 'bulma/css/bulma.css';
