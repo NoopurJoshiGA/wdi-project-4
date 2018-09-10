@@ -16,6 +16,7 @@ function imagesShow(req, res, next) {
 }
 
 function imagesUpdate(req, res, next) {
+  req.body.tags = req.body.tags.split(' ');
   Image
     .findById(req.params.id)
     .then(image => image.set(req.body))

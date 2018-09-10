@@ -52,7 +52,7 @@ class ImagesNew extends React.Component {
             value={this.state.caption || ''}>
           </input>
 
-          {/* Caption */}
+          {/* Tags */}
           <input
             onChange={this.handleChange}
             className="input"

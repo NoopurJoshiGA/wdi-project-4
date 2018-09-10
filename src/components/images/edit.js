@@ -6,6 +6,11 @@ class ImagesEdit extends React.Component {
 
   state = {}
 
+  componentDidMount() {
+    axios.get(`/api/images/${this.props.match.params.id}`)
+      .then(res => this.setState(res.data)); // putting it on setState will prepopulate the field data
+  }
+
   handleSubmit = (event) => {
     event.preventDefault(); // don't refresh the page
     const imageId = this.props.match.params.id;

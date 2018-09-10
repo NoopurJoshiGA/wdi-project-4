@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Flash from '../../lib/Flash';
 
 import Auth from '../../lib/Auth';
 
@@ -8,7 +9,7 @@ class AuthLogin extends React.Component {
   state = {
     // prepopulate for test purposes
     // TODO: remove this before deployment!
-    email: 'milakunis@email.com',
+    email: 'milakunisss@email.com',
     password: 'pass'
   }
 
@@ -34,6 +35,8 @@ class AuthLogin extends React.Component {
       })
       .catch(err => {
         console.log(err.response); // will return 401 or 500 if login is incorrect (eg: not authorized)
+        Flash.setMessage('danger', 'Invalid email/password');
+        console.log('Flash messages', Flash.getMessages());
         // redirect to the current page
         this.props.history.push(this.props.location.pathname);
       });

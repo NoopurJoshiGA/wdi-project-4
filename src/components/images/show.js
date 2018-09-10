@@ -9,7 +9,8 @@ class ImagesShow extends React.Component {
     showDeleteCommentButton: false,
     // clicks: 0
     isLiked: true,
-    active: false
+    defaultProfilePic: 'https://kirche-wagenfeld.de/wp-content/uploads/2018/03/default-profile.png',
+    active: false // modal form
   }
 
   componentDidMount() {
@@ -113,7 +114,7 @@ class ImagesShow extends React.Component {
                 <img src={image.uploadedBy.profilePic} className="userProfilePic" />
               </div>
               <div className="column">
-                <p className="has-text-left">{image.uploadedBy.username}</p>
+                <p className="has-text-left">{image.uploadedBy.username || defaultProfilePic}</p>
               </div>
             </div>
 
@@ -147,7 +148,7 @@ class ImagesShow extends React.Component {
                 </div> */}
                   <div className="column is-4">
                     <figure className="image is-64x64">
-                      <img className="is-rounded" src={comment.commentedBy.profilePic} />
+                      <img className="is-rounded" src={comment.commentedBy.profilePic || defaultProfilePic} />
                     </figure>
                   </div>
 

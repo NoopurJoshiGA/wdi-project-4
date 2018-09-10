@@ -13,6 +13,7 @@ class AuthRegister extends React.Component {
     username: 'milakunis',
     email: 'milakunis@email.com',
     type: 'photographer',
+    tags: 'tag1 tag2 tag3',
     postcode: 'WD171BN',
     password: 'pass',
     passwordConfirmation: 'pass'
@@ -46,17 +47,6 @@ class AuthRegister extends React.Component {
     const { target: { name, value }} = event;
     this.setState({ [name]: value });
   }
-
-  //
-  // handleClick = (event) => {
-  //   console.log('the button was clicked');
-  //   this.setState({ interests: event.target.value });
-  //   console.log('interests are', this.state.interests);
-  // }
-
-  // addInterest = (event) => {
-  //
-  // }
 
   render() {
     return (
@@ -120,7 +110,8 @@ class AuthRegister extends React.Component {
             name="profilePic"
             placeholder="e.g. https://"
             type="text"
-            value={this.state.profilePic || ''}>
+            value={this.state.profilePic || ''}
+          >
           </input>
 
           {/* <ReactFilestack
@@ -133,13 +124,14 @@ class AuthRegister extends React.Component {
           /> */}
 
           {/* Interests */}
-          <p>Choose your interests</p>
-          <div className="field is-grouped">
-            <p className="control"><button onClick={this.handleClick} value={this.state.fashion || ''} className="button is-small is-primary is-outlined">Fashion</button></p>
-            <p className="control"><button className="button is-small is-primary is-outlined">Urban</button></p>
-            <p className="control"><button className="button is-small is-primary is-outlined">Portraits</button></p>
-            <p className="control"><button className="button is-small is-primary is-outlined">Night</button></p>
-          </div>
+          <input
+            onChange={this.handleChange}
+            className="input"
+            name="interests"
+            type="text"
+            placeholder="Interests, separated with a space"
+            value={this.state.interests || ''}>
+          </input>
 
           {/* Postcode */}
           <input

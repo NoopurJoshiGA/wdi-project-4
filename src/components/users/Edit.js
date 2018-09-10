@@ -6,7 +6,8 @@ import Auth from '../../lib/Auth';
 class UsersEdit extends React.Component {
 
   state = {
-    active: false
+    active: false,
+    defaultProfilePic: 'https://kirche-wagenfeld.de/wp-content/uploads/2018/03/default-profile.png'
   }
 
   componentDidMount() {
@@ -52,7 +53,7 @@ class UsersEdit extends React.Component {
         <h2>Edit your profile</h2>
 
         <div className="has-text-centered">
-          <img className="profilePic" src={this.state.profilePic} />
+          <img className="profilePic" src={this.state.profilePic || this.state.defaultProfilePic} />
         </div>
 
         <form onSubmit={this.handleSubmit} className="form">
@@ -99,6 +100,16 @@ class UsersEdit extends React.Component {
               <option>photographer</option>
             </select>
           </div>
+
+          {/* Interests */}
+          <input
+            onChange={this.handleChange}
+            className="input"
+            name="interests"
+            type="text"
+            placeholder="Interests, separated with a space"
+            value={this.state.interests || ''}>
+          </input>
 
           {/* Profile Pic */}
           <input

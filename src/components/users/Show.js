@@ -7,7 +7,9 @@ import Auth from '../../lib/Auth';
 
 class UsersShow extends React.Component {
 
-  state = {}
+  state = {
+    defaultProfilePic: 'https://kirche-wagenfeld.de/wp-content/uploads/2018/03/default-profile.png'
+  }
 
   componentDidMount() {
 
@@ -77,7 +79,8 @@ class UsersShow extends React.Component {
         {user &&
           <div className="container columns is-multiline has-text-centered">
 
-            <img className="profilePic" src={user.profilePic} alt={user.firstName}></img>
+            <img className="profilePic" src={user.profilePic || this.state.defaultProfilePic } alt={user.firstName}></img>
+
             <h2>{user.firstName} {user.lastName}</h2>
             <h3>{user.type}</h3>
 
@@ -88,7 +91,7 @@ class UsersShow extends React.Component {
             <div className="section">
               <h3>Interests</h3>
               { user.interests.map(interest =>
-                <div key={user._id} className="tag has-background-primary has-text-white">{interest}</div>
+                <div key={user._id} className="tag has-background-primary has-text-white">{interest || ''}</div>
               )}
             </div>
 
@@ -116,7 +119,7 @@ class UsersShow extends React.Component {
                 { images.map(image =>
                   <div key={image._id} className="column is-6">
                     <Link to={`/images/${image._id}`}>
-                      <img className="portfolioImage" src={image.imageUrl} />
+                      <img className="portfolioImage" src={image.imageUrl || ''} />
                     </Link>
                   </div>
                 )}
@@ -132,7 +135,7 @@ class UsersShow extends React.Component {
                   className="userReviews columns is-multiline is-mobile">
                   <div className="column is-4">
                     <figure className="image is-64x64">
-                      <img className="is-rounded" src={review.addedBy.profilePic} />
+                      <img className="is-rounded" src={review.addedBy.profilePic || this.state.defaultProfilePic} />
                     </figure>
                   </div>
 

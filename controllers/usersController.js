@@ -17,6 +17,7 @@ function usersShow(req, res, next) {
 }
 
 function usersUpdate(req, res, next) {
+  req.body.interests = req.body.interests.split(' ');
   User
     .findById(req.params.id)
     .then(user => user.set(req.body))
@@ -26,6 +27,7 @@ function usersUpdate(req, res, next) {
 }
 
 function usersCreate(req, res, next) {
+  req.body.interests = req.body.interests.split(' ');
   User
     .create(req.body)
     .then(user => res.json(user))
