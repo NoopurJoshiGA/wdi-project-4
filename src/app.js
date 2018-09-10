@@ -28,6 +28,11 @@ import 'leaflet/dist/leaflet.css';
 import 'bulma/css/bulma.css';
 import './scss/style.scss'; // TODO: needs to change when Heroku-ing
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faKey } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faKey);
+
 class App extends React.Component {
   render() {
     return (

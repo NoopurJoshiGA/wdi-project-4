@@ -8,6 +8,8 @@ import FilterByType from '../common/FilterByType';
 import FilterUsers from '../common/FilterUsers';
 import SortByLocation from '../common/SortByLocation';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 class UsersIndex extends React.Component {
 
   state = {
@@ -33,6 +35,13 @@ class UsersIndex extends React.Component {
     console.log('search term is:', event.target.value);
   }
 
+  handleFilterByTypeChange = (event) => {
+    this.setState({ filterType: event.target.value }, () => {
+      console.log('filterType is', this.state.filterType);
+    })
+
+  }
+
   filterUsers = (users) => {
     const { searchTerm } = this.state;
     return users.filter(user =>
@@ -45,14 +54,13 @@ class UsersIndex extends React.Component {
 
   // filter the users by model or photographer
 filterUsersByType = (users) => {
-  // console.log('users are', users);
-  // users.filter(user => {
-  //   console.log(user.type);
-  // });
-  // const type = this.state.sortString.split('|');
-  // console.log('type is', type);
-  // return users.filter(user => user.type === type);
-  return users;
+  const type = this.state.filterType.split('|');
+  return users.filter(user => user.type === type[1]);
+}
+
+filterSearchUsers = (users) => {
+  const filteredSearchUsers = this.filterUsers(users);
+  return this.filterUsersByType(filteredSearchUsers);
 }
 
   sortedFilteredUsers = () => {
@@ -74,14 +82,15 @@ filterUsersByType = (users) => {
     const images = this.state.images;
 
     const allUsers = this.state.users;
-    const sortedUsersByType = this.filterUsersByType(allUsers);
-    console.log('sortedUsersByType are', sortedUsersByType);
+    // const sortedUsersByType = this.filterUsersByType(allUsers);
+    // console.log('sortedUsersByType are', sortedUsersByType);
 
     // console.log('users are', users);
     // console.log('images are', images);
     return(
 
       <section className="usersIndexSection">
+
 
         <section>
           <SearchBar handleChange={ this.handleSearchChange } searchTerm={ this.state.searchTerm } />
@@ -95,12 +104,38 @@ filterUsersByType = (users) => {
           <FilterByType
             defaultValue={this.state.sortString}
             options={this.state.filterTypeOptions}
-            handleChange={this.handleSortChange}
+            handleChange={this.handleFilterByTypeChange}
           />
 
-          {this.state.searchTerm &&
-              <FilterUsers users={this.filterUsers(sortedUsersByType)}/>
+          { !this.state.searchTerm && !this.state.filterType &&
+            <FilterUsers users={this.state.filteredUsers}/>
           }
+
+          { this.state.searchTerm && !this.state.filterType &&
+            <FilterUsers users={this.filterUsers(users)} />
+          }
+
+          { !this.state.searchTerm && this.state.filterType &&
+            <FilterUsers users={this.filterUsersByType(users)} />
+          }
+          {
+            this.state.searchTerm && this.state.filterType &&
+            <FilterUsers users={this.filterSearchUsers(users)} />
+          }
+
+
+          {/* {!this.state.searchTerm &&
+              <FilterUsers users={this.state.filteredUsers}/>
+          }
+          {this.state.searchTerm &&
+              <FilterUsers users={this.filterUsersByType(users)}/>
+          } */}
+
+
+
+          <div>
+            <FontAwesomeIcon icon="key" />
+          </div>
         </section>
 
       </section>
