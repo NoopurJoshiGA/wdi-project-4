@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
 
+// External
 import ReactFilestack from 'filestack-react';
 
 class AuthRegister extends React.Component {
@@ -16,6 +17,10 @@ class AuthRegister extends React.Component {
     postcode: 'WD171BN',
     password: 'pass',
     passwordConfirmation: 'pass'
+  }
+
+  componentDidMount() {
+
   }
 
   handleSubmit = (event) => {
@@ -64,7 +69,6 @@ class AuthRegister extends React.Component {
         <form onSubmit={this.handleSubmit}>
 
           <h2>Create an account</h2>
-
 
           <ReactFilestack
             apikey="AqGjevNLqRu22jn66Mv4Zz"
@@ -176,6 +180,7 @@ class AuthRegister extends React.Component {
             type="password"
             value={this.state.passwordConfirmation || ''}>
           </input>
+
 
           <button className="button is-fullwidth is-primary" type="submit">Register</button>
 

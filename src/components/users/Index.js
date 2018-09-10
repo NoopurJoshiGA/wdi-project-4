@@ -6,8 +6,6 @@ import FilterByType from '../common/FilterByType';
 import FilterUsers from '../common/FilterUsers';
 import SortByLocation from '../common/SortByLocation';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 class UsersIndex extends React.Component {
 
   state = {
@@ -26,7 +24,7 @@ class UsersIndex extends React.Component {
   componentDidMount() { // Sets all users onto the state
     console.log('Index component mounted...');
     axios.get('/api/users')
-      .then(res => this.setState({ users: res.data, filteredUsers: res.data }));
+    .then(res => this.setState({ users: res.data, filteredUsers: res.data }));
   }
 
   handleSearchChange = (event) => {
@@ -75,43 +73,107 @@ class UsersIndex extends React.Component {
     console.log('sortString is', this.state.sortString);
   }
 
+  // get location of each user
+  getAllUsersLocation = () => {
+    console.log('into the getUsersLocation');
+    this.state.users.map(user => {
+      axios
+        .get(`http://api.postcodes.io/postcodes/${user.postcode}`)
+        .then(res => {
+          console.log('user location is', res.data);
+        });
+    });
+  }
+
+  getUserLocation = () => {
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(userPosition => {
+        console.log('userPosition is', userPosition);
+        const lat1 = userPosition.coords.latitude;
+        const lon1 = userPosition.coords.longitude;
+        const pointA = [lat1, lon1];
+        const pointB = [51, -2];
+        return findDistanceBetweenUsers(pointA, pointB)
+      });
+    }
+  }
+
+  findDistanceBetweenUsers = (pointA, pointB) =>  {
+    console.log('into the findDistanceBetweenUsers function...');
+
+    const lat1 = pointA.lat;
+    const lon1 = pointA.lng;
+
+    const lat2 = pointB.lat;
+    const lon2 = pointB.lng;
+
+    const R = 6371; // Radius of the earth in km
+
+    const dLat = deg2rad(lat2-lat1);  // deg2rad below
+    const dLon = deg2rad(lon2-lon1);
+
+    var a =
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ;
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    const distance = R * c; // Distance in km
+    console.log('the distance is', distance);
+  }
+
+  deg2rad = (deg) => {
+    return deg * (Math.PI/180)
+  }
+
+
+  // filter through all the users and convert their postcode to lat and lng
+  // get the location of the current logged in user
+  // calculate the distance between the current user and all the other users
+  // filter so that the closest users are displayed first
+
+
   render() {
     const users = this.state.users;
 
     return(
 
       <section className="usersIndexSection">
-          <h3>Discover</h3>
+        <h3>Discover</h3>
 
-          <SearchBar handleChange={ this.handleSearchChange } searchTerm={ this.state.searchTerm } />
+        <button className="button is-primary is-large" onClick={this.getAllUsersLocation}>get all location</button>
+        <button className="button is-primary is-large" onClick={this.getUserLocation}>get current user location</button>
 
-          <SortByLocation
-            handleChange={ this.handleSearchChange }
-            options={ this.state.sortLocationOptions }
-            defaultValue={ this.state.defaultValue }
-          />
+        <SearchBar handleChange={ this.handleSearchChange } searchTerm={ this.state.searchTerm } />
 
-          <FilterByType
-            defaultValue={this.state.sortString}
-            options={this.state.filterTypeOptions}
-            handleChange={this.handleFilterByTypeChange}
-          />
+        <SortByLocation
+          handleChange={ this.handleSearchChange }
+          options={ this.state.sortLocationOptions }
+          defaultValue={ this.state.defaultValue }
+        />
 
-          { !this.state.searchTerm && !this.state.filterType &&
-            <FilterUsers users={this.state.filteredUsers}/>
-          }
+        <FilterByType
+          defaultValue={this.state.sortString}
+          options={this.state.filterTypeOptions}
+          handleChange={this.handleFilterByTypeChange}
+        />
 
-          { this.state.searchTerm && !this.state.filterType &&
-            <FilterUsers users={this.filterUsers(users)} />
-          }
+        { !this.state.searchTerm && !this.state.filterType &&
+          <FilterUsers users={this.state.filteredUsers}/>
+        }
 
-          { !this.state.searchTerm && this.state.filterType &&
-            <FilterUsers users={this.filterUsersByType(users)} />
-          }
-          {
-            this.state.searchTerm && this.state.filterType &&
-            <FilterUsers users={this.filterSearchUsers(users)} />
-          }
+        { this.state.searchTerm && !this.state.filterType &&
+          <FilterUsers users={this.filterUsers(users)} />
+        }
+
+        { !this.state.searchTerm && this.state.filterType &&
+          <FilterUsers users={this.filterUsersByType(users)} />
+        }
+        {
+          this.state.searchTerm && this.state.filterType &&
+          <FilterUsers users={this.filterSearchUsers(users)} />
+        }
 
       </section>
     );
