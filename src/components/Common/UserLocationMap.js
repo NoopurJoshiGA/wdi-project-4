@@ -29,7 +29,8 @@ const UserLocationMap = ({ user, userLat, userLng }) => {
 
         <Marker position={position}>
           <Popup>
-            {user.firstName} {user.lastName} {user}
+            {user.firstName} {user.lastName}
+
           </Popup>
         </Marker>
 

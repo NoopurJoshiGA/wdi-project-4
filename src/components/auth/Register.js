@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
 
-// import ReactFilestack from 'filestack-react'
+import ReactFilestack from 'filestack-react';
 
 class AuthRegister extends React.Component {
 
@@ -13,7 +13,6 @@ class AuthRegister extends React.Component {
     username: 'milakunis',
     email: 'milakunis@email.com',
     type: 'photographer',
-    tags: 'tag1 tag2 tag3',
     postcode: 'WD171BN',
     password: 'pass',
     passwordConfirmation: 'pass'
@@ -48,10 +47,28 @@ class AuthRegister extends React.Component {
     this.setState({ [name]: value });
   }
 
+  onSuccess = (result) => {
+    this.setState({
+      profilePic: result.filesUploaded[0].url
+    });
+  }
+
+  // const basicOptions = {
+  //   accept: 'image/*',
+  //   fromSources: ['local_file_system'],
+  //   maxSize: 1024 * 1024,
+  //   maxFiles: 1,
+  // }
+
+  onError = (error) => {
+    console.error('error', error);
+  }
+
   render() {
     return (
       <section className="registerSection">
-        <form className="section form" onSubmit={this.handleSubmit}>
+
+        <form onSubmit={this.handleSubmit}>
 
           <h2>Create an account</h2>
 
@@ -104,7 +121,7 @@ class AuthRegister extends React.Component {
           </div>
 
           {/* Profile Pic */}
-          <input
+          {/* <input
             onChange={this.handleChange}
             className="input"
             name="profilePic"
@@ -112,16 +129,16 @@ class AuthRegister extends React.Component {
             type="text"
             value={this.state.profilePic || ''}
           >
-          </input>
+          </input> */}
 
-          {/* <ReactFilestack
-            apikey={keys.filestackKey}
-            buttonText="Upload Photo"
-            buttonClass="ui medium button gray"
-            options={basicOptions}
+          <ReactFilestack
+            apikey="AqGjevNLqRu22jn66Mv4Zz"
+            // options={basicOptions}
+            buttonText="Upload Profile Picture"
+            buttonClass="filestackButton"
             onSuccess={this.onSuccess}
             onError={this.onError}
-          /> */}
+          />
 
           {/* Interests */}
           <input
@@ -164,6 +181,8 @@ class AuthRegister extends React.Component {
           </input>
 
           <button className="button is-fullwidth is-primary" type="submit">Register</button>
+
+          <p>Already have an account? Login <a href="/login">here</a></p>
 
         </form>
       </section>

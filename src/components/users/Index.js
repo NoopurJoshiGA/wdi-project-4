@@ -1,7 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import _ from 'lodash';
 
 import SearchBar from '../common/SearchBar';
 import FilterByType from '../common/FilterByType';
@@ -14,6 +12,7 @@ class UsersIndex extends React.Component {
 
   state = {
     sortString: 'Please Select',
+    defaultValue: 'Please select...',
     filterTypeOptions: [
       { value: 'type|model', label: 'model'},
       { value: 'type|photographer', label: 'photographer'}
@@ -38,8 +37,7 @@ class UsersIndex extends React.Component {
   handleFilterByTypeChange = (event) => {
     this.setState({ filterType: event.target.value }, () => {
       console.log('filterType is', this.state.filterType);
-    })
-
+    });
   }
 
   filterUsers = (users) => {
@@ -53,15 +51,15 @@ class UsersIndex extends React.Component {
   }
 
   // filter the users by model or photographer
-filterUsersByType = (users) => {
-  const type = this.state.filterType.split('|');
-  return users.filter(user => user.type === type[1]);
-}
+  filterUsersByType = (users) => {
+    const type = this.state.filterType.split('|');
+    return users.filter(user => user.type === type[1]);
+  }
 
-filterSearchUsers = (users) => {
-  const filteredSearchUsers = this.filterUsers(users);
-  return this.filterUsersByType(filteredSearchUsers);
-}
+  filterSearchUsers = (users) => {
+    const filteredSearchUsers = this.filterUsers(users);
+    return this.filterUsersByType(filteredSearchUsers);
+  }
 
   sortedFilteredUsers = () => {
     //sort first
@@ -79,20 +77,12 @@ filterSearchUsers = (users) => {
 
   render() {
     const users = this.state.users;
-    const images = this.state.images;
 
-    const allUsers = this.state.users;
-    // const sortedUsersByType = this.filterUsersByType(allUsers);
-    // console.log('sortedUsersByType are', sortedUsersByType);
-
-    // console.log('users are', users);
-    // console.log('images are', images);
     return(
 
       <section className="usersIndexSection">
+          <h3>Discover</h3>
 
-
-        <section>
           <SearchBar handleChange={ this.handleSearchChange } searchTerm={ this.state.searchTerm } />
 
           <SortByLocation
@@ -122,21 +112,6 @@ filterSearchUsers = (users) => {
             this.state.searchTerm && this.state.filterType &&
             <FilterUsers users={this.filterSearchUsers(users)} />
           }
-
-
-          {/* {!this.state.searchTerm &&
-              <FilterUsers users={this.state.filteredUsers}/>
-          }
-          {this.state.searchTerm &&
-              <FilterUsers users={this.filterUsersByType(users)}/>
-          } */}
-
-
-
-          <div>
-            <FontAwesomeIcon icon="key" />
-          </div>
-        </section>
 
       </section>
     );

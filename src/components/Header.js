@@ -45,7 +45,7 @@ class Header extends React.Component {
                   {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
                   {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
                   {Auth.isAuthenticated() &&
-              <a className="navbar-item is-primary button is-outlined" onClick={this.handleLogout}>Log out {Auth.currentUsername()}</a>}
+                    <a className="navbar-item is-primary button is-outlined" onClick={this.handleLogout}>Log out {Auth.currentUsername()}</a>}
                 </div>
               </nav>
             </div>
