@@ -14,6 +14,8 @@ class UsersShow extends React.Component {
   componentDidMount() {
 
     let userData = {};
+    let imageData = {};
+    let userLocationData = {};
 
     axios
       .get(`/api/users/${this.props.match.params.id}`)
@@ -22,14 +24,25 @@ class UsersShow extends React.Component {
         console.log('userData is', userData);
       })
       .then(() => {
-        axios.get('/api/images')
+        axios
+          .get('/api/images')
           .then(res => {
             console.log('res is', res);
             const images = res.data;
             console.log('imageData is', imageData);
-            const imageData = images.filter(image => image.uploadedBy === userData._id);
+            imageData = images.filter(image => image.uploadedBy === userData._id);
             console.log('imageData is now', imageData);
-            this.setState({ images: imageData, user: userData });
+            // this.setState({ images: imageData, user: userData });
+          })
+          .then(() => {
+            axios
+              .get(`http://api.postcodes.io/postcodes/${userData.postcode}`)
+              .then(res => {
+                userLocationData = res.data;
+                // console.log('this.state.user.password', this.state.user.postcode);
+                this.setState({ user: userData, images: imageData, userLocationData: userLocationData, lat: userLocationData.result.latitude, lng: userLocationData.result.longitude });
+                console.log('lat and long are', userLocationData.result.latitude, userLocationData.result.longitude);
+              });
           });
       });
   }
@@ -70,6 +83,8 @@ class UsersShow extends React.Component {
   render() {
     const user = this.state.user;
     const images = this.state.images;
+    const lat = this.state.lat;
+    const lng = this.state.lng;
 
     console.log('user is', user);
 
@@ -154,14 +169,14 @@ class UsersShow extends React.Component {
                 </form>
               </div>
             </div>
-            {/* See all the pictures by the user */}
-            {/* <Link className="button is-primary is-rounded is-outlined" to={'/images/'}>See More</Link> */}
-
 
             {Auth.currentUserId() === this.props.match.params.id  &&
             <Link className="button is-primary is-rounded is-outlined" to={`/users/${user._id}/edit`}>Edit Profile</Link>
             }
-            <UserLocationMap />
+
+            <UserLocationMap user={user} userLat={lat} userLng={lng}
+            />
+
           </div>
         }
       </section>

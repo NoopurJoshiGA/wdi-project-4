@@ -16,7 +16,10 @@ function imagesShow(req, res, next) {
 }
 
 function imagesUpdate(req, res, next) {
-  req.body.tags = req.body.tags.split(' ');
+  if(typeof(req.body.tags) === 'string') {
+    req.body.tags = req.body.tags.split(' ');
+  }
+  console.log('req.body is', req.body);
   Image
     .findById(req.params.id)
     .then(image => image.set(req.body))

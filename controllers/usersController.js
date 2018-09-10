@@ -17,7 +17,9 @@ function usersShow(req, res, next) {
 }
 
 function usersUpdate(req, res, next) {
-  req.body.interests = req.body.interests.split(' ');
+  if(typeof(req.body.interests) === 'string') {
+    req.body.interests = req.body.interests.split(' ');
+  }
   User
     .findById(req.params.id)
     .then(user => user.set(req.body))

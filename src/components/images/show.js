@@ -63,24 +63,22 @@ class ImagesShow extends React.Component {
   IncrementItem = (event) => {
     event.preventDefault();
     const imageId = this.props.match.params.id;
-    this.setState({ likes: this.state.image.likes + 1 });
+    const image = this.state.image;
+    image.likes++;
     const isLiked = !this.state.isLiked;
-    this.setState({ isLiked: isLiked });
-    console.log('likes are', this.state.likes, this.state.isLiked);
-    axios.put(`/api/images/${imageId}`, this.state, Auth.bearerHeader())
-      .then(res => this.setState({image: res.data}))
+    axios.put(`/api/images/${imageId}`, image, Auth.bearerHeader())
+      .then(res => this.setState({image: res.data, isLiked: isLiked}))
       .catch(err => console.log('Error adding like', err));
   }
 
   DecrementItem = (event) => {
     event.preventDefault();
     const imageId = this.props.match.params.id;
-    this.setState({ likes: this.state.image.likes - 1 });
+    const image = this.state.image;
+    image.likes--;
     const isLiked = !this.state.isLiked;
-    this.setState({ isLiked: isLiked });
-    console.log('likes are', this.state.image.likes, this.state.isLiked);
     axios.put(`/api/images/${imageId}`, this.state, Auth.bearerHeader())
-      .then(res => this.setState({image: res.data}))
+      .then(res => this.setState({image: res.data, isLiked: isLiked}))
       .catch(err => console.log('Error adding like', err));
   }
 
