@@ -53,13 +53,6 @@ class AuthRegister extends React.Component {
     });
   }
 
-  // const basicOptions = {
-  //   accept: 'image/*',
-  //   fromSources: ['local_file_system'],
-  //   maxSize: 1024 * 1024,
-  //   maxFiles: 1,
-  // }
-
   onError = (error) => {
     console.error('error', error);
   }
@@ -71,6 +64,19 @@ class AuthRegister extends React.Component {
         <form onSubmit={this.handleSubmit}>
 
           <h2>Create an account</h2>
+
+
+          <ReactFilestack
+            apikey="AqGjevNLqRu22jn66Mv4Zz"
+            // options={basicOptions}
+            buttonText="Upload Profile Picture"
+            buttonClass="filestackButton"
+            onSuccess={this.onSuccess}
+            onError={this.onError}
+          />
+
+          <h3>Selected Image:</h3>
+          <img src={this.state.profilePic} />
 
           {/* First Name */}
           <input
@@ -130,15 +136,6 @@ class AuthRegister extends React.Component {
             value={this.state.profilePic || ''}
           >
           </input> */}
-
-          <ReactFilestack
-            apikey="AqGjevNLqRu22jn66Mv4Zz"
-            // options={basicOptions}
-            buttonText="Upload Profile Picture"
-            buttonClass="filestackButton"
-            onSuccess={this.onSuccess}
-            onError={this.onError}
-          />
 
           {/* Interests */}
           <input

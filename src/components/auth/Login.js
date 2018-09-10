@@ -9,7 +9,7 @@ class AuthLogin extends React.Component {
   state = {
     // prepopulate for test purposes
     // TODO: remove this before deployment!
-    email: 'milakunisss@email.com',
+    email: 'milakunis@email.com',
     password: 'pass'
   }
 

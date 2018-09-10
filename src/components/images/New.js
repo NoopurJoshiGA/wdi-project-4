@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
 
+import ReactFilestack from 'filestack-react';
+
 class ImagesNew extends React.Component {
 
   state = {}
@@ -24,6 +26,16 @@ class ImagesNew extends React.Component {
     this.setState({ [name]: value });
   }
 
+  onSuccess = (result) => {
+    this.setState({
+      imageUrl: result.filesUploaded[0].url
+    });
+  }
+
+  onError = (error) => {
+    console.error('error', error);
+  }
+
   render() {
     console.log('into the images new component...');
     return (
@@ -34,14 +46,26 @@ class ImagesNew extends React.Component {
         <form onSubmit={this.handleSubmit} className="form">
 
           {/* Image Url */}
-          <input
+          {/* <input
             onChange={this.handleChange}
             className="input"
             name="imageUrl"
             type="text"
             placeholder="Image URL"
             value={this.state.imageUrl || ''}>
-          </input>
+          </input> */}
+
+          <ReactFilestack
+            apikey="AqGjevNLqRu22jn66Mv4Zz"
+            // options={basicOptions}
+            buttonText="Click here to select an image"
+            buttonClass="filestackButton"
+            onSuccess={this.onSuccess}
+            onError={this.onError}
+          />
+
+          <h3>Selected Image:</h3>
+          <img src={this.state.imageUrl} />
 
           {/* Caption */}
           <input

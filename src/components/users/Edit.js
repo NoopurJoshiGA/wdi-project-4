@@ -3,6 +3,8 @@ import axios from 'axios';
 import Auth from '../../lib/Auth';
 // import { Link } from 'react-router-dom';
 
+import ReactFilestack from 'filestack-react';
+
 class UsersEdit extends React.Component {
 
   state = {
@@ -43,6 +45,16 @@ class UsersEdit extends React.Component {
       .then(() => this.props.history.push('/login'));
   }
 
+  onSuccess = (result) => {
+    this.setState({
+      profilePic: result.filesUploaded[0].url
+    });
+  }
+
+  onError = (error) => {
+    console.error('error', error);
+  }
+
   render() {
     // test
     console.log('This is the state', this.state);
@@ -55,6 +67,15 @@ class UsersEdit extends React.Component {
         <div className="has-text-centered">
           <img className="profilePic" src={this.state.profilePic || this.state.defaultProfilePic} />
         </div>
+
+        <ReactFilestack
+          apikey="AqGjevNLqRu22jn66Mv4Zz"
+          // options={basicOptions}
+          buttonText="Upload Profile Picture"
+          buttonClass="filestackButton"
+          onSuccess={this.onSuccess}
+          onError={this.onError}
+        />
 
         <form onSubmit={this.handleSubmit} className="form">
           {/* First Name */}
@@ -112,14 +133,15 @@ class UsersEdit extends React.Component {
           </input>
 
           {/* Profile Pic */}
-          <input
-            onChange={this.handleChange}
-            className="input"
-            name="profilePic"
-            placeholder="e.g. https://"
-            type="text"
-            value={this.state.profilePic || ''}>
-          </input>
+          {/* <input
+          //   onChange={this.handleChange}
+          //   className="input"
+          //   name="profilePic"
+          //   placeholder="e.g. https://"
+          //   type="text"
+          //   value={this.state.profilePic || ''}>
+          // </input> */}
+
 
           {/* Postcode */}
           <input
