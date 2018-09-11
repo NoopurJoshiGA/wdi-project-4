@@ -75,13 +75,14 @@ class UsersIndex extends React.Component {
 
   // get location of each user
   getAllUsersLocation = () => {
+    const allUsersLocation = [];
     console.log('into the getUsersLocation');
     this.state.users.map(user => {
       axios
         .get(`http://api.postcodes.io/postcodes/${user.postcode}`)
         .then(res => {
-          console.log('user location is', user, res.data);
-          // do we push these values into an array?
+          allUsersLocation.push({ lat: res.data.result.latitude, lon: res.data.result.longitude });
+          console.log('allUsersLocation', allUsersLocation);
         });
     });
   }

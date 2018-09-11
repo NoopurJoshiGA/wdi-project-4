@@ -29,9 +29,9 @@ import 'bulma/css/bulma.css';
 import './scss/style.scss'; // TODO: needs to change when Heroku-ing
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faKey } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faKey);
+library.add( faEnvelope );
 
 class App extends React.Component {
   render() {

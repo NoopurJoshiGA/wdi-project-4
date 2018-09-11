@@ -24,9 +24,9 @@ const userSchema = new mongoose.Schema({
     }
   ],
   profilePic: { type: String },
-  socialMedia: [
+  socialMediaLinks: [
     {
-      linkType: { type: String },
+      type: { type: String },
       url: { type: String}
     }
   ]

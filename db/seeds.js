@@ -34,9 +34,9 @@ const userData = [
       { ratedBy: userIds[1], number: 5 },
       { ratedBy: userIds[2], number: 5 }
     ],
-    socialMedia: [
-      { linkType: 'facebook' },
-      { url: 'facebook.com' }
+    socialMediaLinks: [
+      { type: 'facebook', url: 'http://facebook.com' },
+      { type: 'instagram', url: 'http://instagram.com' }
     ]
   },
   // user 2 - Natasha (fashion model)

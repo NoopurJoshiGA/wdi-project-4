@@ -5,6 +5,9 @@ import Auth from '../../lib/Auth';
 
 import UserLocationMap from '../common/UserLocationMap';
 
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 class UsersShow extends React.Component {
 
   state = {
@@ -110,15 +113,15 @@ class UsersShow extends React.Component {
             <img className="profilePic" src={user.profilePic || this.state.defaultProfilePic } alt={user.firstName}></img>
 
             <h2>{user.firstName} {user.lastName}</h2>
+
+            <a href={`mailto: ${user.email}`}><FontAwesomeIcon className="envelopeIcon" icon="envelope" /></a>
+
             <h3>{user.type}</h3>
 
             {/* Social Media Links */}
-            { this.state.users.map(user => {
-              <ul>
-                <li>{user.socialMedia.url}</li>
-              </ul>;
-            })
-            }
+            { user.socialMediaLinks.map(link =>
+              <p key={link._id}>{link.url}</p>
+            )}
 
             {/* Postcode */}
             <h3>{user.postcode}</h3>
