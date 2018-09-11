@@ -92,11 +92,19 @@ class UsersIndex extends React.Component {
           console.log('distance is', distance);
           // console.log('point b', pointB, allUsersLocation);
 
-          allUsersLocation.push({ user: user, distance: this.findDistanceBetweenUsers(pointA, pointB) });
+          allUsersLocation.push({ user: user, distance: distance });
+
+          this.usersByDistance(allUsersLocation);
 
           console.log('allUsersLocation', allUsersLocation);
 
         });
+    });
+  }
+
+  usersByDistance = (allUsersLocation) => {
+    allUsersLocation.sort(function(a, b) {
+      return a.distance - b.distance;
     });
   }
 
@@ -112,7 +120,7 @@ class UsersIndex extends React.Component {
         const lon1 = userPosition.coords.longitude;
 
         const pointA = { lat: lat1, lon: lon1};
-        // console.log('pointA', pointA);
+        console.log('users location / pointA is', pointA);
 
         this.getAllUsersLocation(pointA);
 
