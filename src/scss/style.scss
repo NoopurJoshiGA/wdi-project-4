@@ -7,9 +7,17 @@
 
 body {
   background-color: #1D2731;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Muli', sans-serif;
   font-weight: 600;
   color: white;
+}
+
+a {
+  color: orange;
+}
+
+a:hover {
+  color: #6121fd !important;
 }
 
 h1 {
@@ -17,28 +25,36 @@ h1 {
 }
 
 h2 {
+  color: white;
   text-align: center;
   color: white;
   font-size: 1rem;
   font-weight: 600;
   margin: 20px 0 20px 0;
+  text-transform: uppercase;
 }
 
 h3 {
   color: white;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 400;
   margin: 20px 0 10px 0;
 }
 
 h4 {
-
+  font-weight: 400;
+  font-size: 0.75rem;
 }
 
 p {
   font-size: 0.7rem;
   padding: 4px;
   // color: white;
+}
+
+label {
+  font-weight: 400;
+  font-size: 0.75rem;
 }
 
 .tag {
@@ -50,9 +66,8 @@ p {
 .loginSection, .registerSection {
   background-color: #1D2731;
   color: #ffffff;
-  margin-top: 30px;
   width: 90%;
-  margin: 0 auto;
+  margin: 30px auto 0;
 }
 
 .loginSection {
@@ -60,16 +75,42 @@ p {
 }
 
 .registerSection {
-  height: 130vh;
-  width: 80%;
+  height: 150vh;
+  width: 75%;
+  padding-top: 50px;
 }
-//
-// .loginSection .input:focus, .registerSection .input:focus {
-//   border: 2px #6121fd solid;
-// }
 
 .loginSection p, .registerSection p {
   text-align: center;
+}
+
+.profilePicRegister {
+    height: 200px;
+    width: 200px;
+    border-radius: 100%;
+    margin: 0 auto;
+}
+
+////////////////////////////////// Common /////////////////////////////////////
+
+// filestack
+.filestackButton {
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  margin: 5px 0 10px 0;
+  border-radius: 20px;
+  height: 40px;
+  font-size: 0.8rem;
+  text-align: center;
+  line-height: 1.5;
+  padding-bottom: calc(0.375em - 1px);
+  padding-left: calc(0.625em - 1px);
+  padding-right: calc(0.625em - 1px);
+  padding-top: calc(0.375em - 1px);
+  text-transform: uppercase;
+  border: 2px #b721ff solid;
+  font-weight: 400;
 }
 
 
@@ -87,12 +128,12 @@ p {
   width: 150px;
 }
 
- .uploadImageSection {
-   background-color: #1D2731;
-   color: #ffffff;
-   height: 100vh;
-   top: 0;
- }
+.uploadImageSection {
+  background-color: #1D2731;
+  color: #ffffff;
+  height: 100vh;
+  top: 0;
+}
 
 .editProfile .input:focus, .uploadImageSection .input:focus, input:focus {
   border: 2px #b721ff solid;
@@ -131,7 +172,7 @@ p {
   margin: 5px 0 10px 0;
   border-radius: 20px;
   height: 40px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Muli', sans-serif;
   font-size: 0.9rem;
 }
 
@@ -186,7 +227,6 @@ input::placeholder {
   margin: 0 auto;
 }
 
-
 .discover {
   background-image: url("https://static1.squarespace.com/static/576ef902d1758ef2e6dada3d/576f03126a4963e880312dde/583dcd12e6f2e18631e93ba6/1480445534612/IMG_2157.JPG?format=2500w");
   height: 300px;
@@ -210,13 +250,14 @@ input::placeholder {
 
 .searchBarSection {
   margin: 0;
+  padding: 0;
 }
 
 .userIndexImage {
-    position: relative;
-    width: 50%;
-    margin: 0 auto;
-    border-radius: 40px;
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 40px;
 }
 
 .userIndex {
@@ -291,12 +332,33 @@ input::placeholder {
 $navbar-height: auto 0;
 
 .navbar {
-  background-color: orange;
+  background-color: #273440;
   position: fixed;
   width: 100%;
   height: 30px;
   top: 0;
+  border-bottom: 1px solid #708192;
 }
+
+.navbar-menu {
+  background-color: #273440;
+}
+
+.navbar-item {
+  color: white;
+  font-weight: 600;
+  text-align: right;
+}
+
+.navbar-item:hover {
+  background-color: #273440 !important;
+}
+
+.navbar-item a:hover {
+
+}
+
+
 
 
 // Portfolio
@@ -312,26 +374,6 @@ $navbar-height: auto 0;
   border-radius: 10px;
 }
 
-// filestack
-.filestackButton {
-  width: 100%;
-  background-color: transparent;
-  color: white;
-  margin: 5px 0 10px 0;
-  border-radius: 20px;
-  height: 40px;
-  font-size: 1rem;
-  text-align: center;
-  padding: 5px;
-  line-height: 1.5;
-  padding-bottom: calc(0.375em - 1px);
-  padding-left: calc(0.625em - 1px);
-  padding-right: calc(0.625em - 1px);
-  padding-top: calc(0.375em - 1px);
-  text-transform: uppercase;
-  border: 2px #b721ff solid;
-  font-weight: 500;
-}
 
 // font awesome
 .envelopeIcon {

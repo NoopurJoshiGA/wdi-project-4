@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
 
+import { Link } from 'react-router-dom';
+
+
 // External
 import ReactFilestack from 'filestack-react';
 
@@ -16,7 +19,8 @@ class AuthRegister extends React.Component {
     type: 'photographer',
     postcode: 'WD171BN',
     password: 'pass',
-    passwordConfirmation: 'pass'
+    passwordConfirmation: 'pass',
+    defaultImage: 'https://kirche-wagenfeld.de/wp-content/uploads/2018/03/default-profile.png'
   }
 
   componentDidMount() {
@@ -68,8 +72,9 @@ class AuthRegister extends React.Component {
 
         <h2>Create an account</h2>
 
-        <form onSubmit={this.handleSubmit}>
+        <form className="has-text-centered" onSubmit={this.handleSubmit}>
 
+          <img className="profilePicRegister" src={this.state.profilePic || this.state.defaultImage} />
           <ReactFilestack
             apikey="AqGjevNLqRu22jn66Mv4Zz"
             // options={basicOptions}
@@ -78,9 +83,6 @@ class AuthRegister extends React.Component {
             onSuccess={this.onSuccess}
             onError={this.onError}
           />
-
-          <h3>Selected Image:</h3>
-          <img src={this.state.profilePic} />
 
           {/* First Name */}
           <input
@@ -185,7 +187,7 @@ class AuthRegister extends React.Component {
 
           <button className="button is-fullwidth is-primary" type="submit">Register</button>
 
-          <p>Already have an account? Login <a href="/login">here</a></p>
+          <p>Already have an account? Login <Link to="/login">here</Link></p>
 
         </form>
       </section>

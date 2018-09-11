@@ -75,6 +75,7 @@ class UsersIndex extends React.Component {
     console.log('sortString is', this.state.sortString);
   }
 
+  // TODO: REFACTOR INTO FUNCTIONS
   // get location of each user
   getAllUsersLocation = (users, pointA) => {
     // const pointA = this.getUserLocation();
