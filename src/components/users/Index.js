@@ -84,13 +84,18 @@ class UsersIndex extends React.Component {
       axios
         .get(`http://api.postcodes.io/postcodes/${user.postcode}`)
         .then(res => {
-          allUsersLocation.push({ lat: res.data.result.latitude, lon: res.data.result.longitude, user: user });
+
+          const pointB = { lat: res.data.result.latitude, lon: res.data.result.longitude };
+
+          const distance = this.findDistanceBetweenUsers(pointA, pointB);
+
+          console.log('distance is', distance);
+          // console.log('point b', pointB, allUsersLocation);
+
+          allUsersLocation.push({ user: user, distance: this.findDistanceBetweenUsers(pointA, pointB) });
+
           console.log('allUsersLocation', allUsersLocation);
 
-          allUsersLocation.map(userLocation => {
-            const pointB = { lat: userLocation.lat, lon: userLocation.lon, user: user };
-            this.findDistanceBetweenUsers(pointA, pointB);
-          });
         });
     });
   }
@@ -124,7 +129,7 @@ class UsersIndex extends React.Component {
     const lat2 = pointB.lat;
     const lon2 = pointB.lon;
 
-    const user = pointB.user;
+    // const user = pointB.user;
 
     const R = 6371; // Radius of the earth in km
 
@@ -138,8 +143,10 @@ class UsersIndex extends React.Component {
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     const distance = R * c; // Distance in km
-    const allDistances = allDistances.push(distance);
-    console.log('the distance is', distance, user.username);
+    // const allDistances = allDistances.push(distance);
+    console.log('the distance is', distance);
+
+    return distance;
   }
 
   deg2rad = (deg) => {
