@@ -50,15 +50,23 @@ p {
 .loginSection, .registerSection {
   background-color: #1D2731;
   color: #ffffff;
-  height: 150vh;
   margin-top: 30px;
   width: 90%;
   margin: 0 auto;
 }
 
-.loginSection .input:focus, .registerSection .input:focus {
-  border: 2px #6121fd solid;
+.loginSection {
+  height: 100vh;
 }
+
+.registerSection {
+  height: 130vh;
+  width: 80%;
+}
+//
+// .loginSection .input:focus, .registerSection .input:focus {
+//   border: 2px #6121fd solid;
+// }
 
 .loginSection p, .registerSection p {
   text-align: center;
@@ -86,8 +94,8 @@ p {
    top: 0;
  }
 
-.editProfile .input:focus, .uploadImageSection .input:focus {
-  border: 2px #6121fd solid;
+.editProfile .input:focus, .uploadImageSection .input:focus, input:focus {
+  border: 2px #b721ff solid;
 }
 
 .select {
@@ -123,6 +131,12 @@ p {
   margin: 5px 0 10px 0;
   border-radius: 20px;
   height: 40px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+}
+
+.input:focus {
+  border: 2px #b721ff solid;
 }
 
 input::placeholder {
@@ -134,8 +148,14 @@ input::placeholder {
   margin: 10px 0 10px 0;
   font-weight: 600;
   text-transform: uppercase;
-  background: linear-gradient(135deg, #b721ff, #6121fd);
+  background: linear-gradient(100deg, #b721ff, #6121fd);
   border: none;
+  transition: all .2s ease-in-out;
+}
+
+.button:hover {
+  background: linear-gradient(100deg, #6121fd, #b721ff);
+  transform: scale(1.05);
 }
 
 // Show image page

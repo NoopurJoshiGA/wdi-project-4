@@ -4,7 +4,6 @@ import axios from 'axios';
 import SearchBar from '../common/SearchBar';
 import FilterByType from '../common/FilterByType';
 import FilterUsers from '../common/FilterUsers';
-import SortByLocation from '../common/SortByLocation';
 
 class UsersIndex extends React.Component {
 
@@ -86,23 +85,19 @@ class UsersIndex extends React.Component {
         .then(res => {
 
           const pointB = { lat: res.data.result.latitude, lon: res.data.result.longitude };
-
           const distance = this.findDistanceBetweenUsers(pointA, pointB);
-
           console.log('distance is', distance);
-          // console.log('point b', pointB, allUsersLocation);
-
           allUsersLocation.push({ user: user, distance: distance });
-
-          this.usersByDistance(allUsersLocation);
-
+          this.sortByDistance(allUsersLocation);
+          this.setState({ usersByDistance: allUsersLocation});
           console.log('allUsersLocation', allUsersLocation);
 
         });
     });
   }
 
-  usersByDistance = (allUsersLocation) => {
+  // sort users by their distance
+  sortByDistance = (allUsersLocation) => {
     allUsersLocation.sort(function(a, b) {
       return a.distance - b.distance;
     });
@@ -115,7 +110,7 @@ class UsersIndex extends React.Component {
   getUserLocation = () => {
     if(navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(userPosition => {
-        // console.log('userPosition is', userPosition);
+
         const lat1 = userPosition.coords.latitude;
         const lon1 = userPosition.coords.longitude;
 
@@ -129,7 +124,6 @@ class UsersIndex extends React.Component {
   }
 
   findDistanceBetweenUsers = (pointA, pointB) =>  {
-    // console.log('into the findDistanceBetweenUsers function...');
 
     const lat1 = pointA.lat;
     const lon1 = pointA.lon;
@@ -161,11 +155,6 @@ class UsersIndex extends React.Component {
     return deg * (Math.PI/180);
   }
 
-  // filter through all the users and convert their postcode to lat and lng
-  // get the location of the current logged in user
-  // calculate the distance between the current user and all the other users
-  // filter so that the closest users are displayed first
-
   render() {
     const users = this.state.users;
 
@@ -174,16 +163,7 @@ class UsersIndex extends React.Component {
       <section className="usersIndexSection">
         <h3>Discover</h3>
 
-        <button className="button is-primary is-large" onClick={this.getAllUsersLocation}>get all location</button>
-        <button className="button is-primary is-large" onClick={this.getUserLocation}>get current user location</button>
-
         <SearchBar handleChange={ this.handleSearchChange } searchTerm={ this.state.searchTerm } />
-
-        <SortByLocation
-          handleChange={ this.handleSearchChange }
-          options={ this.state.sortLocationOptions }
-          defaultValue={ this.state.defaultValue }
-        />
 
         <FilterByType
           defaultValue={this.state.sortString}
@@ -192,11 +172,11 @@ class UsersIndex extends React.Component {
         />
 
         { !this.state.searchTerm && !this.state.filterType &&
-          <FilterUsers users={this.state.filteredUsers}/>
+          <FilterUsers users={this.state.usersByDistance}/>
         }
 
         { this.state.searchTerm && !this.state.filterType &&
-          <FilterUsers users={this.filterUsers(users)} />
+          <FilterUsers users={this.filterUsers(this.state.usersByDistance)} />
         }
 
         { !this.state.searchTerm && this.state.filterType &&
