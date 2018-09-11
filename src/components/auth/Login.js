@@ -12,13 +12,19 @@ class AuthLogin extends React.Component {
     // prepopulate for test purposes
     // TODO: remove this before deployment!
     email: 'milakunis@email.com',
-    password: 'pass'
+    password: 'pass',
+    passwordHidden: true
   }
 
   handleChange = (event) => {
     const { target: { name, value }} = event;
     this.setState({ [name]: value });
     // console.log(this.state.email, this.state.password);
+  }
+
+  togglePasswordShow = () => {
+    const passwordHidden = !this.state.passwordHidden;
+    this.setState({ passwordHidden });
   }
 
   handleSubmit = (event) => {
@@ -29,8 +35,6 @@ class AuthLogin extends React.Component {
       .post('/api/login', this.state)
       .then(res => {
         const token = res.data.token;
-        // we are logged in once the token is stored
-        // import auth, which will allow us to use the methods
         Auth.setToken(token);
         // redirect to the users page
         this.props.history.push('/users');
@@ -47,9 +51,9 @@ class AuthLogin extends React.Component {
   render() {
     return (
       <section className="loginSection">
-        <form className="section form" onSubmit={this.handleSubmit}>
-
+        <form className="" onSubmit={this.handleSubmit}>
           <h2>Login</h2>
+
           <input
             className="input"
             name="email"
@@ -63,16 +67,19 @@ class AuthLogin extends React.Component {
             className="input"
             name="password"
             placeholder="Password"
-            type="password"
+            type={this.state.passwordHidden ? 'password' : 'text'}
             value={this.state.password || ''}
             onChange={this.handleChange}>
           </input>
 
-          <button className="button is-primary is-fullwidth" type="submit">Login</button>
-
-          <p>Don't already have an account? Sign up <Link to="/register">here</Link></p>
-
         </form>
+
+        <input type="checkbox" className="checkbox" onChange={this.togglePasswordShow}></input>
+        <p className="showPassword">Show Password</p>
+
+        <button className="button is-primary is-fullwidth" type="submit">Login</button>
+
+        <p>Don't have an account? Sign up <Link to="/register">here</Link></p>
 
       </section>
     );

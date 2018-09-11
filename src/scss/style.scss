@@ -72,6 +72,7 @@ label {
 
 .loginSection {
   height: 100vh;
+  padding-top: 50px;
 }
 
 .registerSection {
@@ -89,6 +90,15 @@ label {
     width: 200px;
     border-radius: 100%;
     margin: 0 auto;
+}
+
+.showPassword {
+  text-align: left !important;
+  display: inline;
+}
+
+.checkbox {
+  padding: 5px;
 }
 
 ////////////////////////////////// Common /////////////////////////////////////

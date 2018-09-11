@@ -66,6 +66,11 @@ class AuthRegister extends React.Component {
     console.error('error', error);
   }
 
+  togglePasswordShow = () => {
+    const passwordHidden = !this.state.passwordHidden;
+    this.setState({ passwordHidden });
+  }
+
   render() {
     return (
       <section className="registerSection">
@@ -170,7 +175,7 @@ class AuthRegister extends React.Component {
             className="input"
             name="password"
             placeholder="e.g. pass"
-            type="password"
+            type={this.state.passwordHidden ? 'password' : 'text'}
             value={this.state.password || ''}>
           </input>
 
@@ -180,16 +185,19 @@ class AuthRegister extends React.Component {
             className="input"
             name="passwordConfirmation"
             placeholder="e.g. pass"
-            type="password"
+            type={this.state.passwordHidden ? 'password' : 'text'}
             value={this.state.passwordConfirmation || ''}>
           </input>
 
-
-          <button className="button is-fullwidth is-primary" type="submit">Register</button>
-
-          <p>Already have an account? Login <Link to="/login">here</Link></p>
-
         </form>
+
+        <input type="checkbox" className="checkbox" onChange={this.togglePasswordShow}></input>
+        <p className="showPassword">Show Password</p>
+
+        <button className="button is-fullwidth is-primary" type="submit">Register</button>
+
+        <p>Already have an account? Login <Link to="/login">here</Link></p>
+
       </section>
     );
   }
