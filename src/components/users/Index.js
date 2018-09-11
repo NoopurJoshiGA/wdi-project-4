@@ -78,14 +78,19 @@ class UsersIndex extends React.Component {
     const allUsersLocation = [];
     console.log('into the getUsersLocation');
     this.state.users.map(user => {
-      axios
-        .get(`http://api.postcodes.io/postcodes/${user.postcode}`)
-        .then(res => {
-          allUsersLocation.push({ lat: res.data.result.latitude, lon: res.data.result.longitude });
-          console.log('allUsersLocation', allUsersLocation);
-        });
+      // axios
+      //   .get(`http://api.postcodes.io/postcodes/${user.postcode}`)
+      //   .then(res => {
+      //     allUsersLocation.push({ lat: res.data.result.latitude, lon: res.data.result.longitude });
+      //     console.log('allUsersLocation', allUsersLocation);
+      //   });
     });
   }
+
+  // TODO:
+  // make axios request in the backend to get lat and lon for each user when created/edited
+
+
 
   // get users current position
   getUserLocation = () => {
@@ -97,6 +102,11 @@ class UsersIndex extends React.Component {
         const pointA = { lat: lat1, lon: lon1 };
         const pointB = { lat: 51, lon: -0.5 };
         this.findDistanceBetweenUsers(pointA, pointB);
+        // map over users.map(user => )
+        // const pos = {lat, lon, user }
+        // findDistanceBetweenUsers(pointA, user.position)
+        // get an array of objects that has distance and user
+        // sort array by distance 
       });
     }
   }

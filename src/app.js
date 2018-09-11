@@ -30,7 +30,9 @@ import './scss/style.scss'; // TODO: needs to change when Heroku-ing
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
+library.add( faHeart );
 library.add( faEnvelope );
 
 class App extends React.Component {

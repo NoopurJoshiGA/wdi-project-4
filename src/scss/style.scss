@@ -204,13 +204,17 @@ input::placeholder {
 }
 
 .isDisliked {
-  // background-image: url("./assets/heart-solid.svg");
-  background-color: red;
+  color: #708192;
+  font-size: 40px;
+  transition: 0.5s;
 }
 
 .isLiked {
-  background-color: blue;
+  color: red;
+  font-size: 40px;
+  transition: 0.5s;
 }
+
 
 .userProfilePic {
   height: 80px;

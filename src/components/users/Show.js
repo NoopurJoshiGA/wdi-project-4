@@ -5,7 +5,6 @@ import Auth from '../../lib/Auth';
 
 import UserLocationMap from '../common/UserLocationMap';
 
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class UsersShow extends React.Component {
@@ -113,14 +112,15 @@ class UsersShow extends React.Component {
             <img className="profilePic" src={user.profilePic || this.state.defaultProfilePic } alt={user.firstName}></img>
 
             <h2>{user.firstName} {user.lastName}</h2>
-
-            <a href={`mailto: ${user.email}`}><FontAwesomeIcon className="envelopeIcon" icon="envelope" /></a>
-
             <h3>{user.type}</h3>
+
+            <a href={`mailto:${user.email}`}><FontAwesomeIcon className="envelopeIcon" icon="envelope" /></a>
 
             {/* Social Media Links */}
             { user.socialMediaLinks.map(link =>
-              <p key={link._id}>{link.url}</p>
+              <p key={link._id}>
+                <a href={link.url}>{link.type}</a>
+              </p>
             )}
 
             {/* Postcode */}
@@ -137,18 +137,6 @@ class UsersShow extends React.Component {
             {/* Description */}
             <h3>Description</h3>
             <p className="">{user.description}</p>
-
-
-            {/* Ratings */}
-            {/* // TODO: Get the average rating... use reduce? */}
-            {/* <div className="section">
-              <h3>Ratings</h3>
-              <div className="section columns has-text-white">
-                {user.ratings.map(rating =>
-                  <p key={rating._id}>{rating.number}</p>
-                )}
-              </div>
-            </div> */}
 
             {/* Portfolio */}
             <section className="portfolioSection">

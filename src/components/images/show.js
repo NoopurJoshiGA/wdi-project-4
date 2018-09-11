@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Auth from '../../lib/Auth';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 class ImagesShow extends React.Component {
 
   state = {
@@ -66,6 +68,7 @@ class ImagesShow extends React.Component {
     const image = this.state.image;
     image.likes++;
     const isLiked = !this.state.isLiked;
+    console.log('likes', image.likes, isLiked);
     axios.put(`/api/images/${imageId}`, image, Auth.bearerHeader())
       .then(res => this.setState({image: res.data, isLiked: isLiked}))
       .catch(err => console.log('Error adding like', err));
@@ -77,7 +80,8 @@ class ImagesShow extends React.Component {
     const image = this.state.image;
     image.likes--;
     const isLiked = !this.state.isLiked;
-    axios.put(`/api/images/${imageId}`, this.state, Auth.bearerHeader())
+    console.log('likes', image.likes, isLiked);
+    axios.put(`/api/images/${imageId}`, image, Auth.bearerHeader())
       .then(res => this.setState({image: res.data, isLiked: isLiked}))
       .catch(err => console.log('Error adding like', err));
   }
@@ -107,23 +111,20 @@ class ImagesShow extends React.Component {
 
             <img src={image.imageUrl} className="image" />
 
-            <div className="columns is-mobile">
+            <div className="columns is-multiline is-mobile">
               <div className="column is-3">
                 <img src={image.uploadedBy.profilePic} className="userProfilePic" />
               </div>
               <div className="column">
                 <p className="has-text-left">{image.uploadedBy.username || this.state.defaultProfilePic }</p>
+                <p>{image.caption}</p>
               </div>
             </div>
 
             <div className="section">
-              <div onClick={ this.state.isLiked ? this.IncrementItem : this.DecrementItem }
-                className={ this.state.isLiked ? 'isDisliked' : 'isLiked' }>LIKE</div>
-              <p>Likes: {image.likes}</p>
-            </div>
-
-            <div className="section has-text-white has-background-black">
-              <p>Caption: {image.caption}</p>
+              <FontAwesomeIcon onClick={ this.state.isLiked ? this.IncrementItem : this.DecrementItem }
+                className={ this.state.isLiked ? 'isDisliked' : 'isLiked' } icon="heart" />
+              <p>({image.likes})</p>
             </div>
 
             <div className="section">
