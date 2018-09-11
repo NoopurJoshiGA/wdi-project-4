@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Flash from '../../lib/Flash';
 
+import { Link } from 'react-router-dom';
+
 import Auth from '../../lib/Auth';
 
 class AuthLogin extends React.Component {
@@ -67,6 +69,9 @@ class AuthLogin extends React.Component {
           </input>
 
           <button className="button is-primary is-fullwidth" type="submit">Login</button>
+
+          <p>Don't already have an account? Sign up <Link to="/register">here</Link></p>
+
         </form>
 
       </section>

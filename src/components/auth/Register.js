@@ -124,8 +124,8 @@ class AuthRegister extends React.Component {
 
           {/* Type */}
           <div>
-            <select className="input" onChange={this.handleChange}>
-              <option defaultValue="selected">Please select</option>
+            <label htmlFor="type">Please select...</label>
+            <select value={this.state.type} className="input" onChange={this.handleChange}>
               <option>model</option>
               <option>photographer</option>
             </select>

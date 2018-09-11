@@ -122,7 +122,7 @@ class UsersEdit extends React.Component {
 
           {/* Type */}
           <div className="is-fullwidth">
-            <select className="input selectDropDown" onChange={this.handleChange}>
+            <select value={this.state.type} className="select" onChange={this.handleChange}>
               <option>model</option>
               <option>photographer</option>
             </select>
