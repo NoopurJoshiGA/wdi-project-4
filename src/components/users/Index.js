@@ -23,6 +23,7 @@ class UsersIndex extends React.Component {
 
   componentDidMount() { // Sets all users onto the state
     console.log('Index component mounted...');
+    this.getUserLocation();
     axios.get('/api/users')
       .then(res => this.setState({ users: res.data, filteredUsers: res.data }));
   }
@@ -74,51 +75,56 @@ class UsersIndex extends React.Component {
   }
 
   // get location of each user
-  getAllUsersLocation = () => {
+  getAllUsersLocation = (pointA) => {
+    // const pointA = this.getUserLocation();
+    // console.log('point A is', pointA);
     const allUsersLocation = [];
     console.log('into the getUsersLocation');
     this.state.users.map(user => {
-      // axios
-      //   .get(`http://api.postcodes.io/postcodes/${user.postcode}`)
-      //   .then(res => {
-      //     allUsersLocation.push({ lat: res.data.result.latitude, lon: res.data.result.longitude });
-      //     console.log('allUsersLocation', allUsersLocation);
-      //   });
+      axios
+        .get(`http://api.postcodes.io/postcodes/${user.postcode}`)
+        .then(res => {
+          allUsersLocation.push({ lat: res.data.result.latitude, lon: res.data.result.longitude, user: user });
+          console.log('allUsersLocation', allUsersLocation);
+
+          allUsersLocation.map(userLocation => {
+            const pointB = { lat: userLocation.lat, lon: userLocation.lon, user: user };
+            this.findDistanceBetweenUsers(pointA, pointB);
+          });
+        });
     });
   }
 
   // TODO:
   // make axios request in the backend to get lat and lon for each user when created/edited
 
-
-
   // get users current position
   getUserLocation = () => {
     if(navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(userPosition => {
-        console.log('userPosition is', userPosition);
+        // console.log('userPosition is', userPosition);
         const lat1 = userPosition.coords.latitude;
         const lon1 = userPosition.coords.longitude;
-        const pointA = { lat: lat1, lon: lon1 };
-        const pointB = { lat: 51, lon: -0.5 };
-        this.findDistanceBetweenUsers(pointA, pointB);
-        // map over users.map(user => )
-        // const pos = {lat, lon, user }
-        // findDistanceBetweenUsers(pointA, user.position)
-        // get an array of objects that has distance and user
-        // sort array by distance 
+
+        const pointA = { lat: lat1, lon: lon1};
+        // console.log('pointA', pointA);
+
+        this.getAllUsersLocation(pointA);
+
       });
     }
   }
 
   findDistanceBetweenUsers = (pointA, pointB) =>  {
-    console.log('into the findDistanceBetweenUsers function...');
+    // console.log('into the findDistanceBetweenUsers function...');
 
     const lat1 = pointA.lat;
     const lon1 = pointA.lon;
 
     const lat2 = pointB.lat;
     const lon2 = pointB.lon;
+
+    const user = pointB.user;
 
     const R = 6371; // Radius of the earth in km
 
@@ -132,7 +138,8 @@ class UsersIndex extends React.Component {
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     const distance = R * c; // Distance in km
-    console.log('the distance is', distance);
+    const allDistances = allDistances.push(distance);
+    console.log('the distance is', distance, user.username);
   }
 
   deg2rad = (deg) => {
