@@ -42,8 +42,14 @@ class UsersEdit extends React.Component {
     this.setState({ showModalForm: showModalForm });
     console.log('opening modal form');
     axios.delete(`/api/users/${this.props.match.params.id}`, Auth.bearerHeader())
-      .then(() => this.props.history.push('/login'));
+      .then(
+        () => {
+          Auth.removeToken();
+          this.props.history.push('/');
+          console.log('users account has been deleted and logged out...');
+        });
   }
+
 
   onSuccess = (result) => {
     this.setState({

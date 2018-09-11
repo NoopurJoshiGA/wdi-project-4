@@ -66,9 +66,9 @@ class AuthRegister extends React.Component {
     return (
       <section className="registerSection">
 
-        <form onSubmit={this.handleSubmit}>
+        <h2>Create an account</h2>
 
-          <h2>Create an account</h2>
+        <form onSubmit={this.handleSubmit}>
 
           <ReactFilestack
             apikey="AqGjevNLqRu22jn66Mv4Zz"
@@ -125,6 +125,7 @@ class AuthRegister extends React.Component {
           {/* Type */}
           <div>
             <select className="input" onChange={this.handleChange}>
+              <option defaultValue="selected">Please select</option>
               <option>model</option>
               <option>photographer</option>
             </select>

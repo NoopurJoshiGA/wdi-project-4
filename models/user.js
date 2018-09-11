@@ -5,10 +5,10 @@ const userSchema = new mongoose.Schema({
   firstName: { type: String, required: false },
   lastName: { type: String, required: false },
   username: { type: String, required: true, unique: true},
-  email: { type: String, required: false, unique: true},
+  email: { type: String, required: true, unique: true},
   password: { type: String, required: true },
-  type: { enum: ['model', 'photographer'], type: String }, // type is either model or photographer
-  postcode: { type: String, required: false },
+  type: { enum: ['model', 'photographer'], type: String, required: true }, // type is either model or photographer
+  postcode: { type: String, required: true },
   interests: [{ type: String }],
   description: { type: String },
   reviews: [
