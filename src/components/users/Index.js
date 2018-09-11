@@ -22,9 +22,11 @@ class UsersIndex extends React.Component {
 
   componentDidMount() { // Sets all users onto the state
     console.log('Index component mounted...');
-    this.getUserLocation();
     axios.get('/api/users')
-      .then(res => this.setState({ users: res.data, filteredUsers: res.data }));
+      .then(res => {
+        this.getUserLocation(res.data);
+        // this.setState({ users: res.data, filteredUsers: res.data }));
+      });
   }
 
   handleSearchChange = (event) => {
@@ -74,26 +76,32 @@ class UsersIndex extends React.Component {
   }
 
   // get location of each user
-  getAllUsersLocation = (pointA) => {
+  getAllUsersLocation = (users, pointA) => {
     // const pointA = this.getUserLocation();
     // console.log('point A is', pointA);
-    const allUsersLocation = [];
     console.log('into the getUsersLocation');
-    this.state.users.map(user => {
-      axios
-        .get(`http://api.postcodes.io/postcodes/${user.postcode}`)
-        .then(res => {
-
-          const pointB = { lat: res.data.result.latitude, lon: res.data.result.longitude };
-          const distance = this.findDistanceBetweenUsers(pointA, pointB);
-          console.log('distance is', distance);
-          allUsersLocation.push({ user: user, distance: distance });
-          this.sortByDistance(allUsersLocation);
-          this.setState({ usersByDistance: allUsersLocation});
-          console.log('allUsersLocation', allUsersLocation);
+    let userLocations = [];
+    const userPostcodes = users.map(user => user.postcode);
+    axios
+      .post('http://api.postcodes.io/postcodes/', { postcodes: userPostcodes })
+      .then( res => {
+        // res.data.result is the response from the bulk axios req
+        res.data.result.forEach(result => {
+          const position = { lat: result.result.latitude, lon: result.result.longitude, postcode: result.query };
+          const usersInPostcode = users.filter(user => user.postcode === position.postcode);
+          usersInPostcode.forEach(user => {
+            user.lat = position.lat;
+            user.lon = position.lon;
+            const pointB = { lat: user.lat, lon: user.lon };
+            user.distance = this.findDistanceBetweenUsers(pointA, pointB );
+          });
+          userLocations = userLocations.concat(usersInPostcode);
 
         });
-    });
+        this.sortByDistance(userLocations);
+        this.setState({ users: userLocations });
+        console.log('userLocations', userLocations);
+      });
   }
 
   // sort users by their distance
@@ -107,7 +115,8 @@ class UsersIndex extends React.Component {
   // make axios request in the backend to get lat and lon for each user when created/edited
 
   // get users current position
-  getUserLocation = () => {
+  // users is res.data
+  getUserLocation = (users) => {
     if(navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(userPosition => {
 
@@ -117,7 +126,7 @@ class UsersIndex extends React.Component {
         const pointA = { lat: lat1, lon: lon1};
         console.log('users location / pointA is', pointA);
 
-        this.getAllUsersLocation(pointA);
+        this.getAllUsersLocation(users, pointA);
 
       });
     }
@@ -172,11 +181,11 @@ class UsersIndex extends React.Component {
         />
 
         { !this.state.searchTerm && !this.state.filterType &&
-          <FilterUsers users={this.state.usersByDistance}/>
+          <FilterUsers users={this.state.users}/>
         }
 
         { this.state.searchTerm && !this.state.filterType &&
-          <FilterUsers users={this.filterUsers(this.state.usersByDistance)} />
+          <FilterUsers users={this.filterUsers(this.state.users)} />
         }
 
         { !this.state.searchTerm && this.state.filterType &&
