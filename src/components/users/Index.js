@@ -24,7 +24,7 @@ class UsersIndex extends React.Component {
   componentDidMount() { // Sets all users onto the state
     console.log('Index component mounted...');
     axios.get('/api/users')
-    .then(res => this.setState({ users: res.data, filteredUsers: res.data }));
+      .then(res => this.setState({ users: res.data, filteredUsers: res.data }));
   }
 
   handleSearchChange = (event) => {
@@ -80,20 +80,22 @@ class UsersIndex extends React.Component {
       axios
         .get(`http://api.postcodes.io/postcodes/${user.postcode}`)
         .then(res => {
-          console.log('user location is', res.data);
+          console.log('user location is', user, res.data);
+          // do we push these values into an array?
         });
     });
   }
 
+  // get users current position
   getUserLocation = () => {
     if(navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(userPosition => {
         console.log('userPosition is', userPosition);
         const lat1 = userPosition.coords.latitude;
         const lon1 = userPosition.coords.longitude;
-        const pointA = [lat1, lon1];
-        const pointB = [51, -2];
-        return findDistanceBetweenUsers(pointA, pointB)
+        const pointA = { lat: lat1, lon: lon1 };
+        const pointB = { lat: 51, lon: -0.5 };
+        this.findDistanceBetweenUsers(pointA, pointB);
       });
     }
   }
@@ -102,21 +104,20 @@ class UsersIndex extends React.Component {
     console.log('into the findDistanceBetweenUsers function...');
 
     const lat1 = pointA.lat;
-    const lon1 = pointA.lng;
+    const lon1 = pointA.lon;
 
     const lat2 = pointB.lat;
-    const lon2 = pointB.lng;
+    const lon2 = pointB.lon;
 
     const R = 6371; // Radius of the earth in km
 
-    const dLat = deg2rad(lat2-lat1);  // deg2rad below
-    const dLon = deg2rad(lon2-lon1);
+    const dLat = this.deg2rad(lat2-lat1);  // deg2rad below
+    const dLon = this.deg2rad(lon2-lon1);
 
-    var a =
+    const a =
     Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-    Math.sin(dLon/2) * Math.sin(dLon/2)
-    ;
+    Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+    Math.sin(dLon/2) * Math.sin(dLon/2);
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     const distance = R * c; // Distance in km
@@ -124,15 +125,13 @@ class UsersIndex extends React.Component {
   }
 
   deg2rad = (deg) => {
-    return deg * (Math.PI/180)
+    return deg * (Math.PI/180);
   }
-
 
   // filter through all the users and convert their postcode to lat and lng
   // get the location of the current logged in user
   // calculate the distance between the current user and all the other users
   // filter so that the closest users are displayed first
-
 
   render() {
     const users = this.state.users;

@@ -23,7 +23,13 @@ const userSchema = new mongoose.Schema({
       number: { type: Number }
     }
   ],
-  profilePic: { type: String }
+  profilePic: { type: String },
+  socialMedia: [
+    {
+      linkType: { type: String },
+      url: { type: String}
+    }
+  ]
 });
 
 // throw a validation error when duplicate emails are created

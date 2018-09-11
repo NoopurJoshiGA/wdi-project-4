@@ -22,8 +22,6 @@ class Header extends React.Component {
 
   render() {
 
-    console.log('sjdhfbsdjhfbsdf', this.state.toggleNavbar);
-
     return(
       <header className="navbar">
         <nav className="navbar" role="navigation" aria-label="main navigation">

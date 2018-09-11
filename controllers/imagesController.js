@@ -16,7 +16,7 @@ function imagesShow(req, res, next) {
 }
 
 function imagesUpdate(req, res, next) {
-  if(typeof(req.body.tags) === 'string') {
+  if(typeof(req.body.tags) === 'string' || '') {
     req.body.tags = req.body.tags.split(' ');
   }
   console.log('req.body is', req.body);

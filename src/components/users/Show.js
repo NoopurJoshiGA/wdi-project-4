@@ -68,7 +68,6 @@ class UsersShow extends React.Component {
   }
 
   deleteReview = (reviewId) => {
-    console.log();
     return() => {
       console.log(`Delete comment ${reviewId}`);
       const userId = this.props.match.params.id;
@@ -77,6 +76,20 @@ class UsersShow extends React.Component {
         .delete(`/api/users/${userId}/reviews/${reviewId}`)
         .then(res => this.setState({user: res.data}))
         .catch(err => console.log('Error deleting', err));
+    };
+  }
+
+  // TODO: test this!
+  editReview = (reviewId) => {
+    console.log('into the edit review function...');
+    return() => {
+      console.log(`edit comment ${reviewId}`);
+      const userId = this.props.match.params.id;
+      // we want to update it from the db
+      axios
+        .put(`/api/users/${userId}/reviews/${reviewId}`)
+        .then(res => this.setState({user: res.data}))
+        .catch(err => console.log('Error updating', err));
     };
   }
 
@@ -98,6 +111,14 @@ class UsersShow extends React.Component {
 
             <h2>{user.firstName} {user.lastName}</h2>
             <h3>{user.type}</h3>
+
+            {/* Social Media Links */}
+            { this.state.users.map(user => {
+              <ul>
+                <li>{user.socialMedia.url}</li>
+              </ul>;
+            })
+            }
 
             {/* Postcode */}
             <h3>{user.postcode}</h3>
@@ -158,7 +179,10 @@ class UsersShow extends React.Component {
 
                   <p>{review.content}</p>
                   {Auth.currentUserId() === review.addedBy._id &&
-                    <button onClick={this.deleteReview(review._id)} className="button is-small is-outlined is-primary">Delete</button>
+                    <div>
+                      <button onClick={this.deleteReview(review._id)} className="button is-small is-outlined is-primary">Delete</button>
+                      <button onClick={this.editReview(review._id)} className="button is-small is-outlined is-primary">Edit</button>
+                    </div>
                   }
                 </div>
               )}
