@@ -208,26 +208,24 @@ class UsersIndex extends React.Component {
 
       // conditional to show load div if there is no state
 
-      <section className="container usersIndexSection">
-
+      <section className="usersIndexSection">
+        <div className="container">
         <h2 className="has-text-dark">Discover</h2>
-
-
         <div className="columns is-multiline">
           <div className="column is-6-tablet is-4-desktop">
-        <SearchBar handleChange={ this.handleSearchChange } searchTerm={ this.state.searchTerm } />
-      </div>
-      <div className="column is-6-tablet is-4-desktop">
-        <FilterByType
-          defaultValue={this.state.defaultValue}
-          options={this.state.filterTypeOptions}
-          handleChange={this.handleFilterByTypeChange}
-        />
-      </div>
-      <div className="column is-6-tablet is-4-desktop">
-        <FilterByDistance options={this.state.filterDistanceOptions} handleChange={this.handleFilterByDistanceChange} />
-      </div>
-    </div>
+            <SearchBar handleChange={ this.handleSearchChange } searchTerm={ this.state.searchTerm } />
+          </div>
+          <div className="column is-6-tablet is-4-desktop">
+            <FilterByType
+              defaultValue={this.state.defaultValue}
+              options={this.state.filterTypeOptions}
+              handleChange={this.handleFilterByTypeChange}
+            />
+          </div>
+          <div className="column is-6-tablet is-4-desktop">
+            <FilterByDistance options={this.state.filterDistanceOptions} handleChange={this.handleFilterByDistanceChange} />
+          </div>
+        </div>
 
         {!this.state.users &&
           <section className="section has-text-centered">
@@ -255,7 +253,7 @@ class UsersIndex extends React.Component {
           this.state.searchTerm && this.state.filterType &&
           <FilterUsers users={this.filterSearchUsers(users)} />
         }
-
+      </div>
       </section>
     );
   }

@@ -106,28 +106,39 @@ class UsersShow extends React.Component {
 
     return(
 
-      <section className="container userShowSection">
-
+      <section className="userShowSection">
         {user &&
-          <div className="columns is-multiline has-text-centered">
-
-            <Zoom>
-              <img className="profilePic" src={user.profilePic || this.state.defaultProfilePic } alt={user.firstName}></img>
-            </Zoom>
-
-            <Zoom>
-              <h2>{user.firstName} {user.lastName}</h2>
-            </Zoom>
-            <Zoom>
-              <h3>{user.type}</h3>
-            </Zoom>
-
+          <div className="container">
+          <div className="columns is-multiline">
+            <div className="column is-4 has-text-right">
+              <Zoom>
+                <img className="profilePic" src={user.profilePic || this.state.defaultProfilePic } alt={user.firstName}></img>
+              </Zoom>
+            </div>
+            <div className="column is-4 has-text-left">
+              <Zoom>
+                <h2 className="has-text-left">{user.firstName} {user.lastName}</h2>
+                <hr />
+              </Zoom>
+              <Zoom>
+                <h3>{user.type}</h3>
+              </Zoom>
+              {/* Description */}
+              { user.description &&
+              <div className="userDescription">
+                <div>
+                  <Zoom>
+                    <p className="">{user.description}</p>
+                  </Zoom>
+                </div>
+              </div>
+            }
+          </div>
+          <div className="column is-4">
             <Zoom>
               <div className="envelope">
                 <a href={`mailto:${user.email}`}><FontAwesomeIcon className="envelopeIcon" icon="envelope" /></a>
               </div>
-
-              {/* Social Media Links */}
               <div className="socialMediaLinks">
                 { user.socialMediaLinks.map(link =>
                   <p key={link._id}>
@@ -138,21 +149,11 @@ class UsersShow extends React.Component {
                 )}
               </div>
             </Zoom>
-
-            {/* Description */}
-            { user.description &&
-              <div className="userDescription">
-                <div>
-                  <Zoom>
-                    <h3>Description</h3>
-                    <p className="">{user.description}</p>
-                  </Zoom>
-                </div>
-              </div>
-            }
-
+          </div>
+        </div>
+        {/* <div className="columns">
             {/* Interests */}
-            { user.interests &&
+            {/* { user.interests &&
               <Zoom>
                 <div className="interests">
                   <h3>Interests</h3>
@@ -162,13 +163,14 @@ class UsersShow extends React.Component {
                 </div>
               </Zoom>
             }
+          </div> */}
 
 
             {/* Portfolio */}
             { images &&
               <section className="portfolioSection">
                 <h3 className="is-fullwidth has-text-dark">Portfolio</h3>
-                <div className="columns is-multiline is-mobile has-background-white">
+                <div className="columns is-multiline is-mobile">
                   { images.map(image =>
                     <div key={image._id} className="column is-6-mobile is-3-desktop is-4-tablet">
                       <Link to={`/images/${image._id}`}>
@@ -208,18 +210,18 @@ class UsersShow extends React.Component {
                 <div>
                   <form onSubmit={this.createReview}>
                     <input onChange={this.handleChange} name="review" className="input has-text-white" value={this.state.review || ''} />
-                    <button className="button is-primary is-fullwidth" type="submit">Add Review</button>
+                    <button className="button" type="submit">Add Review</button>
                   </form>
                 </div>
               </div>
 
-              <div className="column is-12-mobile is-half-tablet is-half-desktop reviewsSection">
+              <div className="column is-12-mobile is-half-tablet is-half-desktop">
                 <UserLocationMap user={user} userLat={lat} userLng={lng} />
               </div>
             </div>
 
             {Auth.currentUserId() === this.props.match.params.id  &&
-            <Link className="button is-primary is-rounded is-outlined" to={`/users/${user._id}/edit`}>Edit Profile</Link>
+            <Link className="button" to={`/users/${user._id}/edit`}>Edit Profile</Link>
             }
 
 

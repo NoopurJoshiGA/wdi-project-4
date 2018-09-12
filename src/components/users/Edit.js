@@ -85,16 +85,16 @@ class UsersEdit extends React.Component {
           <img className="profilePic" src={this.state.profilePic || this.state.defaultProfilePic} />
         </div>
 
-        <ReactFilestack
-          apikey="AqGjevNLqRu22jn66Mv4Zz"
-          // options={basicOptions}
-          buttonText="Upload Profile Picture"
-          buttonClass="filestackButton"
-          onSuccess={this.onSuccess}
-          onError={this.onError}
-        />
 
         <form onSubmit={this.handleSubmit} className="form">
+          <ReactFilestack
+            apikey="AqGjevNLqRu22jn66Mv4Zz"
+            // options={basicOptions}
+            buttonText="Upload Profile Picture"
+            buttonClass="filestackButton"
+            onSuccess={this.onSuccess}
+            onError={this.onError}
+          />
           {/* First Name */}
           <input
             onChange={this.handleChange}
@@ -198,7 +198,7 @@ class UsersEdit extends React.Component {
 
         {/* Delete user account */}
         {Auth.currentUserId() === this.props.match.params.id  &&
-        <button onClick={this.toggleClass} className="button  is-fullwidth rounded is-primary is-outlined">Delete Account</button>
+        <button onClick={this.toggleClass} className="deleteUserAccountButton">Delete Account</button>
         }
 
 
@@ -209,8 +209,8 @@ class UsersEdit extends React.Component {
               <h5 className="title is-5">Are you sure you want to leave the Boke tribe?</h5>
             </section>
             <footer className="modal-card-foot">
-              <button onClick={this.deleteUserAccount} className="button is-warning">Yes</button>
-              <button onClick={this.toggleClass} className="button">Cancel</button>
+              <button onClick={this.deleteUserAccount} className="modalButton">Yes</button>
+              <button onClick={this.toggleClass} className="modalButton">Cancel</button>
             </footer>
           </div>
         </div>

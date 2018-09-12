@@ -172,7 +172,7 @@ class ImagesShow extends React.Component {
             {Auth.currentUserId() === image.uploadedBy._id &&
               <div>
                 <Link className="button is-fullwidth is-primary is-rounded is-outlined" to={`/images/${image._id}/edit`}>Edit Image</Link>
-                <button className="button is-fullwidth is-primary is-rounded is-outlined" onClick={this.toggleClass}>Delete Image</button>
+                <button className="deleteImageButton" onClick={this.toggleClass}>Delete Image</button>
               </div>
             }
 
@@ -183,8 +183,8 @@ class ImagesShow extends React.Component {
                   <h5 className="title is-5">Are you sure you want to delete this image?</h5>
                 </section>
                 <footer className="modal-card-foot">
-                  <button onClick={this.deleteImage} className="button is-warning">Yes</button>
-                  <button onClick={this.toggleClass} className="button">Cancel</button>
+                  <button onClick={this.deleteImage} className="modalButton">Yes</button>
+                  <button onClick={this.toggleClass} className="modalButton">Cancel</button>
                 </footer>
               </div>
             </div>
