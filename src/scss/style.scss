@@ -377,11 +377,10 @@ input::placeholder {
   margin: 0 auto;
   border-radius: 5px;
 }
-//
-// .searchBarSection {
-//   margin: 0;
-//   padding: 0;
-// }
+
+.columns {
+  justify-content: space-between;
+}
 
 .userIndexImage {
   position: relative;
