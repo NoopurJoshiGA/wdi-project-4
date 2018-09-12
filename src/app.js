@@ -6,6 +6,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // Common
 import Header from './components/Header';
 import Home from './components/Home';
+import FlashMessages from './components/common/FlashMessages';
+
 
 // Auth
 import AuthLogin from './components/auth/Login';
@@ -27,7 +29,6 @@ import 'leaflet/dist/leaflet.css';
 // Styles
 import 'bulma/css/bulma.css';
 import './scss/style.scss';
-
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -40,6 +41,7 @@ class App extends React.Component {
     return (
       <main>
         <Header />
+        <FlashMessages />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={AuthLogin} />

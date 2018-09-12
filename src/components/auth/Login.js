@@ -13,7 +13,8 @@ class AuthLogin extends React.Component {
     // TODO: remove this before deployment!
     email: 'milakunis@email.com',
     password: 'pass',
-    passwordHidden: true
+    passwordHidden: true,
+    errors: {}
   }
 
   handleChange = (event) => {
@@ -37,11 +38,11 @@ class AuthLogin extends React.Component {
         const token = res.data.token;
         Auth.setToken(token);
         // redirect to the users page
-        this.props.history.push('/users');
+        this.props.history.push('/');
       })
       .catch(err => {
         console.log(err.response); // will return 401 or 500 if login is incorrect (eg: not authorized)
-        Flash.setMessage('danger', 'Invalid email/password');
+        Flash.setMessage('danger', 'Your email and password do not match, please try again');
         console.log('Flash messages', Flash.getMessages());
         // redirect to the current page
         this.props.history.push(this.props.location.pathname);

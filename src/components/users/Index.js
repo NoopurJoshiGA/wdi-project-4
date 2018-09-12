@@ -122,27 +122,28 @@ class UsersIndex extends React.Component {
 
   handleFilterByDistanceChange = (event) => {
     console.log('checking the box', event.target.checked, event.target.name);
-
     // current filter options
-    const filterDistanceOptions = this.state.filterDistanceOptions.slice();
-    // console.log('filterDistanceOptions are', filterDistanceOptions);
+    const filterDistanceOptions = this.state.filterDistanceOptions.slice(); // this gives an array of objects (each object has a value)
+    console.log('filterDistanceOptions are', filterDistanceOptions);
     filterDistanceOptions.forEach(option => {
+      // option.value is 5, 10 15, 20 etc
       if(option.value === event.target.name || event.target.name === 'all') {
         option.active = event.target.checked;
       }
     });
-    this.setState({ filterDistanceOptions });
+    this.setState({ filterDistanceOptions: filterDistanceOptions });
   }
 
   filterByDistanceOptions = (users) => {
     console.log('users in the filterByDistanceOptions are', users);
     console.log('filterDistanceOptions', this.state.filterDistanceOptions);
-    return users.filter(user =>
+    const test = users.filter(user =>
       this.state.filterDistanceOptions.some(option => {
         const filterDistance = option.value;
         return option.active && user.distance === filterDistance;
       })
     );
+    console.log('test is', test);
     // this.setState({ filteredUsersByDistance: filteredUsersByDistance });
   }
 
@@ -228,9 +229,10 @@ class UsersIndex extends React.Component {
           </section>
         }
 
-        { !this.state.searchTerm && !this.state.filterType &&
-          // <FilterUsers users={this.filterByDistanceOptions(this.state.userLocations)} />
-          <FilterUsers users={this.state.users} />
+        { !this.state.searchTerm && !this.state.filterType && users &&
+          // <p className="has-text-dark">{ this.state.userLocations }</p>
+          <FilterUsers users={this.filterByDistanceOptions(users)} />
+          // <FilterUsers users={this.state.users} />
         }
 
         { this.state.searchTerm && !this.state.filterType &&

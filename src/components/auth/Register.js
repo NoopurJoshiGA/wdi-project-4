@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
+import Flash from '../../lib/Flash';
 
 import { Link } from 'react-router-dom';
 
@@ -20,7 +21,8 @@ class AuthRegister extends React.Component {
     postcode: 'WD171BN',
     password: 'pass',
     passwordConfirmation: 'pass',
-    defaultImage: 'https://kirche-wagenfeld.de/wp-content/uploads/2018/03/default-profile.png'
+    defaultImage: 'https://kirche-wagenfeld.de/wp-content/uploads/2018/03/default-profile.png',
+    errors: {}
   }
 
   componentDidMount() {
@@ -32,7 +34,7 @@ class AuthRegister extends React.Component {
     console.log('this.state is:', this.state);
     if(this.state.password !== this.state.passwordConfirmation) {
       const errors = this.state.errors;
-      errors.passwordConfirmation = 'Passwords do not match';
+      errors.passwordConfirmation = 'Passwords do not match, please try again';
       return this.setState({ errors });
     }
     // make a request to the db
@@ -47,12 +49,18 @@ class AuthRegister extends React.Component {
         this.props.history.push('/users');
       })
       .catch(err => {
-        console.log(err.response);
+        console.log('err.response is',err.response);
+        // ... is combining two objects together
+        const errors = { ...this.state.errors, ...err.response.data.errors };
+        console.log(err.response.data.errors);
+        this.setState({ errors });
       });
   }
 
   handleChange = (event) => {
     const { target: { name, value }} = event;
+    const errors = this.state.errors;
+    delete errors[name]; // remove the error for this field
     this.setState({ [name]: value });
   }
 
@@ -77,6 +85,7 @@ class AuthRegister extends React.Component {
 
         <h2>Create an account</h2>
 
+
         <form className="has-text-centered" onSubmit={this.handleSubmit}>
 
           <img className="profilePicRegister" src={this.state.profilePic || this.state.defaultImage} />
@@ -98,6 +107,7 @@ class AuthRegister extends React.Component {
             type="text"
             value={this.state.firstName || ''}>
           </input>
+          <span className="validation">{this.state.errors.firstName}</span>
 
           {/* Last Name */}
           <input
@@ -108,6 +118,7 @@ class AuthRegister extends React.Component {
             type="text"
             value={this.state.lastName || ''}>
           </input>
+          <span className="validation">{this.state.errors.lastName}</span>
 
           {/* Email */}
           <input
@@ -118,6 +129,7 @@ class AuthRegister extends React.Component {
             type="email"
             value={this.state.email || ''}>
           </input>
+          <span className="validation">{this.state.errors.email}</span>
 
           {/* Username */}
           <input
@@ -128,6 +140,7 @@ class AuthRegister extends React.Component {
             type="text"
             value={this.state.username || ''}>
           </input>
+          <span className="validation">{this.state.errors.username}</span>
 
           {/* Type */}
           <div>
@@ -137,6 +150,8 @@ class AuthRegister extends React.Component {
               <option>photographer</option>
             </select>
           </div>
+          <span className="validation">{this.state.errors.type}</span>
+
 
           {/* Profile Pic */}
           {/* <input
@@ -168,6 +183,7 @@ class AuthRegister extends React.Component {
             type="postcode"
             value={this.state.postcode || ''}>
           </input>
+          <span className="validation">{this.state.errors.postcode}</span>
 
           {/* Password */}
           <input
@@ -178,6 +194,7 @@ class AuthRegister extends React.Component {
             type={this.state.passwordHidden ? 'password' : 'text'}
             value={this.state.password || ''}>
           </input>
+          <span className="validation">{this.state.errors.password}</span>
 
           {/* Password confirmation */}
           <input
@@ -188,6 +205,7 @@ class AuthRegister extends React.Component {
             type={this.state.passwordHidden ? 'password' : 'text'}
             value={this.state.passwordConfirmation || ''}>
           </input>
+          <span className="validation">{this.state.errors.passwordConfirmation}</span>
 
           <input type="checkbox" className="checkbox" onChange={this.togglePasswordShow}></input>
           <p className="showPassword">Show Password</p>
