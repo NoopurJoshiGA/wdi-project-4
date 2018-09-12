@@ -6,7 +6,6 @@ import L from 'leaflet';
 
 const UserLocationMap = ({ user, userLat, userLng }) => {
 
-  console.log('user IN THE MAP COMPONENTS is', user, userLat, userLng);
   const position = [userLat, userLng];
 
   // This is the code to get the marker popup working
@@ -19,7 +18,7 @@ const UserLocationMap = ({ user, userLat, userLng }) => {
   });
 
   return(
-    <section className="section">
+    <div>
       { position }
       <Map className="map" center={position} zoom="13">
         <TileLayer
@@ -35,7 +34,7 @@ const UserLocationMap = ({ user, userLat, userLng }) => {
         </Marker>
 
       </Map>
-    </section>
+    </div>
   );
 };
 

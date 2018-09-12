@@ -59,6 +59,8 @@ label {
 
 .tag {
   margin: 2px;
+  background-color: #6121fd !important;
+  color: white !important;
 }
 
 /////////////////////////// Login & Register page //////////////////////////////
@@ -145,6 +147,13 @@ label {
 .profilePic {
   height: 150px;
   width: 150px;
+  border-radius: 100%;
+}
+
+////////////////////////////// Show User Profile ///////////////////////////////
+
+.userShowSection {
+  padding-top: 100px;
 }
 
 ////////////////////////////////// Upload Image ////////////////////////////////
@@ -242,11 +251,12 @@ input::placeholder {
   width: 100%;
 }
 
-.profilePic {
-  height: 250px;
-  width: 250px;
+.editProfile .profilePic {
+  height: 200px;
+  width: 200px;
   border-radius: 100%;
   margin: 0 auto;
+  margin-top: -10px;
 }
 
 .discover {

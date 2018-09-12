@@ -3,11 +3,14 @@ import axios from 'axios';
 import Auth from '../../lib/Auth';
 // import { Link } from 'react-router-dom';
 
+import Flash from '../../lib/Flash';
+
 import ReactFilestack from 'filestack-react';
 
 class UsersEdit extends React.Component {
 
   state = {
+    errors: {},
     active: false,
     defaultProfilePic: 'https://kirche-wagenfeld.de/wp-content/uploads/2018/03/default-profile.png'
   }
@@ -22,8 +25,16 @@ class UsersEdit extends React.Component {
     // get the Id of the user
     const userId = this.props.match.params.id;
     console.log('Form submitted!', this.state);
-    axios.put(`/api/users/${userId}`, this.state, Auth.bearerHeader())
-      .then(() => this.props.history.push(`/users/${userId}`));
+    axios
+      .put(`/api/users/${userId}`, this.state, Auth.bearerHeader())
+      .then(() => this.props.history.push(`/users/${userId}`))
+      .catch(err => {
+        console.log('err.response is',err.response);
+        // ... is combining two objects together
+        const errors = { ...this.state.errors, ...err.response.data.errors };
+        console.log(err.response.data.errors);
+        this.setState({ errors });
+      });
   }
 
   handleChange = ({ target: {name, value} }) => {
@@ -92,6 +103,7 @@ class UsersEdit extends React.Component {
             type="text"
             value={this.state.firstName || ''}>
           </input>
+          <span className="validation">{this.state.errors.firstName}</span>
 
           {/* Last Name */}
           <input
@@ -101,6 +113,7 @@ class UsersEdit extends React.Component {
             type="text"
             value={this.state.lastName || ''}>
           </input>
+          <span className="validation">{this.state.errors.lastName}</span>
 
           {/* Email */}
           <input
@@ -110,6 +123,7 @@ class UsersEdit extends React.Component {
             type="email"
             value={this.state.email || ''}>
           </input>
+          <span className="validation">{this.state.errors.email}</span>
 
           {/* Username */}
           <input
@@ -119,6 +133,7 @@ class UsersEdit extends React.Component {
             type="text"
             value={this.state.username || ''}>
           </input>
+          <span className="validation">{this.state.errors.username}</span>
 
           {/* Type */}
           <div className="is-fullwidth">
@@ -127,6 +142,7 @@ class UsersEdit extends React.Component {
               <option>photographer</option>
             </select>
           </div>
+          <span className="validation">{this.state.errors.type}</span>
 
           {/* Interests */}
           <input
@@ -157,6 +173,7 @@ class UsersEdit extends React.Component {
             type="postcode"
             value={this.state.postcode || ''}>
           </input>
+          <span className="validation">{this.state.errors.postcode}</span>
 
           {/* Password */}
           {/* <input

@@ -34,7 +34,6 @@ class UsersShow extends React.Component {
             console.log('imageData is', imageData);
             imageData = images.filter(image => image.uploadedBy === userData._id);
             console.log('imageData is now', imageData);
-            // this.setState({ images: imageData, user: userData });
           })
           .then(() => {
             axios
@@ -104,10 +103,10 @@ class UsersShow extends React.Component {
     console.log('user is', user);
 
     return(
-      <section className="section">
+      <section className="userShowSection">
 
         {user &&
-          <div className="container columns is-multiline has-text-centered">
+          <div className="columns is-multiline has-text-centered">
 
             <img className="profilePic" src={user.profilePic || this.state.defaultProfilePic } alt={user.firstName}></img>
 
@@ -123,20 +122,21 @@ class UsersShow extends React.Component {
               </p>
             )}
 
-            {/* Postcode */}
-            <h3>{user.postcode}</h3>
-
             {/* Interests */}
-            <div className="section">
+            <div>
               <h3>Interests</h3>
               { user.interests.map(interest =>
-                <div key={user._id} className="tag has-background-primary has-text-white">{interest || ''}</div>
+                <div key={user._id} className="tag">{interest || ''}</div>
               )}
             </div>
 
             {/* Description */}
-            <h3>Description</h3>
-            <p className="">{user.description}</p>
+            { user.description &&
+              <div>
+                <h3>Description</h3>
+                <p className="">{user.description}</p>
+              </div>
+            }
 
             {/* Portfolio */}
             <section className="portfolioSection">

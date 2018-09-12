@@ -108,6 +108,7 @@ class UsersIndex extends React.Component {
 
         });
         this.sortByDistance(userLocations);
+        // set users on the state for the first time
         this.setState({ users: userLocations });
         console.log('userLocations', userLocations);
       });
@@ -121,31 +122,31 @@ class UsersIndex extends React.Component {
   }
 
   handleFilterByDistanceChange = (event) => {
-    console.log('checking the box', event.target.checked, event.target.name);
     // current filter options
     const filterDistanceOptions = this.state.filterDistanceOptions.slice(); // this gives an array of objects (each object has a value)
-    console.log('filterDistanceOptions are', filterDistanceOptions);
     filterDistanceOptions.forEach(option => {
       // option.value is 5, 10 15, 20 etc
       if(option.value === event.target.name || event.target.name === 'all') {
         option.active = event.target.checked;
       }
     });
-    this.setState({ filterDistanceOptions: filterDistanceOptions });
+    this.setState({ filterDistanceOptions });
   }
 
   filterByDistanceOptions = (users) => {
-    console.log('users in the filterByDistanceOptions are', users);
-    console.log('filterDistanceOptions', this.state.filterDistanceOptions);
-    const test = users.filter(user =>
-      this.state.filterDistanceOptions.some(option => {
+    console.log('users in the filterByDistanceOptions are', users, this.state.filterDistanceOptions);
+    return users.filter(user => {
+      // console.log('user', user);
+      return this.state.filterDistanceOptions.some(option => {
+        // console.log('option', option);
         const filterDistance = option.value;
-        return option.active && user.distance === filterDistance;
-      })
-    );
-    console.log('test is', test);
-    // this.setState({ filteredUsersByDistance: filteredUsersByDistance });
+        console.log('blah', user.distance, option, option.active && user.distance <= filterDistance);
+        return option.active && user.distance <= filterDistance;
+      });
+    });
+    // console.log('filteredUsers', filteredUsers);
   }
+
 
   // get users current position
   // users is res.data
@@ -162,8 +163,8 @@ class UsersIndex extends React.Component {
         this.getAllUsersLocation(users, pointA);
 
       });
-    // } else {
-    //   this.setState({ users: users });
+      // } else {
+      // get the postcode of the current user and run the getAllUsersLocation with that
     }
   }
 
@@ -229,11 +230,14 @@ class UsersIndex extends React.Component {
           </section>
         }
 
-        { !this.state.searchTerm && !this.state.filterType && users &&
-          // <p className="has-text-dark">{ this.state.userLocations }</p>
+        {/* { !this.state.searchTerm && !this.state.filterType && users &&
+          <FilterUsers users={this.state.users} />
+        } */}
+
+        { !this.state.searchTerm && !this.state.filterType && this.state.filterDistanceOptions && users &&
           <FilterUsers users={this.filterByDistanceOptions(users)} />
-          // <FilterUsers users={this.state.users} />
         }
+
 
         { this.state.searchTerm && !this.state.filterType &&
           <FilterUsers users={this.filterUsers(this.state.users)} />

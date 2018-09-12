@@ -5,7 +5,6 @@ import Flash from '../../lib/Flash';
 
 import { Link } from 'react-router-dom';
 
-
 // External
 import ReactFilestack from 'filestack-react';
 
