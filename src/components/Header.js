@@ -36,14 +36,14 @@ class Header extends React.Component {
                   </a>
                 </div>
                 <div className={`navbar-menu ${this.state.toggleNavbar ? 'is-active': ''}`}>
-                  {Auth.isAuthenticated() && <Link className="navbar-item" to="/users">Discover</Link>}
+                  {Auth.isAuthenticated() && <Link className="navbar-item discoverButton" to="/users">Discover</Link>}
                   {Auth.isAuthenticated() && <Link className="navbar-item" to="/images/new">Upload Image</Link>}
                   {Auth.isAuthenticated() && <Link className="navbar-item" to={`/users/${Auth.currentUserId()}/edit`}>Edit Profile</Link>}
                   {Auth.isAuthenticated() && <Link className="navbar-item" to={`/users/${Auth.currentUserId()}`}>Profile</Link>}
                   {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
                   {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
                   {Auth.isAuthenticated() &&
-                    <a className="navbar-item is-primary button is-outlined" onClick={this.handleLogout}>Log out {Auth.currentUsername()}</a>}
+                  <a className="navbar-item logoutButton" onClick={this.handleLogout}>Log out {Auth.currentUsername()}</a>}
                 </div>
               </nav>
             </div>

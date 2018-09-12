@@ -189,12 +189,12 @@ class AuthRegister extends React.Component {
             value={this.state.passwordConfirmation || ''}>
           </input>
 
+          <input type="checkbox" className="checkbox" onChange={this.togglePasswordShow}></input>
+          <p className="showPassword">Show Password</p>
+          <button className="button is-fullwidth is-primary" type="submit">Register</button>
         </form>
 
-        <input type="checkbox" className="checkbox" onChange={this.togglePasswordShow}></input>
-        <p className="showPassword">Show Password</p>
 
-        <button className="button is-fullwidth is-primary" type="submit">Register</button>
 
         <p>Already have an account? Login <Link to="/login">here</Link></p>
 

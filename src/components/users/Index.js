@@ -4,11 +4,12 @@ import axios from 'axios';
 import SearchBar from '../common/SearchBar';
 import FilterByType from '../common/FilterByType';
 import FilterUsers from '../common/FilterUsers';
+import FilterByDistance from '../common/FilterByDistance';
 
 class UsersIndex extends React.Component {
 
   state = {
-    sortString: 'Please Select',
+    // sortString: 'Please Select',
     defaultValue: 'Please select...',
     filterTypeOptions: [
       { value: 'type|model', label: 'model'},
@@ -17,6 +18,12 @@ class UsersIndex extends React.Component {
     sortLocationOptions: [
       { value: 'location|closest', label: 'Shortest distance'},
       { value: 'location|furthest', label: 'Longest distance'}
+    ],
+    filterDistanceOptions: [
+      { label: '5 km', value: '5', active: true},
+      { label: '10 km', value: '10', active: true},
+      { label: '15 km', value: '15', active: true},
+      { label: '20 km', value: '20', active: true}
     ]
   }
 
@@ -43,6 +50,7 @@ class UsersIndex extends React.Component {
   filterUsers = (users) => {
     const { searchTerm } = this.state;
     return users.filter(user =>
+      // these are the fields we want the user to be able to search for
       [user.firstName, user.lastName, user.type, user.username].some(field => {
         const re = new RegExp(searchTerm, 'i');
         return re.test(field);
@@ -112,6 +120,32 @@ class UsersIndex extends React.Component {
     });
   }
 
+  handleFilterByDistanceChange = (event) => {
+    console.log('checking the boxxxxx', event.target.checked, event.target.name);
+
+    // current filter options
+    const filterDistanceOptions = this.state.filterDistanceOptions.slice();
+    // console.log('filterDistanceOptions are', filterDistanceOptions);
+    filterDistanceOptions.forEach(option => {
+      if(option.value === event.target.name || event.target.name === 'all') {
+        option.active = event.target.checked;
+      }
+    });
+    this.setState({ filterDistanceOptions });
+  }
+
+  filterByDistanceOptions = (users) => {
+    console.log('users in the filterByDistanceOptions are', users);
+    console.log('filterDistanceOptions', this.state.filterDistanceOptions);
+    // const filteredUsers = users.filter(user =>
+    //   this.state.filterDistanceOptions.some(option => {
+    //     console.log('option is', );
+    //     const filterDistance = option.value;
+    //     return option.active && user.distance === filterDistance;
+    //   })
+    // );
+  }
+
   // TODO:
   // make axios request in the backend to get lat and lon for each user when created/edited
 
@@ -176,14 +210,17 @@ class UsersIndex extends React.Component {
         <SearchBar handleChange={ this.handleSearchChange } searchTerm={ this.state.searchTerm } />
 
         <FilterByType
-          defaultValue={this.state.sortString}
+          defaultValue={this.state.defaultValue}
           options={this.state.filterTypeOptions}
           handleChange={this.handleFilterByTypeChange}
         />
 
+        <FilterByDistance options={this.state.filterDistanceOptions} handleChange={this.handleFilterByDistanceChange} />
+
         { !this.state.searchTerm && !this.state.filterType &&
           <FilterUsers users={this.state.users}/>
         }
+
 
         { this.state.searchTerm && !this.state.filterType &&
           <FilterUsers users={this.filterUsers(this.state.users)} />

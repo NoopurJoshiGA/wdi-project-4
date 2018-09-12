@@ -86,10 +86,10 @@ label {
 }
 
 .profilePicRegister {
-    height: 200px;
-    width: 200px;
-    border-radius: 100%;
-    margin: 0 auto;
+  height: 200px;
+  width: 200px;
+  border-radius: 100%;
+  margin: 0 auto;
 }
 
 .showPassword {
@@ -138,11 +138,14 @@ label {
   width: 150px;
 }
 
+////////////////////////////////// Upload Image ////////////////////////////////
+
 .uploadImageSection {
   background-color: #1D2731;
   color: #ffffff;
   height: 100vh;
   top: 0;
+  padding-top: 50px;
 }
 
 .editProfile .input:focus, .uploadImageSection .input:focus, input:focus {
@@ -249,19 +252,25 @@ input::placeholder {
   background-color: white;
 }
 
-.FilterByTypeSection, .SortByLocationSection {
-  padding: 10px;
-  margin: 10px;
+.FilterByTypeSection, .SortByLocationSection, .filterByDistanceSection, .searchBarSection {
+  padding: 5px;
+  margin: 5px;
+}
+
+.filterByDistanceSection .field {
+  display: inline-block;
 }
 
 .searchBar {
-  margin-top: 50px;
+  margin-top: 30px;
+  margin: 0 auto;
+  border-radius: 5px;
 }
-
-.searchBarSection {
-  margin: 0;
-  padding: 0;
-}
+//
+// .searchBarSection {
+//   margin: 0;
+//   padding: 0;
+// }
 
 .userIndexImage {
   position: relative;
@@ -364,12 +373,29 @@ $navbar-height: auto 0;
   background-color: #273440 !important;
 }
 
+.navbar-item a {
+  font-size: 0.7rem !important;
+}
+
 .navbar-item a:hover {
 
 }
 
+.logoutButton {
+    background: linear-gradient(100deg, #6121fd, #b721ff);
+}
 
+.discoverButton {
+  text-align: center;
+  border: 2px solid #6121fd;
+  background-color: transparent;
+  padding: 0 !important;
+  margin: 0 !important;
+}
 
+.discoverButton a {
+  text-transform: uppercase !important;
+}
 
 // Portfolio
 

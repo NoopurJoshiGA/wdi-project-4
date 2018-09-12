@@ -4,7 +4,7 @@ const SortByType = ({ handleChange, options, defaultValue }) => {
   return (
     <section className="FilterByTypeSection">
       <div className="field">
-        <label className="label">Filter by type</label>
+        <p className="has-text-dark">Filter by type</p>
         <div className="select is-fullwidth">
           <select onChange={ handleChange } defaultValue={defaultValue}>
             {options.map(option =>

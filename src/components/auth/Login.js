@@ -72,12 +72,11 @@ class AuthLogin extends React.Component {
             onChange={this.handleChange}>
           </input>
 
+          <input type="checkbox" className="checkbox" onChange={this.togglePasswordShow}></input>
+          <p className="showPassword">Show Password</p>
+
+          <button className="button is-primary is-fullwidth" type="submit">Login</button>
         </form>
-
-        <input type="checkbox" className="checkbox" onChange={this.togglePasswordShow}></input>
-        <p className="showPassword">Show Password</p>
-
-        <button className="button is-primary is-fullwidth" type="submit">Login</button>
 
         <p>Don't have an account? Sign up <Link to="/register">here</Link></p>
 
