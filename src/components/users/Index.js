@@ -23,7 +23,9 @@ class UsersIndex extends React.Component {
       { label: '5 km', value: '5', active: true},
       { label: '10 km', value: '10', active: true},
       { label: '15 km', value: '15', active: true},
-      { label: '20 km', value: '20', active: true}
+      { label: '20 km', value: '20', active: true},
+      { label: '25 km', value: '25', active: true},
+      { label: '30 km', value: '30', active: true}
     ]
   }
 
@@ -207,7 +209,8 @@ class UsersIndex extends React.Component {
       // conditional to show load div if there is no state
 
       <section className="usersIndexSection">
-        <h3>Discover</h3>
+
+        <h2 className="has-text-dark">Discover</h2>
 
 
         <SearchBar handleChange={ this.handleSearchChange } searchTerm={ this.state.searchTerm } />

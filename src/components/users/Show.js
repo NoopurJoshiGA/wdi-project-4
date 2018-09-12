@@ -128,36 +128,42 @@ class UsersShow extends React.Component {
               )}
             </div>
 
-            {/* Interests */}
-            <div>
-              <h3>Interests</h3>
-              { user.interests.map(interest =>
-                <div key={user._id} className="tag">{interest || ''}</div>
-              )}
-            </div>
-
             {/* Description */}
             { user.description &&
-              <div>
-                <h3>Description</h3>
-                <p className="">{user.description}</p>
+              <div className="userDescription">
+                <div>
+                  <h3>Description</h3>
+                  <p className="">{user.description}</p>
+                </div>
               </div>
             }
 
-            {/* Portfolio */}
-            <section className="portfolioSection">
-              <h3 className="is-fullwidth has-text-dark">Portfolio</h3>
-
-              <div className="columns is-multiline is-mobile has-background-white">
-                { images.map(image =>
-                  <div key={image._id} className="column is-6">
-                    <Link to={`/images/${image._id}`}>
-                      <img className="portfolioImage" src={image.imageUrl || ''} />
-                    </Link>
-                  </div>
+            {/* Interests */}
+            { user.interests &&
+              <div className="interests">
+                <h3>Interests</h3>
+                { user.interests.map(interest =>
+                  <div key={user._id} className="tag">{interest || ''}</div>
                 )}
               </div>
-            </section>
+            }
+
+
+            {/* Portfolio */}
+            { images &&
+              <section className="portfolioSection">
+                <h3 className="is-fullwidth has-text-dark">Portfolio</h3>
+                <div className="columns is-multiline is-mobile has-background-white">
+                  { images.map(image =>
+                    <div key={image._id} className="column is-6">
+                      <Link to={`/images/${image._id}`}>
+                        <img className="portfolioImage" src={image.imageUrl || ''} />
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </section>
+            }
 
             {/* Reviews */}
             <div className="section">

@@ -6,7 +6,9 @@ import ReactFilestack from 'filestack-react';
 
 class ImagesNew extends React.Component {
 
-  state = {}
+  state = {
+    active: false
+  }
 
   handleSubmit = (event) => {
     event.preventDefault(); // don't refresh the page
@@ -18,8 +20,18 @@ class ImagesNew extends React.Component {
       tags: this.state.tags
     };
     axios.post('/api/images', imageData, this.state, Auth.bearerHeader())
-      .then(() => this.props.history.push(`/users/${Auth.currentUserId()}`)); // redirect to the users page
+      .then(() => this.props.history.push(`/users/${Auth.currentUserId()}`))// redirect to the users page
+      .catch(() => {
+        this.toggleClass();
+      });
   }
+
+  toggleClass = () => {
+    const currentState = this.state.active;
+    this.setState({ active: !currentState });
+    console.log('the modal is open', this.currentState);
+  }
+
 
   handleChange = ({ target: {name, value} }) => {
     console.log('Handle change is called...', name, value);
@@ -89,6 +101,18 @@ class ImagesNew extends React.Component {
 
           <button className="button is-fullwidth is-primary">Upload Image</button>
         </form>
+
+        <div className={`${this.state.active ? 'is-active': null} modal `}>
+          <div className="modal-background"></div>
+          <div className="modal-card">
+            <section className="modal-card-body">
+              <h5 className="title is-5">Please select an image</h5>
+            </section>
+            <footer className="modal-card-foot">
+              <button onClick={this.toggleClass} className="button">Ok</button>
+            </footer>
+          </div>
+        </div>
 
       </section>
     );
