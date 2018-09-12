@@ -92,7 +92,7 @@ class UsersIndex extends React.Component {
     let userLocations = [];
     const userPostcodes = users.map(user => user.postcode);
     axios
-      .post('http://api.postcodes.io/postcodes/', { postcodes: userPostcodes })
+      .post('https://api.postcodes.io/postcodes/', { postcodes: userPostcodes })
       .then( res => {
         // res.data.result is the response from the bulk axios req
         res.data.result.forEach(result => {

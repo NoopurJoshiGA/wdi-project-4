@@ -38,7 +38,7 @@ class UsersShow extends React.Component {
           })
           .then(() => {
             axios
-              .get(`http://api.postcodes.io/postcodes/${userData.postcode}`)
+              .get(`https://api.postcodes.io/postcodes/${userData.postcode}`)
               .then(res => {
                 userLocationData = res.data;
                 // console.log('this.state.user.password', this.state.user.postcode);
