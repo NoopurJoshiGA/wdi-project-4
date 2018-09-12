@@ -113,14 +113,20 @@ class UsersShow extends React.Component {
             <h2>{user.firstName} {user.lastName}</h2>
             <h3>{user.type}</h3>
 
-            <a href={`mailto:${user.email}`}><FontAwesomeIcon className="envelopeIcon" icon="envelope" /></a>
+            <div className="envelope">
+              <a href={`mailto:${user.email}`}><FontAwesomeIcon className="envelopeIcon" icon="envelope" /></a>
+            </div>
 
             {/* Social Media Links */}
-            { user.socialMediaLinks.map(link =>
-              <p key={link._id}>
-                <a href={link.url}>{link.type}</a>
-              </p>
-            )}
+            <div className="socialMediaLinks">
+              { user.socialMediaLinks.map(link =>
+                <p key={link._id}>
+                  <a href={link.url}>
+                    <div className={link.type}></div>
+                  </a>
+                </p>
+              )}
+            </div>
 
             {/* Interests */}
             <div>

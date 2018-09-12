@@ -36,7 +36,9 @@ const userData = [
     ],
     socialMediaLinks: [
       { type: 'facebook', url: 'https://facebook.com' },
-      { type: 'instagram', url: 'https://instagram.com' }
+      { type: 'instagram', url: 'https://instagram.com' },
+      { type: 'flickr', url: 'https://flickr.com' },
+      { type: 'pinterest', url: 'https://pinterest.com' }
     ]
   },
   // user 2 - Natasha (fashion model)
@@ -58,6 +60,12 @@ const userData = [
     ratings: [
       { ratedBy: userIds[0], number: 4 },
       { ratedBy: userIds[2],  number: 5 }
+    ],
+    socialMediaLinks: [
+      { type: 'facebook', url: 'https://facebook.com' },
+      { type: 'instagram', url: 'https://instagram.com' },
+      { type: 'flickr', url: 'https://flickr.com' },
+      { type: 'pinterest', url: 'https://pinterest.com' }
     ]
   },
   // user 3 - Noopur (photographer)
@@ -80,6 +88,12 @@ const userData = [
     ratings: [
       { ratedBy: userIds[0], number: 4 },
       { ratedBy: userIds[1], number: 5 }
+    ],
+    socialMediaLinks: [
+      { type: 'facebook', url: 'https://facebook.com' },
+      { type: 'instagram', url: 'https://instagram.com' },
+      { type: 'flickr', url: 'https://flickr.com' },
+      { type: 'pinterest', url: 'https://pinterest.com' }
     ]
   }
 ];

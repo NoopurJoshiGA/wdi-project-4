@@ -156,6 +156,45 @@ label {
   padding-top: 100px;
 }
 
+.socialMediaLinks {
+  display: inline-flex;
+}
+
+// font awesome
+.envelopeIcon {
+  font-size: 30px;
+  display: inline-block;
+}
+
+.envelope {
+  display: block;
+}
+
+.facebook, .pinterest, .instagram, .flickr {
+  height: 30px;
+  width: 30px;
+  background-size: cover;
+  margin: 5px;
+}
+
+.facebook {
+  background-image: url("/assets/facebook.svg");
+}
+
+.pinterest {
+  background-image: url("/assets/pinterest.svg");
+}
+
+.instagram {
+  background-image: url("/assets/instagram.svg");
+}
+
+.flickr {
+  background-image: url("/assets/flickr.svg");
+}
+
+
+
 ////////////////////////////////// Upload Image ////////////////////////////////
 
 .uploadImageSection {
@@ -430,10 +469,7 @@ $navbar-height: auto 0;
 }
 
 
-// font awesome
-.envelopeIcon {
-  font-size: 30px;
-}
+
 
 // loader
 .lds-ring {

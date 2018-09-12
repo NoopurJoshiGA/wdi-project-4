@@ -38,12 +38,12 @@ class UsersIndex extends React.Component {
 
   handleSearchChange = (event) => {
     this.setState({ searchTerm: event.target.value });
-    console.log('search term is:', event.target.value);
+    // console.log('search term is:', event.target.value);
   }
 
   handleFilterByTypeChange = (event) => {
     this.setState({ filterType: event.target.value }, () => {
-      console.log('filterType is', this.state.filterType);
+      // console.log('filterType is', this.state.filterType);
     });
   }
 
@@ -72,7 +72,7 @@ class UsersIndex extends React.Component {
   sortedFilteredUsers = () => {
     //sort first
     const sortedUsersByType = this.sortUsersByType(this.state.users);
-    console.log('sortedUsersByType are', sortedUsersByType);
+    // console.log('sortedUsersByType are', sortedUsersByType);
     //then filter
     return this.filterUsers(sortedUsersByType);
   }
@@ -80,7 +80,7 @@ class UsersIndex extends React.Component {
   handleSortChange = (event) => {
     // Options.set('sortString', event.target.value);
     this.setState({ sortString: event.target.value });
-    console.log('sortString is', this.state.sortString);
+    // console.log('sortString is', this.state.sortString);
   }
 
   // TODO: REFACTOR INTO FUNCTIONS
@@ -88,7 +88,7 @@ class UsersIndex extends React.Component {
   getAllUsersLocation = (users, pointA) => {
     // const pointA = this.getUserLocation();
     // console.log('point A is', pointA);
-    console.log('into the getUsersLocation');
+    // console.log('into the getUsersLocation');
     let userLocations = [];
     const userPostcodes = users.map(user => user.postcode);
     axios
@@ -110,7 +110,7 @@ class UsersIndex extends React.Component {
         this.sortByDistance(userLocations);
         // set users on the state for the first time
         this.setState({ users: userLocations });
-        console.log('userLocations', userLocations);
+        // console.log('userLocations', userLocations);
       });
   }
 
@@ -134,17 +134,15 @@ class UsersIndex extends React.Component {
   }
 
   filterByDistanceOptions = (users) => {
-    console.log('users in the filterByDistanceOptions are', users, this.state.filterDistanceOptions);
+    // console.log('users in the filterByDistanceOptions are', users, this.state.filterDistanceOptions);
     return users.filter(user => {
       // console.log('user', user);
       return this.state.filterDistanceOptions.some(option => {
         // console.log('option', option);
         const filterDistance = option.value;
-        console.log('blah', user.distance, option, option.active && user.distance <= filterDistance);
         return option.active && user.distance <= filterDistance;
       });
     });
-    // console.log('filteredUsers', filteredUsers);
   }
 
 
@@ -158,7 +156,7 @@ class UsersIndex extends React.Component {
         const lon1 = userPosition.coords.longitude;
 
         const pointA = { lat: lat1, lon: lon1};
-        console.log('users location / pointA is', pointA);
+        // console.log('users location / pointA is', pointA);
 
         this.getAllUsersLocation(users, pointA);
 
@@ -191,7 +189,7 @@ class UsersIndex extends React.Component {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     const distance = R * c; // Distance in km
     // const allDistances = allDistances.push(distance);
-    console.log('the distance is', distance);
+    // console.log('the distance is', distance);
 
     return distance;
   }
@@ -237,7 +235,6 @@ class UsersIndex extends React.Component {
         { !this.state.searchTerm && !this.state.filterType && this.state.filterDistanceOptions && users &&
           <FilterUsers users={this.filterByDistanceOptions(users)} />
         }
-
 
         { this.state.searchTerm && !this.state.filterType &&
           <FilterUsers users={this.filterUsers(this.state.users)} />
