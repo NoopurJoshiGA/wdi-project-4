@@ -223,6 +223,12 @@ label {
   margin: 0 auto;
 }
 
+.reviewsSection {
+  // width: 100%;
+  // max-width: 400px;
+  // margin: 0 auto;
+}
+
 // Portfolio
 
 .portfolioSection {
@@ -331,6 +337,10 @@ input::placeholder {
 .map {
   height: 400px;
   width: 100%;
+}
+
+.leaflet-popup-content {
+  text-align: center;
 }
 
 .editProfile .profilePic {

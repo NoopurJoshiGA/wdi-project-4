@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Map
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
@@ -28,8 +29,10 @@ const UserLocationMap = ({ user, userLat, userLng }) => {
 
         <Marker position={position}>
           <Popup>
-            {user.firstName} {user.lastName}
-
+            <p>{user.firstName} {user.lastName}</p>
+            <div className="envelope">
+              <a href={`mailto:${user.email}`}><FontAwesomeIcon className="envelopeIcon" icon="envelope" /></a>
+            </div>
           </Popup>
         </Marker>
 

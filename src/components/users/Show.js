@@ -6,6 +6,8 @@ import Auth from '../../lib/Auth';
 import UserLocationMap from '../common/UserLocationMap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Zoom from 'react-reveal/Zoom';
+import Fade from 'react-reveal/Fade';
 
 class UsersShow extends React.Component {
 
@@ -103,49 +105,62 @@ class UsersShow extends React.Component {
     console.log('user is', user);
 
     return(
-      <section className="userShowSection">
+
+      <section className="container userShowSection">
 
         {user &&
           <div className="columns is-multiline has-text-centered">
 
-            <img className="profilePic" src={user.profilePic || this.state.defaultProfilePic } alt={user.firstName}></img>
+            <Zoom>
+              <img className="profilePic" src={user.profilePic || this.state.defaultProfilePic } alt={user.firstName}></img>
+            </Zoom>
 
-            <h2>{user.firstName} {user.lastName}</h2>
-            <h3>{user.type}</h3>
+            <Zoom>
+              <h2>{user.firstName} {user.lastName}</h2>
+            </Zoom>
+            <Zoom>
+              <h3>{user.type}</h3>
+            </Zoom>
 
-            <div className="envelope">
-              <a href={`mailto:${user.email}`}><FontAwesomeIcon className="envelopeIcon" icon="envelope" /></a>
-            </div>
+            <Zoom>
+              <div className="envelope">
+                <a href={`mailto:${user.email}`}><FontAwesomeIcon className="envelopeIcon" icon="envelope" /></a>
+              </div>
 
-            {/* Social Media Links */}
-            <div className="socialMediaLinks">
-              { user.socialMediaLinks.map(link =>
-                <p key={link._id}>
-                  <a href={link.url}>
-                    <div className={link.type}></div>
-                  </a>
-                </p>
-              )}
-            </div>
+              {/* Social Media Links */}
+              <div className="socialMediaLinks">
+                { user.socialMediaLinks.map(link =>
+                  <p key={link._id}>
+                    <a href={link.url}>
+                      <div className={link.type}></div>
+                    </a>
+                  </p>
+                )}
+              </div>
+            </Zoom>
 
             {/* Description */}
             { user.description &&
               <div className="userDescription">
                 <div>
-                  <h3>Description</h3>
-                  <p className="">{user.description}</p>
+                  <Zoom>
+                    <h3>Description</h3>
+                    <p className="">{user.description}</p>
+                  </Zoom>
                 </div>
               </div>
             }
 
             {/* Interests */}
             { user.interests &&
-              <div className="interests">
-                <h3>Interests</h3>
-                { user.interests.map(interest =>
-                  <div key={user._id} className="tag">{interest || ''}</div>
-                )}
-              </div>
+              <Zoom>
+                <div className="interests">
+                  <h3>Interests</h3>
+                  { user.interests.map(interest =>
+                    <div key={user._id} className="tag">{interest || ''}</div>
+                  )}
+                </div>
+              </Zoom>
             }
 
 
@@ -155,9 +170,11 @@ class UsersShow extends React.Component {
                 <h3 className="is-fullwidth has-text-dark">Portfolio</h3>
                 <div className="columns is-multiline is-mobile has-background-white">
                   { images.map(image =>
-                    <div key={image._id} className="column is-6">
+                    <div key={image._id} className="column is-6-mobile is-3-desktop is-4-tablet">
                       <Link to={`/images/${image._id}`}>
-                        <img className="portfolioImage" src={image.imageUrl || ''} />
+                        <Fade>
+                          <img className="portfolioImage" src={image.imageUrl || ''} />
+                        </Fade>
                       </Link>
                     </div>
                   )}
@@ -165,36 +182,39 @@ class UsersShow extends React.Component {
               </section>
             }
 
-            {/* Reviews */}
-            <div className="section">
-              <h3>Reviews</h3>
-              {user.reviews.map(review =>
-
-                <div key={review._id}
-                  className="userReviews columns is-multiline is-mobile">
-                  <div className="column is-4">
-                    <figure className="image is-64x64">
-                      <img className="is-rounded" src={review.addedBy.profilePic || this.state.defaultProfilePic} />
-                    </figure>
-                  </div>
-
-                  <div><p>{review.addedBy.username}</p></div>
-
-                  <p>{review.content}</p>
-                  {Auth.currentUserId() === review.addedBy._id &&
+            <div className="columns is-multiline is-mobile">
+              {/* Reviews */}
+              <div className="column is-12-mobile is-half-tablet is-half-desktop reviewsSection">
+                <h3>Reviews</h3>
+                {user.reviews.map(review =>
+                  <div key={review._id}
+                    className="userReviews columns is-multiline is-mobile">
+                    <div className="column is-4">
+                      <figure className="image is-64x64">
+                        <img className="is-rounded" src={review.addedBy.profilePic || this.state.defaultProfilePic} />
+                      </figure>
+                    </div>
+                    <div><p>{review.addedBy.username}</p></div>
+                    <p>{review.content}</p>
+                    {Auth.currentUserId() === review.addedBy._id &&
                     <div>
                       <button onClick={this.deleteReview(review._id)} className="button is-small is-outlined is-primary">Delete</button>
                       <button onClick={this.editReview(review._id)} className="button is-small is-outlined is-primary">Edit</button>
                     </div>
-                  }
-                </div>
-              )}
+                    }
+                  </div>
+                )}
 
-              <div>
-                <form onSubmit={this.createReview}>
-                  <input onChange={this.handleChange} name="review" className="input has-text-white" value={this.state.review || ''} />
-                  <button className="button is-primary is-fullwidth" type="submit">Add Review</button>
-                </form>
+                <div>
+                  <form onSubmit={this.createReview}>
+                    <input onChange={this.handleChange} name="review" className="input has-text-white" value={this.state.review || ''} />
+                    <button className="button is-primary is-fullwidth" type="submit">Add Review</button>
+                  </form>
+                </div>
+              </div>
+
+              <div className="column is-12-mobile is-half-tablet is-half-desktop reviewsSection">
+                <UserLocationMap user={user} userLat={lat} userLng={lng} />
               </div>
             </div>
 
@@ -202,7 +222,6 @@ class UsersShow extends React.Component {
             <Link className="button is-primary is-rounded is-outlined" to={`/users/${user._id}/edit`}>Edit Profile</Link>
             }
 
-            <UserLocationMap user={user} userLat={lat} userLng={lng} />
 
           </div>
         }
