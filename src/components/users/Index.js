@@ -161,6 +161,8 @@ class UsersIndex extends React.Component {
         this.getAllUsersLocation(users, pointA);
 
       });
+    // } else {
+    //   this.setState({ users: users });
     }
   }
 
@@ -197,12 +199,16 @@ class UsersIndex extends React.Component {
   }
 
   render() {
+
     const users = this.state.users;
 
     return(
 
+      // conditional to show load div if there is no state
+
       <section className="usersIndexSection">
         <h3>Discover</h3>
+
 
         <SearchBar handleChange={ this.handleSearchChange } searchTerm={ this.state.searchTerm } />
 
@@ -214,8 +220,17 @@ class UsersIndex extends React.Component {
 
         <FilterByDistance options={this.state.filterDistanceOptions} handleChange={this.handleFilterByDistanceChange} />
 
-        { !this.state.searchTerm && !this.state.filterType && this.state.userLocations &&
-          <FilterUsers users={this.filterByDistanceOptions(this.state.userLocations)} />
+
+        {!this.state.users &&
+          <section className="section has-text-centered">
+            <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+            <p className="has-text-dark">loading</p>
+          </section>
+        }
+
+        { !this.state.searchTerm && !this.state.filterType &&
+          // <FilterUsers users={this.filterByDistanceOptions(this.state.userLocations)} />
+          <FilterUsers users={this.state.users} />
         }
 
         { this.state.searchTerm && !this.state.filterType &&
