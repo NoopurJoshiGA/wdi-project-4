@@ -121,7 +121,7 @@ class UsersIndex extends React.Component {
   }
 
   handleFilterByDistanceChange = (event) => {
-    console.log('checking the boxxxxx', event.target.checked, event.target.name);
+    console.log('checking the box', event.target.checked, event.target.name);
 
     // current filter options
     const filterDistanceOptions = this.state.filterDistanceOptions.slice();
@@ -137,17 +137,14 @@ class UsersIndex extends React.Component {
   filterByDistanceOptions = (users) => {
     console.log('users in the filterByDistanceOptions are', users);
     console.log('filterDistanceOptions', this.state.filterDistanceOptions);
-    // const filteredUsers = users.filter(user =>
-    //   this.state.filterDistanceOptions.some(option => {
-    //     console.log('option is', );
-    //     const filterDistance = option.value;
-    //     return option.active && user.distance === filterDistance;
-    //   })
-    // );
+    return users.filter(user =>
+      this.state.filterDistanceOptions.some(option => {
+        const filterDistance = option.value;
+        return option.active && user.distance === filterDistance;
+      })
+    );
+    // this.setState({ filteredUsersByDistance: filteredUsersByDistance });
   }
-
-  // TODO:
-  // make axios request in the backend to get lat and lon for each user when created/edited
 
   // get users current position
   // users is res.data
@@ -217,10 +214,9 @@ class UsersIndex extends React.Component {
 
         <FilterByDistance options={this.state.filterDistanceOptions} handleChange={this.handleFilterByDistanceChange} />
 
-        { !this.state.searchTerm && !this.state.filterType &&
-          <FilterUsers users={this.state.users}/>
+        { !this.state.searchTerm && !this.state.filterType && this.state.userLocations &&
+          <FilterUsers users={this.filterByDistanceOptions(this.state.userLocations)} />
         }
-
 
         { this.state.searchTerm && !this.state.filterType &&
           <FilterUsers users={this.filterUsers(this.state.users)} />
