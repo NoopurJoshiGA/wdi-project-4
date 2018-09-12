@@ -12,7 +12,12 @@
   "scripts": {
     "start:server": "nodemon",
     "start:client": "webpack-dev-server",
-    "seed": "node db/seeds"
+    "seed": "node db/seeds",
+    "build": "webpack -p",
+    "start": "yarn build && node index"
+  },
+  "engines": {
+    "node": "9.10.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.4",

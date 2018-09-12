@@ -1,6 +1,7 @@
 const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/boke';
 const secret = process.env.SECRET || 'boke';
+const port = process.env.PORT || 4000;
 
 module.exports = {
-  dbURI, secret
+  dbURI, secret, port
 };

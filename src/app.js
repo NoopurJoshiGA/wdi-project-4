@@ -26,7 +26,7 @@ import 'leaflet/dist/leaflet.css';
 
 // Styles
 import 'bulma/css/bulma.css';
-import './scss/style.scss'; // TODO: needs to change when Heroku-ing
+import './scss/style.scss';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
