@@ -38,7 +38,8 @@ class Header extends React.Component {
                 </div>
                 {/* <div className="navbar-end"> */}
                 <div className={`navbar-menu ${this.state.toggleNavbar ? 'is-active': ''}`}>
-                  {Auth.isAuthenticated() && <Link className="navbar-item discoverButton" to="/users">Discover</Link>}
+                  <div className="navbar-end">
+                    {Auth.isAuthenticated() && <Link className="navbar-item discoverButton" to="/users">Discover</Link>}
                     {Auth.isAuthenticated() && <Link className="navbar-item" to="/images/new">Upload Image</Link>}
                     {Auth.isAuthenticated() && <Link className="navbar-item" to={`/users/${Auth.currentUserId()}/edit`}>Edit Profile</Link>}
                     {Auth.isAuthenticated() && <Link className="navbar-item" to={`/users/${Auth.currentUserId()}`}>Profile</Link>}
@@ -47,6 +48,7 @@ class Header extends React.Component {
                     {Auth.isAuthenticated() &&
                   <a className="navbar-item logoutButton" onClick={this.handleLogout}>Log out {Auth.currentUsername()}</a>}
                   </div>
+                </div>
                 {/* </div> */}
               </nav>
             </div>

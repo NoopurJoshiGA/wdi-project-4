@@ -118,7 +118,7 @@ class ImagesShow extends React.Component {
 
             <div className="columns is-multiline has-text-centered">
               <Fade>
-                <div className="column has-text-left has-background-warning is-6-desktop is-6-tablet">
+                <div className="column has-text-left is-6-desktop is-6-tablet">
                   <img onClick={this.toggleImageClass} src={image.imageUrl} className="image" />
                   <div className="columns userImageUpload is-multiline">
                     <div className="column is-3 has-text-centered">
@@ -134,7 +134,7 @@ class ImagesShow extends React.Component {
                   </div>
                 </div>
 
-                <div className="column has-text-centered has-background-info is-6-desktop is-6-tablet">
+                <div className="column has-text-centered is-6-desktop is-6-tablet">
 
                   <FontAwesomeIcon onClick={ this.state.isLiked ? this.IncrementItem : this.DecrementItem }
                     className={ this.state.isLiked ? 'isDisliked' : 'isLiked' } icon="heart" />
@@ -159,8 +159,8 @@ class ImagesShow extends React.Component {
                     </div>
                   )}
 
-                  <form className="commentForm" onSubmit={this.createComment}>
-                    <input onChange={this.handleChange} placeholder="Write a comment..." type="textarea" name="comment" className="input has-text-white" value={this.state.comment || ''} />
+                  <form className="commentReviewForm" onSubmit={this.createComment}>
+                    <input onChange={this.handleChange} placeholder="Write a comment..." type="textarea" name="comment" className="commentReviewInput has-text-white" value={this.state.comment || ''} />
                     <button className="button" type="submit">Add comment</button>
                   </form>
 

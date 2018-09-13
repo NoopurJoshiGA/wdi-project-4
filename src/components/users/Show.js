@@ -202,8 +202,8 @@ class UsersShow extends React.Component {
                   </div>
                 )}
 
-                <form className="reviewForm" onSubmit={this.createReview}>
-                  <input onChange={this.handleChange} placeholder="Write a review..." type="textarea" name="review" className="input has-text-white" value={this.state.review || ''} />
+                <form className="commentReviewForm" onSubmit={this.createReview}>
+                  <input onChange={this.handleChange} placeholder="Write a review..." type="textarea" name="review" className="commentReviewInput has-text-white" value={this.state.review || ''} />
                   <button className="button" type="submit">Add Review</button>
                 </form>
               </div>

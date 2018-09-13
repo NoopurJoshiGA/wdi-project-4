@@ -5,10 +5,10 @@ import Fade from 'react-reveal/Fade';
 const FilterUsers = ({ users }) => {
 
   return(
-
+    <section className="section">
     <div className="columns container is-multiline">
       {users && users.map(user =>
-        <div key={user._id} className="card userIndex has-text-dark column is-12-mobile is-5-tablet is-3-desktop">
+        <div key={user._id} className="card userIndex has-text-dark column is-12-mobile is-5-tablet is-4-desktop">
           <Fade>
             <img className="userIndexImage" src={user.profilePic || 'https://kirche-wagenfeld.de/wp-content/uploads/2018/03/default-profile.png' } alt={user.firstName}/>
             <h5>{user.firstName} {user.lastName}</h5>
@@ -23,6 +23,7 @@ const FilterUsers = ({ users }) => {
         </div>
       )}
     </div>
+  </section>
   );
 };
 

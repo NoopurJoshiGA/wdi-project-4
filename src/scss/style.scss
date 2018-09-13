@@ -37,6 +37,7 @@ h2 {
 
 .userShowSection h2 {
   font-weight: 900;
+  font-size: 1.25rem;
 }
 
 h3 {
@@ -128,12 +129,12 @@ hr {
 }
 
 .registerForm .profilePicRegister {
-    height: 200px;
-    width: 200px;
-    border-radius: 100%;
-    margin: 0 auto;
-    text-align: center;
-  }
+  height: 200px;
+  width: 200px;
+  border-radius: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
 
 .profilePicCommentReview {
   height: 60px;
@@ -320,15 +321,37 @@ hr {
 .image {
   max-height: 500px;
   display: flex;
-    /* height: auto; */
-    max-width: 600px;
-    transition: 0.5s;
-    cursor: pointer;
+  /* height: auto; */
+  max-width: 600px;
+  transition: 0.5s;
+  cursor: pointer;
 }
 
 .image:hover {
   opacity: 0.5;
 
+}
+
+.commentReviewForm {
+  max-width: 550px;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.commentReviewInput {
+
+  height: 100px;
+  background-color: #273440;
+  border-radius: 30px;
+  margin: 20px;
+  flex-shrink: 1;
+  padding: 0.75rem;
+  color: white;
+  width: 100%;
+  font-family: 'Muli', sans-serif;
+  font-size: 0.9rem;
+  margin: 0 auto;
+  border: 5px solid #33414e;
 }
 
 .deleteCommentReview {
@@ -394,6 +417,11 @@ hr {
   height: 100vh;
   padding-top: 50px;
   width: 100wh;
+}
+
+.card {
+  margin: 20px;
+  margin: 20px auto;
 }
 
 .location {
