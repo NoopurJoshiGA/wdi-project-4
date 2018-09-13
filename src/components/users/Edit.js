@@ -78,7 +78,7 @@ class UsersEdit extends React.Component {
 
     return (
 
-      <section className="section editProfile">
+      <section className="section has-text-centered editProfile">
         <h2>Edit your profile</h2>
 
         <div className="has-text-centered">

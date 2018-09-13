@@ -85,7 +85,7 @@ class AuthRegister extends React.Component {
         <h2>Create an account</h2>
 
 
-        <form className="has-text-centered" onSubmit={this.handleSubmit}>
+        <form className="registerForm has-text-centered" onSubmit={this.handleSubmit}>
 
           <img className="profilePicRegister" src={this.state.profilePic || this.state.defaultImage} />
           <ReactFilestack
@@ -143,7 +143,7 @@ class AuthRegister extends React.Component {
 
           {/* Type */}
           <div>
-            <label htmlFor="type">Please select...</label>
+            <label className="has-text-left" htmlFor="type">Please select...</label>
             <select value={this.state.type} className="input" onChange={this.handleChange}>
               <option>model</option>
               <option>photographer</option>

@@ -161,9 +161,10 @@ class UsersIndex extends React.Component {
         // console.log('users location / pointA is', pointA);
 
         this.getAllUsersLocation(users, pointA);
-
       });
-      // } else {
+    } else {
+      this.setState({ users: users });
+      console.log('no internet connection....', this.state.users);
       // get the postcode of the current user and run the getAllUsersLocation with that
     }
   }
@@ -210,50 +211,50 @@ class UsersIndex extends React.Component {
 
       <section className="usersIndexSection">
         <div className="container">
-        <h2 className="has-text-dark">Discover</h2>
-        <div className="columns is-multiline">
-          <div className="column is-6-tablet is-4-desktop">
-            <SearchBar handleChange={ this.handleSearchChange } searchTerm={ this.state.searchTerm } />
+          <h2 className="has-text-dark">Discover</h2>
+          <div className="columns is-multiline">
+            <div className="column is-6-tablet is-4-desktop">
+              <SearchBar handleChange={ this.handleSearchChange } searchTerm={ this.state.searchTerm } />
+            </div>
+            <div className="column is-6-tablet is-4-desktop">
+              <FilterByType
+                defaultValue={this.state.defaultValue}
+                options={this.state.filterTypeOptions}
+                handleChange={this.handleFilterByTypeChange}
+              />
+            </div>
+            <div className="column is-6-tablet is-4-desktop">
+              <FilterByDistance options={this.state.filterDistanceOptions} handleChange={this.handleFilterByDistanceChange} />
+            </div>
           </div>
-          <div className="column is-6-tablet is-4-desktop">
-            <FilterByType
-              defaultValue={this.state.defaultValue}
-              options={this.state.filterTypeOptions}
-              handleChange={this.handleFilterByTypeChange}
-            />
-          </div>
-          <div className="column is-6-tablet is-4-desktop">
-            <FilterByDistance options={this.state.filterDistanceOptions} handleChange={this.handleFilterByDistanceChange} />
-          </div>
+
+          {!this.state.users &&
+              <section className="section has-text-centered">
+                <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+                <p className="has-text-dark has-text-centered">loading</p>
+              </section>
+          }
+
+          {/* { !this.state.searchTerm && !this.state.filterType && users &&
+                <FilterUsers users={this.state.users} />
+          } */}
+
+          { !this.state.searchTerm && !this.state.filterType && this.state.filterDistanceOptions && users &&
+                <FilterUsers users={this.filterByDistanceOptions(users)} />
+          }
+
+          { this.state.searchTerm && !this.state.filterType &&
+            <FilterUsers users={this.filterUsers(this.state.users)} />
+          }
+
+          { !this.state.searchTerm && this.state.filterType &&
+              <FilterUsers users={this.filterUsersByType(users)} />
+          }
+          {
+            this.state.searchTerm && this.state.filterType &&
+            <FilterUsers users={this.filterSearchUsers(users)} />
+          }
         </div>
-
-        {!this.state.users &&
-          <section className="section has-text-centered">
-            <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
-            <p className="has-text-dark">loading</p>
-          </section>
-        }
-
-        {/* { !this.state.searchTerm && !this.state.filterType && users &&
-          <FilterUsers users={this.state.users} />
-        } */}
-
-        { !this.state.searchTerm && !this.state.filterType && this.state.filterDistanceOptions && users &&
-          <FilterUsers users={this.filterByDistanceOptions(users)} />
-        }
-
-        { this.state.searchTerm && !this.state.filterType &&
-          <FilterUsers users={this.filterUsers(this.state.users)} />
-        }
-
-        { !this.state.searchTerm && this.state.filterType &&
-          <FilterUsers users={this.filterUsersByType(users)} />
-        }
-        {
-          this.state.searchTerm && this.state.filterType &&
-          <FilterUsers users={this.filterSearchUsers(users)} />
-        }
-      </div>
       </section>
     );
   }

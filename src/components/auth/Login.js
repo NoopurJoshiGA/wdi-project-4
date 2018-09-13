@@ -52,7 +52,7 @@ class AuthLogin extends React.Component {
   render() {
     return (
       <section className="loginSection">
-        <form className="" onSubmit={this.handleSubmit}>
+        <form className="loginForm" onSubmit={this.handleSubmit}>
           <h2>Login</h2>
 
           <input
