@@ -134,7 +134,6 @@ class UsersShow extends React.Component {
                   { user.interests &&
                     <Zoom>
                       <div className="interests">
-
                         { user.interests.map(interest =>
                           <div key={user._id} className="tag">{interest || ''}</div>
                         )}
@@ -208,7 +207,6 @@ class UsersShow extends React.Component {
                   <button className="button" type="submit">Add Review</button>
                 </form>
               </div>
-
 
               <div className="column is-12-mobile is-half-tablet is-half-desktop">
                 <UserLocationMap user={user} userLat={lat} userLng={lng} />

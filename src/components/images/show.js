@@ -103,92 +103,72 @@ class ImagesShow extends React.Component {
       <section className="section">
 
         {image &&
-          <div className="container columns is-multiline has-text-centered">
+          <div className="container">
+            <Link className="button" to={`/users/${image.uploadedBy._id}`}>Back to user</Link>
+            <div className="columns is-multiline has-text-centered">
 
-            <div className="section">
-              <Link className="button is-outlined has-background-light is-rounded" to={`/users/${image.uploadedBy._id}`}>Back to user</Link>
-            </div>
-
-            <img src={image.imageUrl} className="image" />
-
-            <div className="columns is-multiline is-mobile">
-              <div className="column is-3">
+              <div className="column has-text-left has-background-warning is-6-desktop is-6-tablet">
+                <img src={image.imageUrl} className="image" />
                 <img src={image.uploadedBy.profilePic} className="userProfilePic" />
-              </div>
-              <div className="column">
                 <p className="has-text-left">{image.uploadedBy.username || this.state.defaultProfilePic }</p>
                 <p>{image.caption}</p>
+                { image.tags.toString().split(',').map(tag =>
+                  <div key={image._id} className="tag has-background-primary has-text-white">{tag}</div>
+                )}
               </div>
-            </div>
 
-            <div className="section">
-              <FontAwesomeIcon onClick={ this.state.isLiked ? this.IncrementItem : this.DecrementItem }
-                className={ this.state.isLiked ? 'isDisliked' : 'isLiked' } icon="heart" />
-              <p>({image.likes})</p>
-            </div>
+              <div className="column has-text-left has-background-info is-6-desktop is-6-tablet">
 
-            <div className="section">
-              <h3>Tags</h3>
-              { image.tags.toString().split(',').map(tag =>
-                <div key={image._id} className="tag has-background-primary has-text-white">{tag}</div>
-              )}
-            </div>
+                <FontAwesomeIcon onClick={ this.state.isLiked ? this.IncrementItem : this.DecrementItem }
+                  className={ this.state.isLiked ? 'isDisliked' : 'isLiked' } icon="heart" />
+                <p>({image.likes})</p>
 
-            <div>
-              { image.comments.map(comment =>
+                <h3>Comments</h3>
+                { image.comments.map(comment =>
+                  <div key={comment._id}
+                    className="userComments columns is-multiline is-mobile">
+                    <div className="column is-3 has-text-centered">
+                      <img className="profilePicCommentReview" src={comment.commentedBy.profilePic || this.state.defaultProfilePic} />
+                    </div>
+                    <div className="column is-7">
+                      <p>{comment.commentedBy.username}</p>
+                      <p>{comment.content}</p>
+                    </div>
+                    <div className="column is-2 has-text-centered">
+                      {Auth.currentUserId() === comment.commentedBy._id &&
+                    <div onClick={this.deleteComment(comment._id)} className="deleteCommentReview"></div>
+                      }
+                    </div>
 
-                <div key={comment._id}
-                  className="userComments columns is-multiline is-mobile">
-                  {/* onMouseOver={this.handleMouseOver}
-                  onMouseOut={this.handleMouseOut} */}
-                  {/* <div>
-                    {this.state.showDeleteCommentButton &&
-                  }
-                </div> */}
-                  <div className="column is-4">
-                    <figure className="image is-64x64">
-                      <img className="is-rounded" src={comment.commentedBy.profilePic || this.state.defaultProfilePic} />
-                    </figure>
                   </div>
+                )}
 
-                  <p>{comment.commentedBy && comment.commentedBy.username}</p>
-                  <p>{comment.content}</p>
+                <form className="commentForm" onSubmit={this.createComment}>
+                  <input onChange={this.handleChange} placeholder="Write a comment..." type="textarea" name="comment" className="input has-text-white" value={this.state.comment || ''} />
+                  <button className="button" type="submit">Add comment</button>
+                </form>
 
-                  {Auth.currentUserId() === comment.commentedBy._id &&
-                  <button onClick={this.deleteComment(comment._id)} className="button is-small is-outlined is-primary">Delete</button>
-                  }
-                  {/* <button onClick={this.showEditComment(comment._id)} className="button is-small is-outlined is-primary">Edit</button> */}
+                {Auth.currentUserId() === image.uploadedBy._id &&
+                  <div>
+                    <Link className="button is-fullwidth is-primary is-rounded is-outlined" to={`/images/${image._id}/edit`}>Edit Image</Link>
+                    <button className="deleteImageButton" onClick={this.toggleClass}>Delete Image</button>
+                  </div>
+                }
+              </div>
+
+              <div className={`${this.state.active ? 'is-active': null} modal `}>
+                <div className="modal-background"></div>
+                <div className="modal-card">
+                  <section className="modal-card-body">
+                    <h5 className="title is-5">Are you sure you want to delete this image?</h5>
+                  </section>
+                  <footer className="modal-card-foot">
+                    <button onClick={this.deleteImage} className="modalButton">Yes</button>
+                    <button onClick={this.toggleClass} className="modalButton">Cancel</button>
+                  </footer>
                 </div>
-              )}
-            </div>
-
-            <div>
-              <form onSubmit={this.createComment}>
-                <input onChange={this.handleChange} name="comment" className="input" value={this.state.comment || ''} />
-                <button className="button is-primary is-fullwidth" type="submit">Add comment</button>
-              </form>
-            </div>
-
-            {Auth.currentUserId() === image.uploadedBy._id &&
-              <div>
-                <Link className="button is-fullwidth is-primary is-rounded is-outlined" to={`/images/${image._id}/edit`}>Edit Image</Link>
-                <button className="deleteImageButton" onClick={this.toggleClass}>Delete Image</button>
-              </div>
-            }
-
-            <div className={`${this.state.active ? 'is-active': null} modal `}>
-              <div className="modal-background"></div>
-              <div className="modal-card">
-                <section className="modal-card-body">
-                  <h5 className="title is-5">Are you sure you want to delete this image?</h5>
-                </section>
-                <footer className="modal-card-foot">
-                  <button onClick={this.deleteImage} className="modalButton">Yes</button>
-                  <button onClick={this.toggleClass} className="modalButton">Cancel</button>
-                </footer>
               </div>
             </div>
-
           </div>
         }
       </section>

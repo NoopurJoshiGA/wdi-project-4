@@ -304,6 +304,22 @@ hr {
   transform: scale(1.6);
 }
 
+////////////////////////////////// Show Image //////////////////////////////////
+.image {
+  max-height: 400px;
+  display: flex;
+    /* height: auto; */
+    max-width: 400px;
+}
+
+.deleteCommentReview {
+  background-image: url('/assets/delete.svg');
+  height: 15px;
+  width: 15px;
+  background-size: contain;
+      margin-top: 5px;
+}
+
 
 
 ////////////////////////////////// Upload Image ////////////////////////////////
