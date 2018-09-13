@@ -38,16 +38,13 @@ h2 {
   font-weight: 900;
 }
 
-.userShowSection h3 {
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
 h3 {
   color: white;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 900;
   margin: 20px 0 10px 0;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 h4 {
@@ -120,6 +117,18 @@ hr {
   height: 200px;
   width: 200px;
   border-radius: 100%;
+  margin: 0 auto;
+}
+
+.profilePicCommentReview {
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+}
+
+.reviewForm {
+  max-width: 550px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -261,8 +270,13 @@ hr {
 }
 
 .userDescription {
+  // padding: 5px;
   // width: 80%;
   // margin: 0 auto;
+}
+
+.secondColumn {
+  padding: 10px;
 }
 
 .reviewsSection {
@@ -393,6 +407,10 @@ input::placeholder {
   background: linear-gradient(100deg, #b721ff, #6121fd);
   border: none;
   transition: all .2s ease-in-out;
+  border-radius: 20px;
+  color: white;
+  width: 100%;
+  max-width: 550px;
 }
 
 .button:hover {

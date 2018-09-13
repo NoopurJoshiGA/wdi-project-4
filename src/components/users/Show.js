@@ -115,20 +115,20 @@ class UsersShow extends React.Component {
                   <img className="profilePic" src={user.profilePic || this.state.defaultProfilePic } alt={user.firstName}></img>
                 </Zoom>
               </div>
-              <div className="column is-12-mobile is-4-tablet is-6-desktop has-text-left-desktop has-text-centered-mobile">
+              <div className="secondColumn column is-12-mobile is-4-tablet is-6-desktop has-text-left-desktop has-text-centered-mobile">
                 <Zoom>
                   <h2 className="has-text-left-desktop has-text-left-tablet">{user.firstName} {user.lastName}</h2>
-                  <hr />
+                  <hr className="is-hidden-mobile"/>
                 </Zoom>
                 <Zoom>
-                  <h3>{user.type}</h3>
+                  <h3 className="has-text-left-desktop has-text-left-tablet has-text-centered-mobile">{user.type}</h3>
                 </Zoom>
                 {/* Description */}
                 { user.description &&
               <div className="userDescription">
                 <div>
                   <Zoom>
-                    <p className="has-text-left-desktop has-text-left-tablet">{user.description}</p>
+                    <p className="has-text-left-desktop has-text-left-tablet has-text-centered-mobile">{user.description}</p>
                   </Zoom>
                   {/* Interests */}
                   { user.interests &&
@@ -162,14 +162,10 @@ class UsersShow extends React.Component {
                 </div>
               </div>
             </div>
-
-
-
-
             {/* Portfolio */}
             { images &&
               <section className="portfolioSection">
-                <h3 className="is-fullwidth has-text-dark">Portfolio</h3>
+                <h3>Portfolio</h3>
                 <div className="columns is-multiline is-mobile">
                   { images.map(image =>
                     <div key={image._id} className="column is-6-mobile is-3-desktop is-4-tablet">
@@ -183,7 +179,6 @@ class UsersShow extends React.Component {
                 </div>
               </section>
             }
-
             <div className="columns is-multiline is-mobile">
               {/* Reviews */}
               <div className="column is-12-mobile is-half-tablet is-half-desktop reviewsSection">
@@ -191,13 +186,14 @@ class UsersShow extends React.Component {
                 {user.reviews.map(review =>
                   <div key={review._id}
                     className="userReviews columns is-multiline is-mobile">
-                    <div className="column is-4">
-                      <figure className="image is-64x64">
-                        <img className="is-rounded" src={review.addedBy.profilePic || this.state.defaultProfilePic} />
-                      </figure>
+                    <div className="column is-3 has-text-centered">
+                      <img className="profilePicCommentReview" src={review.addedBy.profilePic || this.state.defaultProfilePic} />
                     </div>
-                    <div><p>{review.addedBy.username}</p></div>
-                    <p>{review.content}</p>
+                    <div className="column is-9">
+                      <p>{review.addedBy.username}</p>
+                      <p>{review.content}</p>
+                    </div>
+
                     {Auth.currentUserId() === review.addedBy._id &&
                     <div>
                       <button onClick={this.deleteReview(review._id)} className="button is-small is-outlined is-primary">Delete</button>
@@ -207,13 +203,12 @@ class UsersShow extends React.Component {
                   </div>
                 )}
 
-                <div>
-                  <form onSubmit={this.createReview}>
-                    <input onChange={this.handleChange} name="review" className="input has-text-white" value={this.state.review || ''} />
-                    <button className="button" type="submit">Add Review</button>
-                  </form>
-                </div>
+                <form className="reviewForm" onSubmit={this.createReview}>
+                  <input onChange={this.handleChange} placeholder="Write a review..." type="textarea" name="review" className="input has-text-white" value={this.state.review || ''} />
+                  <button className="button" type="submit">Add Review</button>
+                </form>
               </div>
+
 
               <div className="column is-12-mobile is-half-tablet is-half-desktop">
                 <UserLocationMap user={user} userLat={lat} userLng={lng} />
@@ -223,7 +218,6 @@ class UsersShow extends React.Component {
             {Auth.currentUserId() === this.props.match.params.id  &&
             <Link className="button" to={`/users/${user._id}/edit`}>Edit Profile</Link>
             }
-
 
           </div>
         }
