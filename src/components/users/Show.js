@@ -182,23 +182,22 @@ class UsersShow extends React.Component {
               {/* Reviews */}
               <div className="column is-12-mobile is-half-tablet is-half-desktop reviewsSection">
                 <h3>Reviews</h3>
-                {user.reviews.map(review =>
+                { user && user.reviews.map(review =>
                   <div key={review._id}
                     className="userReviews columns is-multiline is-mobile">
-                    <div className="column is-3 has-text-centered">
+                    <div className="column is-2 has-text-centered">
                       <img className="profilePicCommentReview" src={review.addedBy.profilePic || this.state.defaultProfilePic} />
                     </div>
-                    <div className="column is-9">
+                    <div className="column is-8">
                       <p>{review.addedBy.username}</p>
                       <p>{review.content}</p>
                     </div>
 
-                    {Auth.currentUserId() === review.addedBy._id &&
-                    <div>
-                      <button onClick={this.deleteReview(review._id)} className="button is-small is-outlined is-primary">Delete</button>
-                      <button onClick={this.editReview(review._id)} className="button is-small is-outlined is-primary">Edit</button>
+                    <div className="column is-2 has-text-centered">
+                      {Auth.currentUserId() === review.addedBy._id &&
+                          <div onClick={this.deleteReview(review._id)} className="deleteCommentReview"></div>
+                      }
                     </div>
-                    }
                   </div>
                 )}
 

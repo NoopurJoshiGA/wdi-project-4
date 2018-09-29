@@ -20,7 +20,6 @@ const UserLocationMap = ({ user, userLat, userLng }) => {
 
   return(
     <div>
-      { position }
       <Map className="map" center={position} zoom="13">
         <TileLayer
           attribution="&amp;copy <a href=&quot;https://osm.org/copyright&quot;>OpenStreetMap</a> contributors"

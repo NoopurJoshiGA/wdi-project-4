@@ -322,7 +322,7 @@ hr {
   max-height: 500px;
   display: flex;
   /* height: auto; */
-  max-width: 600px;
+  max-width: 450px;
   transition: 0.5s;
   cursor: pointer;
 }
@@ -339,7 +339,6 @@ hr {
 }
 
 .commentReviewInput {
-
   height: 100px;
   background-color: #273440;
   border-radius: 30px;
@@ -353,6 +352,15 @@ hr {
   margin: 0 auto;
   border: 5px solid #33414e;
 }
+
+.commentReviewInput:focus {
+  border-radius: 30px;
+}
+
+.commentReviewInput:active {
+  border-radius: 30px;
+}
+
 
 .deleteCommentReview {
   background-image: url('/assets/delete.svg');
@@ -372,9 +380,9 @@ hr {
 
 
 .showImageSection {
-  padding-top: 50px;
+  padding-top: 100px;
   background-color: #1D2731;
-  height: 100vh;
+  height: auto;
 }
 
 .userImageUpload {
@@ -398,7 +406,7 @@ hr {
 }
 
 .select {
-  font-size: 1rem;
+  font-size: 0.9rem;
   width: 100%;
   background-color: transparent;
   color: white;

@@ -9,7 +9,7 @@ mongoose.Promise = require('bluebird');
 mongoose.connect(dbURI);
 
 const userIds =[
-  '5b9101d67c0224d96e11ed58', '5b9101e27c0224d96e11ed59', '5b9101ed7c0224d96e11ed5a'
+  '5b9101d67c0224d96e11ed58', '5b9101e27c0224d96e11ed59', '5b9101ed7c0224d96e11ed5a', '5b9a368680963882534333bb'
 ];
 
 const userData = [
@@ -88,6 +88,33 @@ const userData = [
     ratings: [
       { ratedBy: userIds[0], number: 4 },
       { ratedBy: userIds[1], number: 5 }
+    ],
+    socialMediaLinks: [
+      { type: 'facebook', url: 'https://facebook.com' },
+      { type: 'instagram', url: 'https://instagram.com' },
+      { type: 'flickr', url: 'https://flickr.com' },
+      { type: 'pinterest', url: 'https://pinterest.com' }
+    ]
+  },
+  // user 4 - photographer 2
+  {
+    _id: userIds[3],
+    firstName: 'Kaique',
+    lastName: 'Rocha',
+    username: 'kaiquerocha',
+    email: 'kaiquerocha@email.com',
+    password: 'pass',
+    type: 'model',
+    profilePic: 'https://images.pexels.com/photos/307847/pexels-photo-307847.jpeg?cs=srgb&dl=architecture-boy-buildings-307847.jpg&fm=jpg',
+    postcode: 'SW10 0XA',
+    interests: 'urban',
+    description: 'Moody shots are my thing',
+    reviews: [
+      { addedBy: userIds[2], content: 'Kai is very talented and was quick to process the images' }
+    ],
+    ratings: [
+      { ratedBy: userIds[0], number: 4 },
+      { ratedBy: userIds[2],  number: 5 }
     ],
     socialMediaLinks: [
       { type: 'facebook', url: 'https://facebook.com' },
@@ -364,6 +391,36 @@ const imageData = [
       { commentedBy: userIds[0], content: 'This picture is amazing! Love the red dress.' },
       { commentedBy: userIds[1], content: 'Your style is great'}
     ]
+  },
+  // photographer 2
+  {
+    uploadedBy: userIds[3],
+    imageUrl: 'https://images.pexels.com/photos/598917/pexels-photo-598917.jpeg?cs=srgb&dl=adult-blur-camera-598917.jpg&fm=jpg',
+    caption: 'Playin around',
+    tags: ['urban'],
+    likes: 5000,
+    comments: [
+      { commentedBy: userIds[0], content: 'How long did you have to wait for the escalators to become clear? Haha' },
+      { commentedBy: userIds[1], content: 'So good!'}
+    ]
+  },
+  {
+    uploadedBy: userIds[3],
+    imageUrl: 'https://images.pexels.com/photos/562614/pexels-photo-562614.jpeg?cs=srgb&dl=backpack-cars-city-562614.jpg&fm=jpg',
+    caption: 'I love smoke shots, can you tell?',
+    tags: ['urban'],
+    likes: 5740,
+    comments: [
+      { commentedBy: userIds[1], content: 'Really cool' },
+      { commentedBy: userIds[2], content: 'Excellent! Keep it up'}
+    ]
+  },
+  {
+    uploadedBy: userIds[3],
+    imageUrl: 'https://images.pexels.com/photos/518389/pexels-photo-518389.jpeg?cs=srgb&dl=audience-band-blur-518389.jpg&fm=jpg',
+    caption: 'A shot from the gig I went to last night!',
+    tags: ['urban, music, club, nightlife'],
+    likes: 6001
   }
 ];
 
@@ -400,6 +457,10 @@ User.create(userData)
     imageData[21].uploadedBy = users[2]._id;
     imageData[22].uploadedBy = users[2]._id;
     imageData[23].uploadedBy = users[2]._id;
+    //photographer 2
+    imageData[24].uploadedBy = users[3]._id;
+    imageData[25].uploadedBy = users[3]._id;
+    imageData[26].uploadedBy = users[3]._id;
     return Image.create(imageData);
   })
   .then(images => console.log(`Created ${images.length} images`))
