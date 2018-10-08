@@ -88,9 +88,6 @@ class UsersIndex extends React.Component {
   // TODO: REFACTOR INTO FUNCTIONS
   // get location of each user
   getAllUsersLocation = (users, pointA) => {
-    // const pointA = this.getUserLocation();
-    // console.log('point A is', pointA);
-    // console.log('into the getUsersLocation');
     let userLocations = [];
     const userPostcodes = users.map(user => user.postcode);
     axios

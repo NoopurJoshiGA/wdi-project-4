@@ -1,3 +1,5 @@
+# Project Four - Boke
+<img src="readme-images/boke.png" width="700px">
 
 ## Technical Requirements
 - Build a full-stack application by making your own backend and your own front-end
@@ -26,7 +28,6 @@
 - Git
 
 ## Overview
-<img src="readme-images/boke.png" width="700px">
 
 Photography has become my favourite hobby over the past year. One of the challenges I personally faced was finding models to shoot portraits with. During the research phase of this project, I found that apps such as Instagram has a vast number of users but had limited functionality to filter through interests and location easily and quickly.
 
@@ -71,7 +72,72 @@ The MVP of the application was to add the following features:
 
 
 ## Wins
-- A big win for me was to calculate the distance between the current logged in user's location and all the other users location, then sort the nearest users first when the page loads. I achieved this without using an external API such as MapQuest.
+- A big win for me was to calculate the distance between the current logged in user's location and all the other users location, then sort the nearest users first when the page loads. I achieved this without using an external API such as MapQuest. This is shown in the code snippet below -
+
+``` JavaScript
+getAllUsersLocation = (users, pointA) => {
+  let userLocations = [];
+  const userPostcodes = users.map(user => user.postcode);
+  axios
+    .post('https://api.postcodes.io/postcodes/', { postcodes: userPostcodes })
+    .then( res => {
+      // res.data.result is the response from the bulk axios req
+      res.data.result.forEach(result => {
+        const position = { lat: result.result.latitude, lon: result.result.longitude, postcode: result.query };
+        const usersInPostcode = users.filter(user => user.postcode === position.postcode);
+        usersInPostcode.forEach(user => {
+          user.lat = position.lat;
+          user.lon = position.lon;
+          const pointB = { lat: user.lat, lon: user.lon };
+          user.distance = this.findDistanceBetweenUsers(pointA, pointB );
+        });
+        userLocations = userLocations.concat(usersInPostcode);
+
+      });
+      this.sortByDistance(userLocations);
+      // set users on the state for the first time
+      this.setState({ users: userLocations });
+    });
+}
+
+// sort users by their distance
+sortByDistance = (allUsersLocation) => {
+  allUsersLocation.sort(function(a, b) {
+    return a.distance - b.distance;
+  });
+}
+```
+
+I used the Haversine Formula to calculate the distance between two longitude and latitude points
+``` Javascript
+findDistanceBetweenUsers = (pointA, pointB) =>  {
+  const lat1 = pointA.lat;
+  const lon1 = pointA.lon;
+
+  const lat2 = pointB.lat;
+  const lon2 = pointB.lon;
+
+  const R = 6371; // Radius of the earth in km
+
+  const dLat = this.deg2rad(lat2-lat1);  // deg2rad below
+  const dLon = this.deg2rad(lon2-lon1);
+
+  const a =
+  Math.sin(dLat/2) * Math.sin(dLat/2) +
+  Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+  Math.sin(dLon/2) * Math.sin(dLon/2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  const distance = R * c; // Distance in km
+
+  return distance;
+}
+
+deg2rad = (deg) => {
+  return deg * (Math.PI/180);
+}
+```
+
 - Another win was to be able to hit my daily targets on my Trello board. Overall this project was the least stressful out of the four projects and I was pleased with the outcome of the features, styling and responsiveness of the application.
 
 
