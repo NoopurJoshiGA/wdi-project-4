@@ -108,7 +108,7 @@ sortByDistance = (allUsersLocation) => {
 }
 ```
 
-I used the Haversine Formula to calculate the distance between two longitude and latitude points
+I used the <a href="https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula">Haversine Formula</a> to calculate the distance between two longitude and latitude points
 ``` Javascript
 findDistanceBetweenUsers = (pointA, pointB) =>  {
   const lat1 = pointA.lat;
