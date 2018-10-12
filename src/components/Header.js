@@ -26,17 +26,17 @@ class Header extends React.Component {
       <header className="navbar is-fixed-top">
         <div className="container">
           <nav className="navbar mobile" role="navigation" aria-label="main navigation">
-            {<Link to="/">
-              <div className="navbar-brand">
+            <div className="navbar-brand">
+              {<Link to="/">
                 <div className="logo-brand"></div>
-                <div className="logo"></div>
-                <a role="button" className={`navbar-burger ${this.state.toggleNavbar ? 'is-active': ''}`} onClick={this.handleToggle} aria-label="menu" aria-expanded="false"  data-target="navMenu" d>
-                  <span aria-hidden="true"></span>
-                  <span aria-hidden="true"></span>
-                  <span aria-hidden="true"></span>
-                </a>
-              </div>
-            </Link>}
+              </Link>}
+              <div className="logo"></div>
+              <a role="button" className={`navbar-burger ${this.state.toggleNavbar ? 'is-active': ''}`} onClick={this.handleToggle} aria-label="menu" aria-expanded="false"  data-target="navMenu" d>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
 
             <div className={`navbar-menu ${this.state.toggleNavbar ? 'is-active': ''}`}>
               <div className="navbar-end">
