@@ -9,10 +9,6 @@ import Auth from '../../lib/Auth';
 class AuthLogin extends React.Component {
 
   state = {
-    // prepopulate for test purposes
-    // TODO: remove this before deployment!
-    email: 'milakunis@email.com',
-    password: 'pass',
     passwordHidden: true,
     errors: {}
   }
@@ -20,7 +16,6 @@ class AuthLogin extends React.Component {
   handleChange = (event) => {
     const { target: { name, value }} = event;
     this.setState({ [name]: value });
-    // console.log(this.state.email, this.state.password);
   }
 
   togglePasswordShow = () => {

@@ -6,15 +6,8 @@ class Home extends React.Component {
 
   render() {
     return(
-      <section className="homeSection">
-        <h1 className="title is-1 has-text-white has-text-centered">Boke</h1>
-        <div className="columns is-multiline">
-          <div className="split-top column is-6">
-            <button className="homeBtn">Photographer</button>
-          </div>
-          <div className="split-bottom column is-6">
-            <button className="homeBtn">Model</button>
-          </div>
+      <section className="hero is-fullheight">
+        <div className="hero-body">
         </div>
       </section>
     );

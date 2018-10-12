@@ -68,7 +68,7 @@ class ImagesNew extends React.Component {
           </input> */}
 
           <ReactFilestack
-            apikey="AqGjevNLqRu22jn66Mv4Zz"
+            apikey="A53jKm6Q0GkLTlst7BB4wz"
             // options={basicOptions}
             buttonText="Click here to select an image"
             buttonClass="filestackButton"

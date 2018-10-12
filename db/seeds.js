@@ -53,7 +53,7 @@ const userData = [
     profilePic: 'https://images.pexels.com/photos/1381558/pexels-photo-1381558.jpeg?cs=srgb&dl=adult-beautiful-big-city-1381558.jpg&fm=jpg',
     postcode: 'SE10NS',
     interests: 'fashion',
-    description: 'I love fashion and keeping up with trends. I\'m a shopoholic. Looking for photographers to work with to build my fashion blog.',
+    description: 'I love fashion and keeping up with trends. Looking for photographers to work with to build my fashion blog.',
     reviews: [
       { addedBy: userIds[0], content: 'Natasha is very professional and talented, will definitely be working with her more regularly.' }
     ],

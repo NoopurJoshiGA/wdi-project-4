@@ -1,4 +1,4 @@
-/////////////////////////////// Main //// //////////////////////////////
+/////////////////////////////// Main //////////////////////////////////
 
 * {
   padding: 0;
@@ -11,6 +11,8 @@ body {
   font-weight: 600;
   color: white;
 }
+
+/////////////////////////////// Typography /////////////////////////////////////
 
 a {
   color: orange;
@@ -96,6 +98,80 @@ hr {
   /* margin: 1.5rem 0; */
 }
 
+// Navbar
+
+.logo {
+  background-image: url('../assets/logo.png');
+  background-size: contain;
+  height: 27px;
+  width: 80px;
+}
+
+.logo-brand {
+  background-image: url('../assets/logo-brand.png');
+  background-size: contain;
+  height: 45px;
+  width: 55px;
+}
+
+header {
+  border-bottom: 1px solid #708192;
+}
+
+
+.navbar {
+  background-color: #273440;
+  width: 100%;
+}
+
+.navbar-menu {
+  background-color: #273440;
+}
+
+.navbar-brand {
+  align-items: center;
+}
+
+.navbar-burger {
+
+}
+
+.navbar-item {
+  color: white;
+  font-weight: 600;
+  text-align: right;
+  padding-right: 20px;
+  text-transform: uppercase;
+}
+
+.navbar-item:hover {
+  background-color: #273440 !important;
+}
+
+.navbar-item a {
+  font-size: 0.7rem !important;
+}
+
+.navbar-item a:hover {
+
+}
+
+.logoutButton {
+  background: linear-gradient(100deg, #6121fd, #b721ff);
+}
+
+// .discoverButton {
+//   text-align: center;
+//   border: 2px solid #6121fd;
+//   background-color: transparent;
+//   padding: 0 !important;
+//   margin: 0 !important;
+// }
+
+.discoverButton a {
+  text-transform: uppercase !important;
+}
+
 /////////////////////////// Login & Register page //////////////////////////////
 
 .loginSection, .registerSection {
@@ -155,6 +231,12 @@ hr {
 
 .checkbox {
   padding: 5px;
+}
+
+// Home page
+.hero {
+  background-image: url('https://static1.squarespace.com/static/576ef902d1758ef2e6dada3d/576f03126a4963e880312dde/57f893c5d1758eb0545ff2e0/1537922849483/IMG_9261.JPG?format=2500w');
+  background-size: cover;
 }
 
 ////////////////////////////////// Common /////////////////////////////////////
@@ -521,10 +603,6 @@ input::placeholder {
   margin: 10px 0 10px 0;
 }
 
-// .deleteUserAccountBtn {
-//   margin-top: 60px;
-// }
-
 .map {
   height: 500px;
   width: 100%;
@@ -643,82 +721,6 @@ input::placeholder {
   padding: 20px;
   background-color: white;
 }
-
-
-// Navbar
-
-.logo {
-  background-image: url('../assets/logo.png');
-  background-size: contain;
-  height: 27px;
-  width: 80px;
-}
-
-.logo-brand {
-  background-image: url('../assets/logo-brand.png');
-  background-size: contain;
-  height: 45px;
-  width: 55px;
-}
-
-
-.navbar {
-  background-color: #273440;
-  position: fixed;
-  width: 100%;
-  height: 30px;
-  top: 0;
-  border-bottom: 1px solid #708192;
-}
-
-.navbar-menu {
-  background-color: #273440;
-}
-
-.navbar-brand {
-  align-items: center;
-  // padding-left: 20px;
-}
-
-.navbar-burger {
-
-}
-
-.navbar-item {
-  color: white;
-  font-weight: 600;
-  text-align: right;
-  padding-right: 20px;
-}
-
-.navbar-item:hover {
-  background-color: #273440 !important;
-}
-
-.navbar-item a {
-  font-size: 0.7rem !important;
-}
-
-.navbar-item a:hover {
-
-}
-
-.logoutButton {
-  background: linear-gradient(100deg, #6121fd, #b721ff);
-}
-
-// .discoverButton {
-//   text-align: center;
-//   border: 2px solid #6121fd;
-//   background-color: transparent;
-//   padding: 0 !important;
-//   margin: 0 !important;
-// }
-
-.discoverButton a {
-  text-transform: uppercase !important;
-}
-
 
 // Modal
 

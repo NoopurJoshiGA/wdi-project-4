@@ -12,14 +12,6 @@ class AuthRegister extends React.Component {
 
   state = {
     passwordHidden: true,
-    firstName: 'Mila',
-    lastName: 'Kunis',
-    username: 'milakunis',
-    email: 'milakunis@email.com',
-    type: 'photographer',
-    postcode: 'WD171BN',
-    password: 'pass',
-    passwordConfirmation: 'pass',
     defaultImage: 'https://kirche-wagenfeld.de/wp-content/uploads/2018/03/default-profile.png',
     errors: {}
   }
@@ -37,7 +29,7 @@ class AuthRegister extends React.Component {
       return this.setState({ errors });
     }
     // make a request to the db
-    // if there are fields that aren't needed on the state, mongoose ignores it.
+    // if there are fields that aren't needed on the state, mongoose ignores it
     axios
       .post('/api/register', this.state)
       .then(res => {
@@ -89,7 +81,7 @@ class AuthRegister extends React.Component {
 
           <img className="profilePicRegister" src={this.state.profilePic || this.state.defaultImage} />
           <ReactFilestack
-            apikey="AqGjevNLqRu22jn66Mv4Zz"
+            apikey="A53jKm6Q0GkLTlst7BB4wz"
             // options={basicOptions}
             buttonText="Upload Profile Picture"
             buttonClass="filestackButton"
@@ -144,9 +136,9 @@ class AuthRegister extends React.Component {
           {/* Type */}
           <div>
             <label className="has-text-left" htmlFor="type">Please select...</label>
-            <select value={this.state.type} className="input" onChange={this.handleChange}>
-              <option>model</option>
-              <option>photographer</option>
+            <select onChange={this.handleChange} value={this.state.type} className="input">
+              <option value="model">model</option>
+              <option value="photographer">photographer</option>
             </select>
           </div>
           <span className="validation">{this.state.errors.type}</span>
@@ -200,7 +192,6 @@ class AuthRegister extends React.Component {
             onChange={this.handleChange}
             className="input"
             name="passwordConfirmation"
-            placeholder="e.g. pass"
             type={this.state.passwordHidden ? 'password' : 'text'}
             value={this.state.passwordConfirmation || ''}>
           </input>
