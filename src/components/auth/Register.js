@@ -37,7 +37,7 @@ class AuthRegister extends React.Component {
         // we are logged in once the token is stored
         // import auth, which will allow us to use the methods
         Auth.setToken(token);
-        this.props.history.push('/users');
+        this.props.history.push('/');
       })
       .catch(err => {
         console.log('err.response is',err.response);
@@ -136,7 +136,7 @@ class AuthRegister extends React.Component {
           {/* Type */}
           <div>
             <label className="has-text-left" htmlFor="type">Please select...</label>
-            <select onChange={this.handleChange} value={this.state.type} className="input">
+            <select name="type" onChange={this.handleChange} value={this.state.type} className="input">
               <option value="model">model</option>
               <option value="photographer">photographer</option>
             </select>

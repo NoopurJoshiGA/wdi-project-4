@@ -115,7 +115,7 @@ hr {
 }
 
 header {
-  border-bottom: 1px solid #708192;
+  // border-bottom: 1px solid #708192;
 }
 
 
@@ -698,29 +698,12 @@ input::placeholder {
 // Home page
 
 .homeSection {
-  height: 100vh;
+  height: auto;
 }
 
-.split-top {
-  background-image: url("https://stylewhack.com/wp-content/uploads/2017/11/IMG_0720.jpg");
-  background-size: cover;
-  height: 50vh;
-  position: relative;
-}
-
-.split-bottom {
-  background-image: url("https://static1.squarespace.com/static/576ef902d1758ef2e6dada3d/576f03126a4963e880312dde/583dcce7b3db2b24516db747/1480445534740/IMG_0439.JPG?format=2500w");
-  background-size: cover;
-  height: 50vh;
-  position: relative;
-}
-
-.homeBtn {
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  padding: 20px;
-  background-color: white;
+.slick-slide img {
+  display: block;
+  padding-top: 50px;
 }
 
 // Modal
