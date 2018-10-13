@@ -148,10 +148,13 @@ deg2rad = (deg) => {
 - Use react-reveal npm module for styling
 - Integrate FileStack for image upload
 - Use Leaflet map to display user location on the profile page
+- Post project week, I was able to add a carousel on the home page using Slick package for React
 
 ## Future Features
 - React gives the power to break down each component, I'd like to refactor my code to further break down my forms and other components which are used on multiple pages.
 - Allow users to send and accept friend requests
 - Allow users to message each other via a chatbot or some sort of inbox system
+- Allow users to create meet ups with their friends
 - Fix bugs - if the user decides not to share their location, the list of users on the 'Discover' page do not load properly
-- Currently the logout button is hidden when using the application on a browser, I'd like to fix this bug
+- Include secure routes to ensure the user cannot browse user profiles without being logged in
+- Update the home page to include more information about the application

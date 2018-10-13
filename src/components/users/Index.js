@@ -144,10 +144,10 @@ class UsersIndex extends React.Component {
     });
   }
 
-
   // get users current position
   // users is res.data
   getUserLocation = (users) => {
+    console.log('into the get user position function...');
     if(navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(userPosition => {
 
@@ -160,10 +160,15 @@ class UsersIndex extends React.Component {
         this.getAllUsersLocation(users, pointA);
       });
     } else {
-      this.setState({ users: users });
+      this.withoutUserLocation();
       console.log('no internet connection....', this.state.users);
+      // this.setState({ users: users });
       // get the postcode of the current user and run the getAllUsersLocation with that
     }
+  }
+
+  withoutUserLocation = () => {
+    console.log('skdfjnsdkfjn');
   }
 
   findDistanceBetweenUsers = (pointA, pointB) =>  {
@@ -209,21 +214,24 @@ class UsersIndex extends React.Component {
       <section className="usersIndexSection">
         <div className="container">
           <h2 className="has-text-dark">Discover</h2>
-          <div className="columns is-multiline">
-            <div className="column is-6-tablet is-4-desktop">
-              <SearchBar handleChange={ this.handleSearchChange } searchTerm={ this.state.searchTerm } />
+
+          {this.state.users &&
+            <div className="columns is-multiline">
+              <div className="column is-6-tablet is-4-desktop">
+                <SearchBar handleChange={ this.handleSearchChange } searchTerm={ this.state.searchTerm } />
+              </div>
+              <div className="column is-6-tablet is-4-desktop">
+                <FilterByType
+                  defaultValue={this.state.defaultValue}
+                  options={this.state.filterTypeOptions}
+                  handleChange={this.handleFilterByTypeChange}
+                />
+              </div>
+              <div className="column is-6-tablet is-4-desktop">
+                <FilterByDistance options={this.state.filterDistanceOptions} handleChange={this.handleFilterByDistanceChange} />
+              </div>
             </div>
-            <div className="column is-6-tablet is-4-desktop">
-              <FilterByType
-                defaultValue={this.state.defaultValue}
-                options={this.state.filterTypeOptions}
-                handleChange={this.handleFilterByTypeChange}
-              />
-            </div>
-            <div className="column is-6-tablet is-4-desktop">
-              <FilterByDistance options={this.state.filterDistanceOptions} handleChange={this.handleFilterByDistanceChange} />
-            </div>
-          </div>
+          }
 
           {!this.state.users &&
               <section className="section has-text-centered">

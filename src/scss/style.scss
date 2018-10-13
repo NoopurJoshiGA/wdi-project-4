@@ -9,7 +9,7 @@ body {
   background-color: #1D2731;
   font-family: 'Muli', sans-serif;
   font-weight: 600;
-  color: white;
+  color: #fff;
 }
 
 /////////////////////////////// Typography /////////////////////////////////////
@@ -27,9 +27,9 @@ h1 {
 }
 
 h2 {
-  color: white;
+  color: #fff;
   text-align: center;
-  color: white;
+  color: #fff;
   font-size: 1rem;
   font-weight: 600;
   margin: 20px 0 20px 0;
@@ -43,7 +43,7 @@ h2 {
 }
 
 h3 {
-  color: white;
+  color: #fff;
   font-size: 1rem;
   font-weight: 900;
   margin: 20px 0 10px 0;
@@ -86,7 +86,7 @@ label {
 .tag {
   margin: 2px;
   background-color: #6121fd !important;
-  color: white !important;
+  color: #fff !important;
 }
 
 hr {
@@ -137,7 +137,7 @@ header {
 }
 
 .navbar-item {
-  color: white;
+  color: #fff;
   font-weight: 600;
   text-align: right;
   padding-right: 20px;
@@ -248,7 +248,7 @@ header {
   max-width: 550px;
   margin: 0 auto;
   background-color: transparent;
-  color: white;
+  color: #fff;
   margin: 5px 0 10px 0;
   border-radius: 20px;
   height: 40px;
@@ -266,7 +266,7 @@ header {
 
 .validation {
   background-color: #d04646;
-  color: white;
+  color: #fff;
   border-radius: 5px;
   display: block;
   font-size: 0.7rem;
@@ -428,7 +428,7 @@ header {
   margin: 20px;
   flex-shrink: 1;
   padding: 0.75rem;
-  color: white;
+  color: #fff;
   width: 100%;
   font-family: 'Muli', sans-serif;
   font-size: 0.9rem;
@@ -492,10 +492,10 @@ header {
   font-size: 0.9rem;
   width: 100%;
   background-color: transparent;
-  color: white;
+  color: #fff;
   margin: 5px 0 10px 0;
   border-radius: 40px !important;
-  border: 1px white solid;
+  border: 1px #fff solid;
   height: 40px;
 }
 
@@ -536,7 +536,7 @@ header {
 
 .userIndexBtn:hover {
   background-color: #6121fd;
-  color: white;
+  color: #fff;
 }
 
 .form {
@@ -556,7 +556,7 @@ header {
 
 .input {
   background-color: transparent;
-  color: white;
+  color: #fff;
   margin: 5px 0 10px 0;
   border-radius: 20px;
   height: 40px;
@@ -581,7 +581,7 @@ input::placeholder {
   border: none;
   transition: all .2s ease-in-out;
   border-radius: 20px;
-  color: white;
+  color: #fff;
   width: 100%;
   max-width: 550px;
 }
@@ -589,7 +589,7 @@ input::placeholder {
 .button:hover {
   background: linear-gradient(100deg, #6121fd, #b721ff);
   transform: scale(0.95);
-  color: white;
+  color: #fff;
 }
 
 // Show image page
@@ -630,7 +630,7 @@ input::placeholder {
 // User Index Page
 
 .usersIndexSection {
-  background-color: white;
+  background-color: #fff;
 }
 
 .FilterByTypeSection, .SortByLocationSection, .filterByDistanceSection, .searchBarSection {
@@ -672,7 +672,7 @@ input::placeholder {
   background-color: #273440;
   border-radius: 30px;
   margin: 20px;
-  color: white;
+  color: #fff;
 }
 
 .isDisliked {
@@ -691,7 +691,7 @@ input::placeholder {
   height: 80px;
   width: 80px;
   border-radius: 100%;
-  border: 2px white solid;
+  border: 2px #fff solid;
 }
 
 
@@ -699,6 +699,28 @@ input::placeholder {
 
 .homeSection {
   height: auto;
+  background-color: #fff;
+}
+
+.homeSection h2 {
+  color: #4a4a4a;
+  font-size: 2rem;
+  padding-top:20px;
+}
+
+.aboutSection {
+  height: 100vh;
+  text-align: center;
+  background-color: #fff;
+  color: #4a4a4a;
+}
+
+.aboutSection p {
+  font-size: 1.3rem;
+  font-weight: 100;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 40px;
 }
 
 .slick-slide img {
@@ -709,14 +731,14 @@ input::placeholder {
 // Modal
 
 .modal-card-foot {
-  background-color: white;
+  background-color: #fff;
   border: none;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
 .modal-card-body {
-  background-color: white;
+  background-color: #fff;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -734,7 +756,7 @@ input::placeholder {
 
 .modal-card-foot .modalButton:hover {
   background-color: #6121fd;
-  color: white;
+  color: #fff;
   cursor: pointer;
 }
 
