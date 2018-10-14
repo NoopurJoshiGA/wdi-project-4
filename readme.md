@@ -157,4 +157,6 @@ deg2rad = (deg) => {
 - Allow users to create meet ups with their friends
 - Fix bugs - if the user decides not to share their location, the list of users on the 'Discover' page do not load properly
 - Include secure routes to ensure the user cannot browse user profiles without being logged in
+- Fix bug - The login page doesn't display an error if the email/password is incorrect
+- Fix bug - The discover page shows the current logged in user
 - Update the home page to include more information about the application

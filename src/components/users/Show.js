@@ -113,6 +113,9 @@ class UsersShow extends React.Component {
               <div className="column is-12-mobile is-4-tablet is-3-desktop has-text-centered">
                 <Zoom>
                   <img className="profilePic" src={user.profilePic || this.state.defaultProfilePic } alt={user.firstName}></img>
+                  {Auth.currentUserId() === this.props.match.params.id  &&
+                  <Link className="button" to={`/users/${user._id}/edit`}>Edit Profile</Link>
+                  }
                 </Zoom>
               </div>
               <div className="secondColumn column is-12-mobile is-4-tablet is-6-desktop has-text-left-desktop has-text-centered-mobile">
@@ -211,10 +214,6 @@ class UsersShow extends React.Component {
                 <UserLocationMap user={user} userLat={lat} userLng={lng} />
               </div>
             </div>
-
-            {Auth.currentUserId() === this.props.match.params.id  &&
-            <Link className="button" to={`/users/${user._id}/edit`}>Edit Profile</Link>
-            }
 
           </div>
         }

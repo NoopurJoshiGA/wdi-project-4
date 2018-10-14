@@ -160,15 +160,10 @@ class UsersIndex extends React.Component {
         this.getAllUsersLocation(users, pointA);
       });
     } else {
-      this.withoutUserLocation();
       console.log('no internet connection....', this.state.users);
       // this.setState({ users: users });
       // get the postcode of the current user and run the getAllUsersLocation with that
     }
-  }
-
-  withoutUserLocation = () => {
-    console.log('skdfjnsdkfjn');
   }
 
   findDistanceBetweenUsers = (pointA, pointB) =>  {
