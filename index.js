@@ -19,7 +19,7 @@ app.use(express.static(`${__dirname}/public`));
 app.use('/api', Router);
 
 app.get('/*', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
-// errorHandler must go after Router
+// errorHandler must go after Router.
 app.use(errorHandler);
 
 app.listen(port, () => console.log(`Express is listening on port ${port}`));
