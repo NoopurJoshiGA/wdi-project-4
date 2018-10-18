@@ -68,7 +68,7 @@ class ImagesNew extends React.Component {
           </input> */}
 
           <ReactFilestack
-            apikey="A53jKm6Q0GkLTlst7BB4wz"
+            apikey="AttzzTT2qRw6FJXs4TnD6z"
             // options={basicOptions}
             buttonText="Click here to select an image"
             buttonClass="filestackButton"
@@ -102,7 +102,7 @@ class ImagesNew extends React.Component {
           <button className="button is-fullwidth is-primary">Upload Image</button>
         </form>
 
-        <div className={`${this.state.active ? 'is-active': null} modal `}>
+        {/* <div className={`${this.state.active ? 'is-active': null} modal `}>
           <div className="modal-background"></div>
           <div className="modal-card">
             <section className="modal-card-body">
@@ -112,7 +112,7 @@ class ImagesNew extends React.Component {
               <button onClick={this.toggleClass} className="button">Ok</button>
             </footer>
           </div>
-        </div>
+        </div> */}
 
       </section>
     );

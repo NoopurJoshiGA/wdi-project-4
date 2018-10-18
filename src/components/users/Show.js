@@ -111,54 +111,53 @@ class UsersShow extends React.Component {
           <div className="container">
             <div className="columns is-multiline is-mobile">
               <div className="column is-12-mobile is-4-tablet is-3-desktop has-text-centered">
-                <Zoom>
-                  <img className="profilePic" src={user.profilePic || this.state.defaultProfilePic } alt={user.firstName}></img>
-                  {Auth.currentUserId() === this.props.match.params.id  &&
+                {/* <Fade> */}
+                <img className="profilePic" src={user.profilePic || this.state.defaultProfilePic } alt={user.firstName}></img>
+                {Auth.currentUserId() === this.props.match.params.id  &&
                   <Link className="button" to={`/users/${user._id}/edit`}>Edit Profile</Link>
-                  }
-                </Zoom>
+                }
+                {/* </Fade> */}
               </div>
               <div className="secondColumn column is-12-mobile is-4-tablet is-6-desktop has-text-left-desktop has-text-centered-mobile">
                 <Zoom>
                   <h2 className="has-text-left-desktop has-text-left-tablet">{user.firstName} {user.lastName}</h2>
                   <hr className="is-hidden-mobile"/>
-                </Zoom>
-                <Zoom>
+                  {/* </Fade> */}
+                  {/* <Zoom> */}
                   <h3 className="has-text-left-desktop has-text-left-tablet has-text-centered-mobile">{user.type}</h3>
                 </Zoom>
                 {/* Description */}
                 { user.description &&
               <div className="userDescription">
                 <div>
-                  <Zoom>
-                    <p className="has-text-left-desktop has-text-left-tablet has-text-centered-mobile">{user.description}</p>
-                  </Zoom>
+                  {/* <Zoom> */}
+                  <p className="has-text-left-desktop has-text-left-tablet has-text-centered-mobile">{user.description}</p>
+                  {/* </Zoom> */}
                   {/* Interests */}
                   { user.interests &&
-                    <Zoom>
+                  // <Zoom>
                       <div className="interests">
                         { user.interests.map(interest =>
                           <div key={user._id} className="tag">{interest || ''}</div>
                         )}
                       </div>
-                    </Zoom>
                   }
                 </div>
               </div>
                 }
               </div>
               <div className="column is-12-mobile is-4-tablet is-3-desktop has-text-left-desktop has-text-centered">
-                <Zoom>
-                  <div className="socialMediaLinks">
-                    { user.socialMediaLinks.map(link =>
-                      <p key={link._id}>
-                        <a href={link.url}>
-                          <div className={link.type}></div>
-                        </a>
-                      </p>
-                    )}
-                  </div>
-                </Zoom>
+                {/* <Zoom> */}
+                <div className="socialMediaLinks">
+                  { user.socialMediaLinks.map(link =>
+                    <p key={link._id}>
+                      <a href={link.url}>
+                        <div className={link.type}></div>
+                      </a>
+                    </p>
+                  )}
+                </div>
+                {/* </Zoom> */}
                 <div className="envelope">
                   <a href={`mailto:${user.email}`}><FontAwesomeIcon className="envelopeIcon" icon="envelope" /></a>
                 </div>
@@ -214,7 +213,6 @@ class UsersShow extends React.Component {
                 <UserLocationMap user={user} userLat={lat} userLng={lng} />
               </div>
             </div>
-
           </div>
         }
       </section>

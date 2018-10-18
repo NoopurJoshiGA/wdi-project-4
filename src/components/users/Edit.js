@@ -3,7 +3,7 @@ import axios from 'axios';
 import Auth from '../../lib/Auth';
 // import { Link } from 'react-router-dom';
 
-import Flash from '../../lib/Flash';
+// import Flash from '../../lib/Flash';
 
 import ReactFilestack from 'filestack-react';
 
@@ -88,13 +88,14 @@ class UsersEdit extends React.Component {
 
         <form onSubmit={this.handleSubmit} className="form">
           <ReactFilestack
-            apikey="AqGjevNLqRu22jn66Mv4Zz"
+            apikey="AttzzTT2qRw6FJXs4TnD6z"
             // options={basicOptions}
             buttonText="Upload Profile Picture"
             buttonClass="filestackButton"
             onSuccess={this.onSuccess}
             onError={this.onError}
           />
+
           {/* First Name */}
           <input
             onChange={this.handleChange}
@@ -137,9 +138,9 @@ class UsersEdit extends React.Component {
 
           {/* Type */}
           <div className="is-fullwidth">
-            <select value={this.state.type} className="select" onChange={this.handleChange}>
-              <option>model</option>
-              <option>photographer</option>
+            <select name="type" onChange={this.handleChange} value={this.state.type} className="input">
+              <option value="model">model</option>
+              <option value="photographer">photographer</option>
             </select>
           </div>
           <span className="validation">{this.state.errors.type}</span>

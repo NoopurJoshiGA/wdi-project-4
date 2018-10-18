@@ -81,7 +81,7 @@ class AuthRegister extends React.Component {
 
           <img className="profilePicRegister" src={this.state.profilePic || this.state.defaultImage} />
           <ReactFilestack
-            apikey="A53jKm6Q0GkLTlst7BB4wz"
+            apikey="AttzzTT2qRw6FJXs4TnD6z"
             // options={basicOptions}
             buttonText="Upload Profile Picture"
             buttonClass="filestackButton"

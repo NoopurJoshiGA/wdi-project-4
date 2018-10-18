@@ -32,7 +32,9 @@ function imagesUpdate(req, res, next) {
 }
 
 function imagesCreate(req, res, next) {
-  req.body.tags = req.body.tags.split(' ');
+  if(typeof(req.body.tags) === 'string' || '') {
+    req.body.tags = req.body.tags.split(' ');
+  }
   Image
     .create(req.body)
     .then(image => {
